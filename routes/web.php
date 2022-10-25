@@ -24,4 +24,7 @@ Route::get('/dashboard', function () {
 // home È­¸é
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
 
+Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
+Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit']);
+
 require __DIR__.'/auth.php';

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -14,15 +15,9 @@ class HomeController extends Controller
     }
 
     public function show(Request $request, $articleId = null) {
-        //$cacheKey = cache_key('articles.index');
-        $query = $articleId ? \App\Models\Article::whereId($articleId) : DB::table('article')->paginate(15);
-
-        $articles = $query->orderBy(
-            $request->input('sort', 'created_at'),
-            $request->input('order', 'desc')
-        );
-
-        //$articles = $this->cache($cacheKey, 5, $query, 'paginate', 3);
+        $articles = Article::query()->with(['user' => function($query) {
+            $query->select('id', 'name');
+        }])->get();
 
         return view('home', compact('articles'));
     }

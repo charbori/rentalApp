@@ -49,6 +49,7 @@ return [
     |                    "custom", "stack"
     |
     */
+    'log' => env('APP_LOG', 'daily'),
 
     'channels' => [
         'stack' => [

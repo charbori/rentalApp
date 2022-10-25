@@ -27,7 +27,7 @@ class ArticleSeeder extends Seeder
 
         $userId = DB::table('users')->where('name', $randUsername)->first();
 
-        DB::table('article')->insert([
+        DB::table('articles')->insert([
             'user_id' => $userId->id,
             'title' => Str::random(10),
             'content' => Str::random(100),
