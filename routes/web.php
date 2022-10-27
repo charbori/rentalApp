@@ -27,4 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
 Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
 Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit']);
 
+Route::get('/test', function () {
+    return view('layouts.test');
+});
+Route::get('/test2', function () {
+    return view('layouts.test2');
+});
+
 require __DIR__.'/auth.php';

@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+@section('style')
+    <link href="/build/assets/home.css" rel="stylesheet">
+@stop
 @section('contents')
     @if (isset($articles))
         @include('articles.article', compact('articles'))
