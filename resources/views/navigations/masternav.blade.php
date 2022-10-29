@@ -11,7 +11,7 @@
                         <a class="nav-link active" aria-current="page" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/articles">Articles</a>
+                        <a class="nav-link active" aria-current="page" href="/home">Articles</a>
                     </li>
                 </ul>
                 <form class="d-flex" action="/articles/search" method="get">

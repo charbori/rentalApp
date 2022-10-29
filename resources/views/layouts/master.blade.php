@@ -36,7 +36,7 @@
     </head>
     <body>
         @include('navigations.masternav')
-
+        @include('flash::message')
         @if (trim(Request::path()) === 'home')
             @include('layouts.main')
         @else

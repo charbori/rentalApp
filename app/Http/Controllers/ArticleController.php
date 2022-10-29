@@ -41,6 +41,7 @@ class ArticleController extends Controller
             "content" => $request->content,
             "user_id" => $id
         ]);
+        flash('저장되었습니다.');
         return view('articles.show', compact('article'));
     }
 }
