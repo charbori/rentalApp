@@ -7,9 +7,9 @@
     @if (isset($articles))
         @include('articles.article', compact('articles'))
     @else
-        <div class="row featurette">
+        <div class="row featurette" style="margin-top:24px;">
             <div class="col">
-                <h2>°Ô½Ã±ÛÀÌ ¾ø½À´Ï´Ù.</h2>
+                <h2>ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.</h2>
             </div>
         </div>
     @endif

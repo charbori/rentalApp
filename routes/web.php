@@ -21,17 +21,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// home È­¸é
+// home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
 
-Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
+Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
+Route::get('/articles/edit', [App\Http\Controllers\ArticleController::class, 'edit']);
 Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit']);
+Route::get('/articles/search', [App\Http\Controllers\ArticleController::class, 'show']);
 
-Route::get('/test', function () {
-    return view('layouts.test');
-});
-Route::get('/test2', function () {
-    return view('layouts.test2');
-});
+Route::post('/articles', [App\Http\Controllers\ArticleController::class, 'store']);
 
 require __DIR__.'/auth.php';
