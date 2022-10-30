@@ -19,6 +19,11 @@
             </ul>
         </nav>
     </aside>
+    <div>
+        @foreach ($path_datas as $item)
+            <img src='{{ $item }}'>
+        @endforeach
+    </div>
     <div class="bd-cheatsheet container-fluid bg-body">
         <section id="content">
             <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">{{ $article->title }}</h2>

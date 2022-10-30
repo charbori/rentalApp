@@ -7,17 +7,26 @@ use App\Models\Article;
 use Monolog\Logger;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
     //
     public function show(\App\Models\Article $article, $id) {
         $article = \App\Models\Article::findOrFail($id);
-        return view('articles.show', compact('article'));
+        $attachments = DB::table('attachment')->select('path')->where('articles_id', $id)->get();
+        $path_datas = array();
+        foreach ($attachments as $res) {
+            $url = Storage::url($res->path);
+            $path_datas[] = $url;
+        }
+        return view('articles.show', compact('article', 'path_datas'));
     }
 
     public function edit(\App\Models\Article $article, $id = '') {
         if (Auth::check() === false) {
+            flash("로그인 후 이용가능합니다.");
             return redirect('home');
         }
         $data = array(  "title" => "",
@@ -41,6 +50,30 @@ class ArticleController extends Controller
             "content" => $request->content,
             "user_id" => $id
         ]);
+        $photos = $request->file('photos');
+        $allowedfileExtension=['pdf','jpg','png','jpeg', 'docx','svg','gif'];
+
+        foreach ($photos as $photo) {
+            if ($photo->isValid()) {
+                Log::debug($photo->getClientOriginalName());
+
+                $filename = $photo->getClientOriginalName();
+                $extension = $photo->getClientOriginalExtension();
+                $check=in_array($extension,$allowedfileExtension);
+
+                if ($check) {
+                    $filepath = $photo->store('photos', 'public'); // photos 디렉토리에 저장됨, 자동으로 고유 파일명 생성함
+                    DB::insert('insert into attachment (articles_id, path) values (?, ?)', [$article->id, $filepath]);
+                } else {
+                    Log::debug("file 체크 에러 : " . $filename . " extension : " . $extension);
+                }
+                /*
+                    $path = $request->photo->path();
+                    DB::insert('insert into attachment (articles_id, path) values (?, ?)', [$article->id, $path]);
+                */
+            }
+        }
+
         flash('저장되었습니다.');
         return view('articles.show', compact('article'));
     }

@@ -15,3 +15,6 @@
     @endif
     <!-- /END THE FEATURETTES -->
 @stop
+@section('javascript')
+    <script src="/build/assets/js/home.js"></script>
+@stop

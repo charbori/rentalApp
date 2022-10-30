@@ -12,27 +12,11 @@
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
         <!-- Bootstrap core CSS -->
         <link href="/build/assets/bootstrap.css" rel="stylesheet">
-        <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-            }
-        }
-
-        .top-guide {
-            padding-top: 24px;
-        }
-        </style>
+        <link href="/build/assets/master.css" rel="stylesheet">
+        <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         @yield('style')
+        <script src="/build/assets/js/jquery-3.6.1.min.js"></script>
     </head>
     <body>
         @include('navigations.masternav')
