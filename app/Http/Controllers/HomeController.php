@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -15,9 +17,15 @@ class HomeController extends Controller
     }
 
     public function show(Request $request, $articleId = null) {
-        $articles = Article::query()->with(['user' => function($query) {
-            $query->select('id', 'name');
-        }])->get();
+        $articles = Article::with('user')->with('attachment')->paginate(15);
+
+        foreach ($articles AS $article) {
+            if (count($article->attachment) > 0) {
+                $article->path = Storage::url($article->attachment[0]->path);
+            } else {
+                $article->path = "photos/photo_64.png";
+            }
+        }
 
         return view('home', compact('articles'));
     }

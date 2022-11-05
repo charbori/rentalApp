@@ -13,6 +13,8 @@
             </div>
         </div>
     @endif
+
+    {{ $articles->links() }}
     <!-- /END THE FEATURETTES -->
 @stop
 @section('javascript')
