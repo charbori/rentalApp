@@ -20,9 +20,11 @@
         </nav>
     </aside>
     <div>
-        @foreach ($path_datas as $item)
-            <img src='{{ $item }}'>
-        @endforeach
+        @if (false == empty($path_datas))
+            @foreach ($path_datas as $item)
+                <img src='{{ $item }}'>
+            @endforeach
+        @endif
     </div>
     <div class="bd-cheatsheet container-fluid bg-body">
         <section id="content">

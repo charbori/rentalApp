@@ -8,8 +8,8 @@
 @section('contents')
     <main class="container">
         <div class="py-5 text-left"><br></div>
-        <div class="row g-5">
-            <form id="upload_files" class="needs-validation" method="POST" action="/articles" enctype="multipart/form-data" novalidate>
+        <form id="upload_files" class="needs-validation" method="POST" action="/articles" enctype="multipart/form-data" novalidate>
+            <div class="row g-5">
                 <input id="hidden-input" type="file" name="photos[]" multiple class="hidden" />
 
                 @if (getMobile())
@@ -39,8 +39,8 @@
                     <hr class="my-4">
                     <button class="w-100 btn btn-primary btn-lg" type="submit">ok</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </main>
 @stop
 
