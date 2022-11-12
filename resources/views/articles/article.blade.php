@@ -1,6 +1,6 @@
 @foreach ($articles as $article)
     <div class="row featurette">
-        <div class="col-2 col-md-2">
+        <div class="col-auto">
             <img src='{{ $article->path }}'>
         </div>
         <div class="col-8 col-md-7" onclick="moveArticle('{{ $article->id }}')" style="cursor:pointer">

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('style')
     <link href="/build/assets/css/cheatsheet.css" rel="stylesheet">
+    <link href="/build/assets/css/reply.css" rel="stylesheet">
 @stop
 @section('contents')
     <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
@@ -26,7 +27,7 @@
             </section>
         @endif
         <section id="content">
-            <article class="my-3" id="typography">
+            <article class="my-3">
                 <!--
                 <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                     <h3>Typography</h3>
@@ -42,6 +43,11 @@
                         </ul>
                     </div>
                 </div>
+            </article>
+        </section>
+        <section id="section_reply">
+            <article class="my-3">
+                @include('articles.comment', ['comment_data' => $comment_datas, 'user_data' => $article->user])
             </article>
         </section>
     </div>

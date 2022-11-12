@@ -14,14 +14,25 @@ class ArticleController extends Controller
 {
     //
     public function show(\App\Models\Article $article, $id) {
-        $article = \App\Models\Article::findOrFail($id);
+        $article = \App\Models\Article::with('comment')->findOrFail($id);
+
+        // 댓글 구현
+        $comment_datas = array();
+        if (count($article->comment) > 0) {
+            $comment_datas = \App\Models\Comment::with('user')->where('article_id', $id)->get();
+            foreach ($comment_datas AS $comment) {
+                $comment->diffTime = compareDateTime(date('Y-m-d H:i:s'), $comment->updated_at);
+            }
+        }
+
         $attachments = DB::table('attachment')->select('path')->where('articles_id', $id)->get();
         $path_datas = array();
         foreach ($attachments as $res) {
             $url = Storage::url($res->path);
             $path_datas[] = $url;
         }
-        return view('articles.show', compact('article', 'path_datas'));
+
+        return view('articles.show', compact('article', 'path_datas', 'comment_datas'));
     }
 
     public function edit(\App\Models\Article $article, $id = '') {

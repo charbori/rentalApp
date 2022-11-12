@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Attachment;
+use App\Models\Comment;
 
 class Article extends Model
 {
@@ -27,5 +28,9 @@ class Article extends Model
     public function attachment()
     {
         return $this->hasMany(Attachment::class, 'articles_id');
+    }
+
+    public function comment() {
+        return $this->hasMany(Comment::class, 'article_id');
     }
 }
