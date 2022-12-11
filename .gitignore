@@ -1,5 +1,6 @@
 /node_modules
-/public/build
+/public/build/assets/app.*
+/public/build/assets/fontawesome-6.2.0
 /public/hot
 /public/storage
 /public/photos

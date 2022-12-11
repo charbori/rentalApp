@@ -27,26 +27,26 @@
             </section>
         @endif
         <section id="content">
-            <article class="my-3">
+            <article class="ps-3 pe-3">
                 <!--
                 <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                     <h3>Typography</h3>
                     <a class="d-flex align-items-center" href="../content/typography/">Documentation</a>
                 </div>
                 -->
-                <div></div>
-                <div>
+                <div class="ps-3 pe-3">
                     <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-9 pb-2 pb-xl-8">{{ $article->title }}</h2>
                     <div class="bd-example">
                         <ul class="list-inline">
                             <li class="list-inline-item">{{ $article->content }}</li>
                         </ul>
                     </div>
+                    <br>
                 </div>
             </article>
         </section>
-        <section id="section_reply">
-            <article class="my-3">
+        <section id="section_reply" data="{{ $article->id }}">
+            <article>
                 @include('articles.comment', ['comment_data' => $comment_datas, 'user_data' => $article->user])
             </article>
         </section>
@@ -54,4 +54,5 @@
 @stop
 @section('javascript')
     <script src="/build/assets/js/cheatsheet.js"></script>
+    <script src="/build/assets/js/reply.js"></script>
 @stop

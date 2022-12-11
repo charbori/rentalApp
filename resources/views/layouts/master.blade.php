@@ -13,6 +13,8 @@
         <!-- Bootstrap core CSS -->
         <link href="/build/assets/bootstrap.css" rel="stylesheet">
         <link href="/build/assets/master.css" rel="stylesheet">
+        <link href="/build/assets/fontawesome-6.2.0/css/all.css" rel="stylesheet">
+        <link href="/build/assets/fontawesome-6.2.0/css/fontawesome.css" rel="stylesheet">
         <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         @yield('style')

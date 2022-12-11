@@ -19,10 +19,11 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+});
 
 // home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'show']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'show'])
+->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
 Route::get('/articles/edit', [App\Http\Controllers\ArticleController::class, 'edit']);
@@ -30,5 +31,9 @@ Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class
 Route::get('/articles/search', [App\Http\Controllers\ArticleController::class, 'show']);
 
 Route::post('/articles', [App\Http\Controllers\ArticleController::class, 'store']);
+
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'store']);
+Route::put('/reply/edit', [App\Http\Controllers\CommentController::class, 'edit']);
+Route::delete('/reply/del', [App\Http\Controllers\CommentController::class, 'remove']);
 
 require __DIR__.'/auth.php';
