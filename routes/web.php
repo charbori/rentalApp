@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// home
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'show'])
+->middleware(['auth', 'verified'])->name('dashboard');
 
 // home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'show'])
