@@ -13,9 +13,9 @@ ENV TZ=Asia/Seoul
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN sudo sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-RUN sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-RUN sudo sed -i 's/kr.security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+RUN sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+RUN sed -i 's/kr.security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 
 RUN apt-get update \
     && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 \
