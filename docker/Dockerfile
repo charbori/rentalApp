@@ -55,9 +55,13 @@ RUN apt-get update \
 RUN ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 
-COPY start-container /usr/local/bin/start-container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
+COPY . /var/www/html
+RUN composer install
+
+COPY docker/start-container /usr/local/bin/start-container
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
+
 RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 8888 8000
