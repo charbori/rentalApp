@@ -1,7 +1,0 @@
-CREATE DATABASE IF NOT EXISTS testing;
-GRANT ALL PRIVILEGES ON \`testing%\`.* TO '$MYSQL_USER'@'172.27.0.3';
-
-CREATE DATABASE IF NOT EXISTS rentalApp;
-GRANT ALL PRIVILEGES ON \`rentalApp%\`.* TO '$MYSQL_USER'@'172.27.0.3';
-
-flush privileges;
