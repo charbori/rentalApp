@@ -6,8 +6,8 @@ services:
         ports:
             - 80:80
         networks:
-            - out-network
-            - sail
+            sail:
+                ipv4_address: 172.27.0.2
         volumes:
             - ./docker/nginx.conf:/etc/nginx/nginx.conf
         container_name: myweb-proxy
