@@ -1,12 +1,7 @@
 echo "
-    drop user '${MYSQL_USER}'@'172.27.0.3';
-    flush privileges;
-
-    CREATE USER '${MYSQL_USER}'@'172.27.0.3' IDENTIFIED WITH mysql_native_password BY '${MYSQL_ROOT_PASSWORD}';
     CREATE DATABASE IF NOT EXISTS testing;
-    flush privileges;
-
     CREATE DATABASE IF NOT EXISTS rentalApp;
-    GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_USER}'@'%';
+    GRANT ALL PRIVILEGES ON rentalApp.* TO '${MYSQL_USER}'@'localhost';
+    GRANT ALL PRIVILEGES ON testing.* TO '${MYSQL_USER}'@'localhost' with grant option;
     flush privileges;
 " > /docker-entrypoint-initdb.d/mysql-server.sql

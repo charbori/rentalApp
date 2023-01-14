@@ -56,13 +56,32 @@ RUN ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 
 COPY . /var/www/html
+
+RUN groupadd -g 999 sail
+RUN useradd -r -u 999 -g sail sail
+
 RUN composer install
+
+RUN chown -R sail:www-data /var/www/html/storage
+RUN chown -R sail:www-data /var/www/html/bootstrap/cache
+RUN chown -R sail:www-data /var/log/supervisor
+RUN chown -R sail:www-data .env
+RUN chown -R sail:www-data .env.testing
+RUN chmod -R 775 /var/www/html/storage
+RUN chmod -R 775 /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/log/supervisor
+RUN chmod -R 775 .env
+RUN chmod -R 775 .env.testing
+RUN usermod -aG sail www-data
+RUN usermod -aG www-data sail
 
 COPY docker/start-container /usr/local/bin/start-container
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
 
 RUN chmod +x /usr/local/bin/start-container
+
+USER sail
 
 EXPOSE 8888 8000
 
