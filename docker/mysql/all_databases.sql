@@ -352,7 +352,7 @@ UNLOCK TABLES;
 --
 
 /*!40000 ALTER TABLE `innodb_index_stats` DISABLE KEYS */;
-INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','2021-12-18 16:44:45','n_diff_pfx01',0,1,'component_id'),('mysql','component','PRIMARY','2021-12-18 16:44:45','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','component','PRIMARY','2021-12-18 16:44:45','size',1,NULL,'Number of pages in the index'),('rentalApp','articles','PRIMARY','2022-11-20 02:27:55','n_diff_pfx01',2,1,'id'),('rentalApp','articles','PRIMARY','2022-11-20 02:27:55','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','articles','PRIMARY','2022-11-20 02:27:55','size',1,NULL,'Number of pages in the index'),('rentalApp','articles','articles_user_id_foreign','2022-11-20 02:27:55','n_diff_pfx01',2,1,'user_id'),('rentalApp','articles','articles_user_id_foreign','2022-11-20 02:27:55','n_diff_pfx02',2,1,'user_id,id'),('rentalApp','articles','articles_user_id_foreign','2022-11-20 02:27:55','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','articles','articles_user_id_foreign','2022-11-20 02:27:55','size',1,NULL,'Number of pages in the index'),('rentalApp','attachment','PRIMARY','2022-11-19 17:37:31','n_diff_pfx01',0,1,'id'),('rentalApp','attachment','PRIMARY','2022-11-19 17:37:31','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','attachment','PRIMARY','2022-11-19 17:37:31','size',1,NULL,'Number of pages in the index'),('rentalApp','attachment','attachment_articles_id_foreign','2022-11-19 17:37:31','n_diff_pfx01',0,1,'articles_id'),('rentalApp','attachment','attachment_articles_id_foreign','2022-11-19 17:37:31','n_diff_pfx02',0,1,'articles_id,id'),('rentalApp','attachment','attachment_articles_id_foreign','2022-11-19 17:37:31','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','attachment','attachment_articles_id_foreign','2022-11-19 17:37:31','size',1,NULL,'Number of pages in the index'),('rentalApp','comment','PRIMARY','2022-12-10 16:58:41','n_diff_pfx01',2,1,'id'),('rentalApp','comment','PRIMARY','2022-12-10 16:58:41','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','comment','PRIMARY','2022-12-10 16:58:41','size',1,NULL,'Number of pages in the index'),('rentalApp','comment','comment_article_id_foreign','2022-12-10 16:58:41','n_diff_pfx01',2,1,'article_id'),('rentalApp','comment','comment_article_id_foreign','2022-12-10 16:58:41','n_diff_pfx02',2,1,'article_id,id'),('rentalApp','comment','comment_article_id_foreign','2022-12-10 16:58:41','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','comment','comment_article_id_foreign','2022-12-10 16:58:41','size',1,NULL,'Number of pages in the index'),('rentalApp','comment','comment_user_id_foreign','2022-12-10 16:58:41','n_diff_pfx01',2,1,'user_id'),('rentalApp','comment','comment_user_id_foreign','2022-12-10 16:58:41','n_diff_pfx02',2,1,'user_id,id'),('rentalApp','comment','comment_user_id_foreign','2022-12-10 16:58:41','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','comment','comment_user_id_foreign','2022-12-10 16:58:41','size',1,NULL,'Number of pages in the index'),('rentalApp','failed_jobs','PRIMARY','2022-11-19 17:37:30','n_diff_pfx01',0,1,'id'),('rentalApp','failed_jobs','PRIMARY','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','failed_jobs','PRIMARY','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','failed_jobs','failed_jobs_uuid_unique','2022-11-19 17:37:30','n_diff_pfx01',0,1,'uuid'),('rentalApp','failed_jobs','failed_jobs_uuid_unique','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','failed_jobs','failed_jobs_uuid_unique','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','migrations','PRIMARY','2022-11-19 17:37:41','n_diff_pfx01',10,1,'id'),('rentalApp','migrations','PRIMARY','2022-11-19 17:37:41','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','migrations','PRIMARY','2022-11-19 17:37:41','size',1,NULL,'Number of pages in the index'),('rentalApp','password_resets','GEN_CLUST_INDEX','2022-11-19 17:37:30','n_diff_pfx01',0,1,'DB_ROW_ID'),('rentalApp','password_resets','GEN_CLUST_INDEX','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','password_resets','GEN_CLUST_INDEX','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','password_resets','password_resets_email_index','2022-11-19 17:37:30','n_diff_pfx01',0,1,'email'),('rentalApp','password_resets','password_resets_email_index','2022-11-19 17:37:30','n_diff_pfx02',0,1,'email,DB_ROW_ID'),('rentalApp','password_resets','password_resets_email_index','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','password_resets','password_resets_email_index','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','personal_access_tokens','PRIMARY','2022-11-19 17:37:30','n_diff_pfx01',0,1,'id'),('rentalApp','personal_access_tokens','PRIMARY','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','personal_access_tokens','PRIMARY','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','personal_access_tokens','personal_access_tokens_token_unique','2022-11-19 17:37:30','n_diff_pfx01',0,1,'token'),('rentalApp','personal_access_tokens','personal_access_tokens_token_unique','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','personal_access_tokens','personal_access_tokens_token_unique','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-11-19 17:37:30','n_diff_pfx01',0,1,'tokenable_type'),('rentalApp','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-11-19 17:37:30','n_diff_pfx02',0,1,'tokenable_type,tokenable_id'),('rentalApp','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-11-19 17:37:30','n_diff_pfx03',0,1,'tokenable_type,tokenable_id,id'),('rentalApp','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-11-19 17:37:30','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-11-19 17:37:30','size',1,NULL,'Number of pages in the index'),('rentalApp','users','PRIMARY','2022-11-20 02:27:41','n_diff_pfx01',2,1,'id'),('rentalApp','users','PRIMARY','2022-11-20 02:27:41','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','users','PRIMARY','2022-11-20 02:27:41','size',1,NULL,'Number of pages in the index'),('rentalApp','users','users_email_unique','2022-11-20 02:27:41','n_diff_pfx01',2,1,'email'),('rentalApp','users','users_email_unique','2022-11-20 02:27:41','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','users','users_email_unique','2022-11-20 02:27:41','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2021-12-18 16:32:34','n_diff_pfx01',6,1,'variable'),('sys','sys_config','PRIMARY','2021-12-18 16:32:34','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2021-12-18 16:32:34','size',1,NULL,'Number of pages in the index'),('testing','articles','PRIMARY','2022-12-27 08:27:11','n_diff_pfx01',0,1,'id'),('testing','articles','PRIMARY','2022-12-27 08:27:11','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','articles','PRIMARY','2022-12-27 08:27:11','size',1,NULL,'Number of pages in the index'),('testing','articles','articles_user_id_foreign','2022-12-27 08:27:11','n_diff_pfx01',0,1,'user_id'),('testing','articles','articles_user_id_foreign','2022-12-27 08:27:11','n_diff_pfx02',0,1,'user_id,id'),('testing','articles','articles_user_id_foreign','2022-12-27 08:27:11','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','articles','articles_user_id_foreign','2022-12-27 08:27:11','size',1,NULL,'Number of pages in the index'),('testing','attachment','PRIMARY','2022-12-27 08:27:12','n_diff_pfx01',0,1,'id'),('testing','attachment','PRIMARY','2022-12-27 08:27:12','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','attachment','PRIMARY','2022-12-27 08:27:12','size',1,NULL,'Number of pages in the index'),('testing','attachment','attachment_articles_id_foreign','2022-12-27 08:27:12','n_diff_pfx01',0,1,'articles_id'),('testing','attachment','attachment_articles_id_foreign','2022-12-27 08:27:12','n_diff_pfx02',0,1,'articles_id,id'),('testing','attachment','attachment_articles_id_foreign','2022-12-27 08:27:12','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','attachment','attachment_articles_id_foreign','2022-12-27 08:27:12','size',1,NULL,'Number of pages in the index'),('testing','comment','PRIMARY','2022-12-27 08:27:12','n_diff_pfx01',0,1,'id'),('testing','comment','PRIMARY','2022-12-27 08:27:12','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','comment','PRIMARY','2022-12-27 08:27:12','size',1,NULL,'Number of pages in the index'),('testing','comment','comment_article_id_foreign','2022-12-27 08:27:12','n_diff_pfx01',0,1,'article_id'),('testing','comment','comment_article_id_foreign','2022-12-27 08:27:12','n_diff_pfx02',0,1,'article_id,id'),('testing','comment','comment_article_id_foreign','2022-12-27 08:27:12','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','comment','comment_article_id_foreign','2022-12-27 08:27:12','size',1,NULL,'Number of pages in the index'),('testing','comment','comment_user_id_foreign','2022-12-27 08:27:12','n_diff_pfx01',0,1,'user_id'),('testing','comment','comment_user_id_foreign','2022-12-27 08:27:12','n_diff_pfx02',0,1,'user_id,id'),('testing','comment','comment_user_id_foreign','2022-12-27 08:27:12','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','comment','comment_user_id_foreign','2022-12-27 08:27:12','size',1,NULL,'Number of pages in the index'),('testing','failed_jobs','PRIMARY','2022-12-27 08:27:10','n_diff_pfx01',0,1,'id'),('testing','failed_jobs','PRIMARY','2022-12-27 08:27:10','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','failed_jobs','PRIMARY','2022-12-27 08:27:10','size',1,NULL,'Number of pages in the index'),('testing','failed_jobs','failed_jobs_uuid_unique','2022-12-27 08:27:10','n_diff_pfx01',0,1,'uuid'),('testing','failed_jobs','failed_jobs_uuid_unique','2022-12-27 08:27:10','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','failed_jobs','failed_jobs_uuid_unique','2022-12-27 08:27:10','size',1,NULL,'Number of pages in the index'),('testing','migrations','PRIMARY','2022-12-27 08:27:44','n_diff_pfx01',10,1,'id'),('testing','migrations','PRIMARY','2022-12-27 08:27:44','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','migrations','PRIMARY','2022-12-27 08:27:44','size',1,NULL,'Number of pages in the index'),('testing','password_resets','GEN_CLUST_INDEX','2022-12-27 08:27:24','n_diff_pfx01',0,1,'DB_ROW_ID'),('testing','password_resets','GEN_CLUST_INDEX','2022-12-27 08:27:24','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','password_resets','GEN_CLUST_INDEX','2022-12-27 08:27:24','size',1,NULL,'Number of pages in the index'),('testing','password_resets','password_resets_email_index','2022-12-27 08:27:24','n_diff_pfx01',0,1,'email'),('testing','password_resets','password_resets_email_index','2022-12-27 08:27:24','n_diff_pfx02',0,1,'email,DB_ROW_ID'),('testing','password_resets','password_resets_email_index','2022-12-27 08:27:24','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','password_resets','password_resets_email_index','2022-12-27 08:27:24','size',1,NULL,'Number of pages in the index'),('testing','personal_access_tokens','PRIMARY','2022-12-27 08:27:11','n_diff_pfx01',0,1,'id'),('testing','personal_access_tokens','PRIMARY','2022-12-27 08:27:11','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','personal_access_tokens','PRIMARY','2022-12-27 08:27:11','size',1,NULL,'Number of pages in the index'),('testing','personal_access_tokens','personal_access_tokens_token_unique','2022-12-27 08:27:11','n_diff_pfx01',0,1,'token'),('testing','personal_access_tokens','personal_access_tokens_token_unique','2022-12-27 08:27:11','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','personal_access_tokens','personal_access_tokens_token_unique','2022-12-27 08:27:11','size',1,NULL,'Number of pages in the index'),('testing','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-12-27 08:27:11','n_diff_pfx01',0,1,'tokenable_type'),('testing','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-12-27 08:27:11','n_diff_pfx02',0,1,'tokenable_type,tokenable_id'),('testing','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-12-27 08:27:11','n_diff_pfx03',0,1,'tokenable_type,tokenable_id,id'),('testing','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-12-27 08:27:11','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','personal_access_tokens','personal_access_tokens_tokenable_type_tokenable_id_index','2022-12-27 08:27:11','size',1,NULL,'Number of pages in the index'),('testing','users','PRIMARY','2022-12-27 08:27:34','n_diff_pfx01',0,1,'id'),('testing','users','PRIMARY','2022-12-27 08:27:34','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','users','PRIMARY','2022-12-27 08:27:34','size',1,NULL,'Number of pages in the index'),('testing','users','users_email_unique','2022-12-27 08:27:34','n_diff_pfx01',0,1,'email'),('testing','users','users_email_unique','2022-12-27 08:27:34','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','users','users_email_unique','2022-12-27 08:27:34','size',1,NULL,'Number of pages in the index');
+INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','2021-12-18 16:44:45','n_diff_pfx01',0,1,'component_id'),('mysql','component','PRIMARY','2021-12-18 16:44:45','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','component','PRIMARY','2021-12-18 16:44:45','size',1,NULL,'Number of pages in the index'),('rentalApp','migrations','PRIMARY','2023-01-14 19:45:02','n_diff_pfx01',0,1,'id'),('rentalApp','migrations','PRIMARY','2023-01-14 19:45:02','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('rentalApp','migrations','PRIMARY','2023-01-14 19:45:02','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2021-12-18 16:32:34','n_diff_pfx01',6,1,'variable'),('sys','sys_config','PRIMARY','2021-12-18 16:32:34','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2021-12-18 16:32:34','size',1,NULL,'Number of pages in the index'),('testing','migrations','PRIMARY','2023-01-14 19:45:28','n_diff_pfx01',0,1,'id'),('testing','migrations','PRIMARY','2023-01-14 19:45:28','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('testing','migrations','PRIMARY','2023-01-14 19:45:28','size',1,NULL,'Number of pages in the index');
 /*!40000 ALTER TABLE `innodb_index_stats` ENABLE KEYS */;
 
 --
@@ -360,7 +360,7 @@ INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','
 --
 
 /*!40000 ALTER TABLE `innodb_table_stats` DISABLE KEYS */;
-INSERT  IGNORE INTO `innodb_table_stats` VALUES ('mysql','component','2021-12-18 16:44:45',0,1,0),('rentalApp','articles','2022-11-20 02:27:55',2,1,1),('rentalApp','attachment','2022-11-19 17:37:31',0,1,1),('rentalApp','comment','2022-12-10 16:58:41',2,1,2),('rentalApp','failed_jobs','2022-11-19 17:37:30',0,1,0),('rentalApp','migrations','2022-11-19 17:37:41',10,1,0),('rentalApp','password_resets','2022-11-19 17:37:30',0,1,0),('rentalApp','personal_access_tokens','2022-11-19 17:37:30',0,1,0),('rentalApp','users','2022-11-20 02:27:41',2,1,1),('sys','sys_config','2021-12-18 16:32:34',6,1,0),('testing','articles','2022-12-27 08:27:11',0,1,1),('testing','attachment','2022-12-27 08:27:12',0,1,1),('testing','comment','2022-12-27 08:27:12',0,1,2),('testing','failed_jobs','2022-12-27 08:27:10',0,1,0),('testing','migrations','2022-12-27 08:27:44',10,1,0),('testing','password_resets','2022-12-27 08:27:24',0,1,1),('testing','personal_access_tokens','2022-12-27 08:27:11',0,1,0),('testing','users','2022-12-27 08:27:34',0,1,1);
+INSERT  IGNORE INTO `innodb_table_stats` VALUES ('mysql','component','2021-12-18 16:44:45',0,1,0),('rentalApp','migrations','2023-01-14 19:45:02',0,1,0),('sys','sys_config','2021-12-18 16:32:34',6,1,0),('testing','migrations','2023-01-14 19:45:28',0,1,0);
 /*!40000 ALTER TABLE `innodb_table_stats` ENABLE KEYS */;
 
 --
@@ -1017,7 +1017,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('172.27.0.3','jaehyeok','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'caching_sha2_password','$A$005$QTWjnX NB{]0^rW:6pK8YqJBLPzzvNoodkEzov1OWh4nivv9Wvp8i6Is/QD','N','2023-01-12 18:04:57',NULL,'N','Y','Y',NULL,NULL,NULL,NULL),('192.168.%','jaehyeok','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$yT\nA@mL\r DB%UqiVAcKF5CQ8bAOIEDExRcj9Jo34b/X/iNs706XEeP3','N','2022-11-20 02:09:40',NULL,'N','N','N',NULL,NULL,NULL,NULL),('192.168.%','manager_rental','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$>u0bv\\92j8;=[gud.HQlrKpFh5AaAAq94lfRhR1t6RC2Q9K5z3Z3/YbNA','N','2022-11-20 02:11:27',NULL,'N','N','N',NULL,NULL,NULL,NULL),('localhost','debian-sys-maint','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'mysql_native_password','*4E1FD81E132AA8BB1570C6FFE9A1C8BB5878A567','N','2021-12-18 16:32:35',NULL,'N','Y','Y',NULL,NULL,NULL,NULL),('localhost','jaehyeok','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$!_kN)5<BGQH}=&e{seQmPmrMKp1f.A3w66ZTc1emvDScYQg1HbYrHPA/FTA','N','2021-12-18 16:50:49',NULL,'N','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.infoschema','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2021-12-18 16:44:43',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.session','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'mysql_native_password','*THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE','N','2021-12-18 16:32:34',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.sys','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'mysql_native_password','*THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE','N','2021-12-18 16:32:34',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','root','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'mysql_native_password','*6460CE3E3E519B71C69010A94A475BB5C5F71EFA','N','2022-11-20 02:22:00',NULL,'N','Y','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `user` VALUES ('172.27.0.3','jaehyeok','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'caching_sha2_password','$A$005$xY%d!%wL	FtXiXdsxraWAXYNAzOMDzUpibqdsTGYo3MA7nt6FLTi3','N','2023-01-14 19:19:15',NULL,'N','Y','Y',NULL,NULL,NULL,NULL),('192.168.%','jaehyeok','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$yT\nA@mL\r DB%UqiVAcKF5CQ8bAOIEDExRcj9Jo34b/X/iNs706XEeP3','N','2022-11-20 02:09:40',NULL,'N','N','N',NULL,NULL,NULL,NULL),('192.168.%','manager_rental','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$>u0bv\\92j8;=[gud.HQlrKpFh5AaAAq94lfRhR1t6RC2Q9K5z3Z3/YbNA','N','2022-11-20 02:11:27',NULL,'N','N','N',NULL,NULL,NULL,NULL),('localhost','debian-sys-maint','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'mysql_native_password','*4E1FD81E132AA8BB1570C6FFE9A1C8BB5878A567','N','2021-12-18 16:32:35',NULL,'N','Y','Y',NULL,NULL,NULL,NULL),('localhost','jaehyeok','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$!_kN)5<BGQH}=&e{seQmPmrMKp1f.A3w66ZTc1emvDScYQg1HbYrHPA/FTA','N','2021-12-18 16:50:49',NULL,'N','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.infoschema','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2021-12-18 16:44:43',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.session','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'mysql_native_password','*THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE','N','2021-12-18 16:32:34',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.sys','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'mysql_native_password','*THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE','N','2021-12-18 16:32:34',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','root','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'mysql_native_password','*6460CE3E3E519B71C69010A94A475BB5C5F71EFA','N','2022-11-20 02:22:00',NULL,'N','Y','Y',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1068,131 +1068,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `rentalApp` /*!40100 DEFAULT CHARACTER 
 USE `rentalApp`;
 
 --
--- Table structure for table `articles`
---
-
-DROP TABLE IF EXISTS `articles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `articles` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `subcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `articles_user_id_foreign` (`user_id`),
-  CONSTRAINT `articles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `articles`
---
-
-LOCK TABLES `articles` WRITE;
-/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-INSERT INTO `articles` VALUES (1,2,'Shsd7655A1','S5oWIPPEzm0obGCTlEOi8KTOyGeqPPcedyNU5aK1OGc2L2HoYSDfKtn4EQTSUrivNCHBS71E8zoOAFoj2BxNkGULHOF2uUaB9YKq',NULL,'2022-11-20 11:27:41','2022-11-20 11:27:41',NULL,''),(2,3,'nj8iUYqmhb','JihyDYsf71ljLd9HOSgmvmkdU2wPHBBTvriXng4oHmUHf3oq4Rnn9UeTQoAc56ziX1Foe2RdyAASYY2HVv4kCecZs3GdBni3uNUP',NULL,'2022-11-20 11:27:55','2022-11-20 11:27:55',NULL,'');
-/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `attachment`
---
-
-DROP TABLE IF EXISTS `attachment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `attachment` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `articles_id` bigint unsigned DEFAULT NULL,
-  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `attachment_articles_id_foreign` (`articles_id`),
-  CONSTRAINT `attachment_articles_id_foreign` FOREIGN KEY (`articles_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `attachment`
---
-
-LOCK TABLES `attachment` WRITE;
-/*!40000 ALTER TABLE `attachment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `attachment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `comment`
---
-
-DROP TABLE IF EXISTS `comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comment` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned NOT NULL,
-  `article_id` bigint unsigned NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `like` int NOT NULL DEFAULT '0',
-  `etc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ban` char(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `comment_user_id_foreign` (`user_id`),
-  KEY `comment_article_id_foreign` (`article_id`),
-  CONSTRAINT `comment_article_id_foreign` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `comment_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comment`
---
-
-LOCK TABLES `comment` WRITE;
-/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,3,2,'0cm6ud9IiLwFoY0zXrVCcd72w2wDoRLWnR8A9IO9D4L9dVd7mlMqk8WIy4JTLUkdoltTEUf52cOOkyYtMKeLPMj8JeZtQdIqz1sq',0,NULL,'N','2022-11-20 11:27:55','2022-11-20 11:27:55'),(2,1,1,'12323123123123123',0,NULL,'N','2022-11-20 11:43:00','2022-12-12 01:13:16');
-/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `failed_jobs`
---
-
-DROP TABLE IF EXISTS `failed_jobs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `failed_jobs` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `failed_jobs`
---
-
-LOCK TABLES `failed_jobs` WRITE;
-/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `migrations`
 --
 
@@ -1204,7 +1079,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1213,96 +1088,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_10_23_063337_create_article',1),(6,'2022_10_28_163649_add_column_on_articles_subcontents',1),(7,'2022_10_30_003839_mod_articles_default_value',1),(8,'2022_10_30_195540_create_attachment_table',1),(9,'2022_11_06_002708_foreignkey_attachment_to_article',1),(10,'2022_11_12_224018_add_table_comments',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `password_resets`
---
-
-DROP TABLE IF EXISTS `password_resets`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `password_resets`
---
-
-LOCK TABLES `password_resets` WRITE;
-/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `personal_access_tokens`
---
-
-DROP TABLE IF EXISTS `personal_access_tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `personal_access_tokens`
---
-
-LOCK TABLES `personal_access_tokens` WRITE;
-/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'charbori','paosidu@naver.com',NULL,'$2y$10$KspkdpaxkUhlkV8yFm/xMe5Jq.HmnWn2mln5G1Dfn/vk22g34D.Hi',NULL,'2022-11-20 11:25:21','2022-11-20 11:25:21'),(2,'mfUwozggfM','3MeGeFdwy9@gmail.com',NULL,'$2y$10$7PNf.3TzCeGT7R1WkBM12u9MLaVfmL1GbAWehGFHFMIdkOONFkU1O',NULL,NULL,NULL),(3,'prtaNyK4ax','iooWZ6cBRr@gmail.com',NULL,'$2y$10$xsJRmV7t1CP1Tl9yQva5qe0acFnS9xw70B49wHp/sbBS31vG5.2o2',NULL,NULL,NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1314,129 +1100,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `testing` /*!40100 DEFAULT CHARACTER SE
 USE `testing`;
 
 --
--- Table structure for table `articles`
---
-
-DROP TABLE IF EXISTS `articles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `articles` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `subcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `articles_user_id_foreign` (`user_id`),
-  CONSTRAINT `articles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `articles`
---
-
-LOCK TABLES `articles` WRITE;
-/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `attachment`
---
-
-DROP TABLE IF EXISTS `attachment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `attachment` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `articles_id` bigint unsigned DEFAULT NULL,
-  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `attachment_articles_id_foreign` (`articles_id`),
-  CONSTRAINT `attachment_articles_id_foreign` FOREIGN KEY (`articles_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `attachment`
---
-
-LOCK TABLES `attachment` WRITE;
-/*!40000 ALTER TABLE `attachment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `attachment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `comment`
---
-
-DROP TABLE IF EXISTS `comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comment` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned NOT NULL,
-  `article_id` bigint unsigned NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `like` int NOT NULL DEFAULT '0',
-  `etc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ban` char(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `comment_user_id_foreign` (`user_id`),
-  KEY `comment_article_id_foreign` (`article_id`),
-  CONSTRAINT `comment_article_id_foreign` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `comment_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comment`
---
-
-LOCK TABLES `comment` WRITE;
-/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `failed_jobs`
---
-
-DROP TABLE IF EXISTS `failed_jobs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `failed_jobs` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `failed_jobs`
---
-
-LOCK TABLES `failed_jobs` WRITE;
-/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `migrations`
 --
 
@@ -1448,7 +1111,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1457,95 +1120,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_10_23_063337_create_article',1),(6,'2022_10_28_163649_add_column_on_articles_subcontents',1),(7,'2022_10_30_003839_mod_articles_default_value',1),(8,'2022_10_30_195540_create_attachment_table',1),(9,'2022_11_06_002708_foreignkey_attachment_to_article',1),(10,'2022_11_12_224018_add_table_comments',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `password_resets`
---
-
-DROP TABLE IF EXISTS `password_resets`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `password_resets`
---
-
-LOCK TABLES `password_resets` WRITE;
-/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `personal_access_tokens`
---
-
-DROP TABLE IF EXISTS `personal_access_tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `personal_access_tokens`
---
-
-LOCK TABLES `personal_access_tokens` WRITE;
-/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!50606 SET GLOBAL INNODB_STATS_AUTO_RECALC=@OLD_INNODB_STATS_AUTO_RECALC */;
@@ -1558,4 +1133,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-12 18:05:57
+-- Dump completed on 2023-01-14 19:46:38
