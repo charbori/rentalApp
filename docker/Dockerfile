@@ -62,18 +62,23 @@ RUN useradd -r -u 999 -g sail sail
 
 RUN composer install
 
-RUN chown -R sail:www-data /var/www/html/storage
+RUN chown -R 1000:sail /var/www/html/storage
 RUN chown -R sail:www-data /var/www/html/bootstrap/cache
 RUN chown -R sail:www-data /var/log/supervisor
 RUN chown -R sail:www-data .env
 RUN chown -R sail:www-data .env.testing
+RUN chown -R sail:www-data database
 RUN chmod -R 775 /var/www/html/storage
 RUN chmod -R 775 /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/log/supervisor
 RUN chmod -R 775 .env
 RUN chmod -R 775 .env.testing
+RUN chmod -R 775 database
 RUN usermod -aG sail www-data
 RUN usermod -aG www-data sail
+
+RUN rm -f public/storage
+RUN ln -s /var/www/html/storage/app/public public/storage
 
 COPY docker/start-container /usr/local/bin/start-container
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

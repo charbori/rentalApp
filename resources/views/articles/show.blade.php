@@ -47,7 +47,11 @@
         </section>
         <section id="section_reply" data="{{ $article->id }}">
             <article>
+		@if (isset($comment_datas))
                 @include('articles.comment', ['comment_data' => $comment_datas, 'user_data' => $article->user])
+		@else
+		@include('articles.comment', ['comment_data' => '', 'user_data' => $article->user])
+		@endif
             </article>
         </section>
     </div>

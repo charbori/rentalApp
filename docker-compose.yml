@@ -31,9 +31,15 @@ services:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
         links:
             - mysql
+        volumes:
+            - './routes:/var/www/html/routes'
+            - './app:/var/www/html/app'
+            - './public:/var/www/html/public'
+            - './storage/app/public/photos:/var/www/html/storage/app/public/photos'
+            - './resources:/var/www/html/resources'
+            - './database:/var/www/html/database'
         networks:
             sail:
                 ipv4_address: 172.27.0.3

@@ -25,6 +25,12 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'show'])
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'show'])
 ->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/api/map', [App\Http\Controllers\MapManageController::class, 'view']);
+Route::get('/api/map/test', [App\Http\Controllers\MapManageController::class, 'show']);
+Route::get('/api/map/edit', [App\Http\Controllers\MapRegisterController::class, 'view']);
+//Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);
+Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);
+
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
 Route::get('/articles/edit', [App\Http\Controllers\ArticleController::class, 'edit']);
 Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit']);
