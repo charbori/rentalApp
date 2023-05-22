@@ -55,6 +55,9 @@ RUN apt-get update \
 RUN ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 
+RUN groupadd -g 1000 jaehyeok
+RUN useradd -g 1000 -u 1000 jaehyeok
+
 COPY . /var/www/html
 
 RUN groupadd -g 999 sail
@@ -62,7 +65,7 @@ RUN useradd -r -u 999 -g sail sail
 
 RUN composer install
 
-RUN chown -R 1000:sail /var/www/html/storage
+RUN chown -R 999:sail /var/www/html/storage
 RUN chown -R sail:www-data /var/www/html/bootstrap/cache
 RUN chown -R sail:www-data /var/log/supervisor
 RUN chown -R sail:www-data .env
@@ -76,6 +79,8 @@ RUN chmod -R 775 .env.testing
 RUN chmod -R 775 database
 RUN usermod -aG sail www-data
 RUN usermod -aG www-data sail
+RUN usermod -aG jaehyeok sail
+RUN usermod -aG sail jaehyeok
 
 RUN rm -f public/storage
 RUN ln -s /var/www/html/storage/app/public public/storage

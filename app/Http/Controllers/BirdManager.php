@@ -49,9 +49,7 @@ class BirdManager implements MapManagerInterface
                 Log::debug($photo->getClientOriginalExtension());
 
                 if ($check) {
-                    $storagepath = "public/photos/".date("YmdHis").$photo->getClientOriginalName();
-                    Storage::put($storagepath, $photo);
-                    $filepath = "photos/" . date("YmdHis").$photo->getClientOriginalName();
+                    $filepath = $photo->store('public/photos/', 'local');
                     $map_attachment_id = DB::table('map_attachemnt')->insertGetId(
                         array(  'map_id'    => $map_list->id,
                                 'path'      => $filepath
