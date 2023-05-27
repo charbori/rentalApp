@@ -34,7 +34,7 @@ class BirdManager implements MapManagerInterface
             "longitude" => $request->longitude,
             "latitude" => $request->latitude,
             "user_id" => $id,
-            "attachment" => "have"
+            "attachment" => "Y"
         ]);
         $photos = $request->file('photos');
         $allowedfileExtension=['pdf','jpg','png','jpeg', 'docx','svg','gif'];

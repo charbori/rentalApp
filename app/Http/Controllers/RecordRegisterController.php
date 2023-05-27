@@ -13,64 +13,49 @@ use App\Http\Controllers\SwimManager;
 use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
 
-class MapRegisterController extends Controller
+class RecordRegisterController extends Controller
 {
     public function view(Request $request) {
         $viewName = "";
-        $mapType = "map";
+        $mapType = "swim";
 
         if (isset($request->mapType)) {
             $mapType = $request->mapType;
         }
 
         switch ($mapType) {
-            case "map":
-                $viewName = "maps.birdRegisterForm";
-                break;
             case "swim":
-                $viewName = "maps.swimRegisterForm";
+                $viewName = "maps.swimRecordRegisterForm";
                 break;
         }
 
         if ($viewName == "") {
             Log::debug("viewName 미생성 이슈");
         }
-
-        return view($viewName);
+        $map_id = 12;
+        return view($viewName, compact('map_id'));
     }
 
     public function show(Request $request) {
-		$mymap = \App\Models\MapList::with('user')->get();
-		$mymapattach = \App\Models\MapAttachment::get();
-		$marker_data = array();
+		$res = \App\Models\SportsRecord::with('user')->get();
+		$param = array();
 
-        Log::debug($mymap);
-        foreach ($mymap as $key => $val) {
+        Log::debug($res);
+        foreach ($res AS $val) {
             if (is_object($val)) {
-                $path_val = "";
-                if (isset($mymapattach)) {
-                    foreach ($mymapattach AS $val_path) {
-                        if ($val_path->map_id == $val->id) {
-                            $path_val = $val_path->path;
-                        }
-                    }
-                }
-
-                $marker_data[] = array(
+                $param[] = array(
                     'id'            => $val->id,
                     'name'          => $val->title,
-                    'type'          => 'A01',
-                    'description'   => $val->desc,
+                    'type'          => 'swim',
+                    'record'        => $val->record,
+                    'map_id'        => $val->map_id,
                     'user_id'       => $val->user->name,
                     'reg_date'      => $val->created_at,
-                    'path'          => Storage::url($path_val),
-                    'lat'           => $val->latitude,
-                    'long'          => $val->longitude
                 );
             }
         }
 
-        return $marker_data;
+        return $param;
     }
 
     //public function edit(\App\Models\Article $article, $id = '') {
@@ -93,9 +78,7 @@ class MapRegisterController extends Controller
     }
 
     public function store(Request $request) {
-        if ($request->type == "map") {
-            $mapManager = new BirdManager();
-        } else if ($request->type == "swim") {
+        if ($request->type == "swim") {
             $mapManager = new SwimManager();
         }
 
@@ -110,4 +93,5 @@ class MapRegisterController extends Controller
 	    $viewEnv = array();
         return view('birdmap', compact('viewEnv'));
     }
+
 }

@@ -27,45 +27,12 @@ class SwimManager implements MapManagerInterface
             return false;
         }
         $id = Auth::id();
-        $map_list = \App\Models\MapList::create([
-            "title" => $request->title,
+        $sports_record = \App\Models\SportsRecord::create([
             "type" => $request->type,
-            "desc" => $request->desc,
-            "longitude" => $request->longitude,
-            "latitude" => $request->latitude,
+            "record" => $request->record,
             "user_id" => $id,
-            "attachment" => "have"
+            "map_id" => $request->map_id,
         ]);
-        $photos = $request->file('photos');
-        $allowedfileExtension=['pdf','jpg','png','jpeg', 'docx','svg','gif'];
-
-        foreach ($photos as $photo) {
-            if ($photo->isValid()) {
-
-                $filename = $photo->getClientOriginalName();
-                $extension = $photo->getClientOriginalExtension();
-                $check = in_array($extension,$allowedfileExtension);
-
-                Log::debug($photo->getClientOriginalName());
-                Log::debug($photo->getClientOriginalExtension());
-
-                if ($check) {
-                    $filepath = $photo->store('photos', 'public'); // photos 디렉토리에 저장됨, 자동으로 고유 파일명 생성함
-                    $map_attachment_id = DB::table('map_attachemnt')->insertGetId(
-                        array(  'map_id'    => $map_list->id,
-                                'path'      => $filepath
-                    ));
-                    Log::debug('mapid : ' . $map_list);
-                    Log::debug('map attach id : ' . $map_attachment_id);
-                    Log::debug('auto filepath : ' . $filepath);
-                    \App\Models\MapList::where("id", $map_list->id)->update([
-                        "attachment" => $map_attachment_id
-                    ]);
-                } else {
-                    Log::debug("file 체크 에러 : " . $filename . " extension : " . $extension);
-                }
-            }
-        }
         return true;
     }
 

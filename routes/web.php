@@ -31,6 +31,12 @@ Route::get('/api/map/edit', [App\Http\Controllers\MapRegisterController::class, 
 //Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);
 Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);
 
+Route::get('/api/record', [App\Http\Controllers\RecordManagerController::class, 'view']);
+Route::get('/api/record/show', [App\Http\Controllers\RecordManagerController::class, 'show']);
+Route::get('/api/record/edit', [App\Http\Controllers\RecordRegisterController::class, 'view']);
+Route::post('/api/record/store', [App\Http\Controllers\RecordRegisterController::class, 'store']);
+
+
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
 Route::get('/articles/edit', [App\Http\Controllers\ArticleController::class, 'edit']);
 Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit']);

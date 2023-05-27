@@ -8,19 +8,20 @@
 @section('contents')
     <main class="container">
         <div class="py-5 text-left"><br></div>
-        <form id="upload_files" class="needs-validation" method="POST" action="/api/map/store" enctype="multipart/form-data" novalidate>
+        <form id="upload_files" class="needs-validation" method="POST" action="/api/record/store" enctype="multipart/form-data" novalidate>
             <div class="row g-5">
                 <div class="col">
                     {!! csrf_field() !!}
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="title" class="form-label">Name</label>
-                            <input type="title" class="form-control" id="title" name="title" placeholder="기록을 입력해주세요." value="">
+                            <label for="title" class="form-label">Record</label>
+                            <input type="title" class="form-control" id="title" name="record" placeholder="기록을 입력해주세요." value="">
                             <div class="invalid-feedback">
-                                수영장 이름을 입력해주세요.
+                                기록을 입력해주세요.
                             </div>
                         </div>
                         <input type="hidden" name="type" value="swim"/>
+                        <input type="hidden" name="map_id" value="{{ $map_id }}"/>
                         <div class="col-12">
                             <label for="content" class="form-label">Content</label>
                             <textarea class="form-control" id="desc" rows="3" name="desc" placeholder="설명을 입력해주세요." required></textarea>
