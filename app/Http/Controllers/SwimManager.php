@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\isEmpty;
 use App\Http\Controllers\MapManagerInterface;
 
 class SwimManager implements MapManagerInterface

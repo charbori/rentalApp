@@ -17,14 +17,18 @@ class RecordManagerController extends Controller
     }
 
     public function show(Request $request) {
-		$res = \App\Models\SportsRecord::with('user')->get();
-		$param = array();
+        $skip = ($request->page - 1) * 10;
+		$res = \App\Models\SportsRecord::with('user')->orderBy('record', 'asc')->skip($skip)->limit(10)->get();
+        $res_count = \App\Models\SportsRecord::with('user')->count();
+
+		$param = array('data' => array(), 'count' => 0);
 
         Log::debug($res);
+        Log::debug($request->page);
 
         foreach ($res AS $val) {
             if (is_object($val)) {
-                $param[] = array(
+                $param['data'][] = array(
                     'id'            => $val->id,
                     'type'          => 'swim',
                     'record'        => $val->record,
@@ -34,6 +38,7 @@ class RecordManagerController extends Controller
                 );
             }
         }
+        $param['count'] = $res_count;
 
         return $param;
     }
