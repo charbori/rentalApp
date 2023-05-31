@@ -14,13 +14,24 @@
                     {!! csrf_field() !!}
                     <div class="row g-3">
                         <div class="col-12">
+                            <label for="title" class="form-label">Sport</label>
+                            <select name="type" id="type" class="mt-1 form-select form-select-sm fw-bolder" aria-label=".form-select-sm example">
+                                <option value="swim" selected>수영</option>
+                            </select>
+                            <select name="sport_code" id="sport_code" class="mt-1 form-select form-select-sm fw-bolder" aria-label=".form-select-sm example">
+                                <option value="50" selected>50m</option>
+                                <option value="100">100m</option>
+                                <option value="200">200m</option>
+                                <option value="400">40m</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
                             <label for="title" class="form-label">Record</label>
                             <input type="title" class="form-control" id="title" name="record" placeholder="기록을 입력해주세요." value="">
                             <div class="invalid-feedback">
                                 기록을 입력해주세요.
                             </div>
                         </div>
-                        <input type="hidden" name="type" value="swim"/>
                         <input type="hidden" name="map_id" value="{{ $map_id }}"/>
                         <div class="col-12">
                             <label for="content" class="form-label">Content</label>

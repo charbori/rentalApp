@@ -12,7 +12,7 @@ class SportsRecord extends Model
     use HasFactory;
 
     protected $table = "sports_record";
-    protected $fillable = ['user_id', 'map_id', 'type', 'record'];
+    protected $fillable = ['user_id', 'map_id', 'type', 'record', 'sport_code'];
 
     protected $guarded = [];
 

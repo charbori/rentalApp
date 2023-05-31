@@ -86,12 +86,11 @@ class RecordRegisterController extends Controller
 
         if (false === $result) {
             flash('저장에 실패하였습니다.');
-            return redirect('api/map');
+            return redirect('recordList');
         }
 
         flash('저장되었습니다.');
-	    $viewEnv = array();
-        return view('birdmap', compact('viewEnv'));
+        return view('recordList');
     }
 
 }

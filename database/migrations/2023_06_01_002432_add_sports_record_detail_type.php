@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('articles', function(Blueprint $table) {
-            $table->text('subcontent')->nullable()->change();
-            $table->string('tag')->default("")->change();
+        Schema::table('sports_record', function(Blueprint $table) {
+            $table->string('sport_code')->default('short');
         });
     }
 
@@ -27,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function(Blueprint $table) {
-            $table->dropColumn('subcontent','tag');
+        Schema::table('sports_record', function(Blueprint $table) {
+            $table->dropColumn('sport_code');
         });
     }
 };

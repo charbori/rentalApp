@@ -26,12 +26,16 @@ class SwimManager implements MapManagerInterface
             return false;
         }
         $id = Auth::id();
+        $sport_code = (empty($request->sport_code)) ? "50" : $request->sport_code;
+
         $sports_record = \App\Models\SportsRecord::create([
             "type" => $request->type,
             "record" => $request->record,
             "user_id" => $id,
             "map_id" => $request->map_id,
+            "sport_code" => (string) $sport_code
         ]);
+
         return true;
     }
 
