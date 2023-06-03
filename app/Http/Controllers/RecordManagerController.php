@@ -67,6 +67,7 @@ class RecordManagerController extends Controller
                 $param['data'][$val->sport_code][] = array(
                     'id'            => $val->id,
                     'type'          => 'swim',
+                    'sport_code'    => $val->sport_code,
                     'record'        => (float) $val->record,
                     'user_id'       => $val->user->name,
                     'map_id'        => $val->map_id,
@@ -79,6 +80,7 @@ class RecordManagerController extends Controller
                 $param['data2'][$val2->sport_code][] = array(
                     'id'            => $val2->id,
                     'type'          => 'swim',
+                    'sport_code'    => $val2->sport_code,
                     'record'        => (float) $val2->record,
                     'user_id'       => $val2->user->name,
                     'map_id'        => $val2->map_id,

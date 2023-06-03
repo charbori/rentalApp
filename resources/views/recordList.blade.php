@@ -36,7 +36,7 @@
             </div>
             <div class="col-5">
                 <div class="map-content--item">
-                    <span class="h3 text-dark">50m</span>
+                    <span id="first_theme" class="h3 text-dark">50m</span>
                     <div id="map_list" style="width:100%"></div>
                     <table class="table" id="record_rank_list_type1">
                         <thead>
@@ -57,7 +57,6 @@
                                 <span class="page-link record_rank_pagination_type1_item" data="1">1</span>
                             </li>
                         </ul>
-                        <button id="add_record_type1" type="button" class="mt-1 btn btn-light btn-sm" style="background-color:#e9ecef">등록하기</button>
                     </nav>
                     <div class="input-group input-group-sm mt-1">
                         <span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
@@ -69,7 +68,7 @@
             </div>
             <div class="col-5">
                 <div class="map-content--item">
-                    <span class="h3 text-dark">100m</span>
+                    <span id="second_theme" class="h3 text-dark">100m</span>
                     <div id="map_list" style="width:100%"></div>
                     <table class="table" id="record_rank_list_type2">
                         <thead>
@@ -92,7 +91,6 @@
                                 </li>
                             </ul>
                         </nav>
-                        <button id="add_record_type2" type="button" class="mt-1 btn btn-light btn-sm" style="background-color:#e9ecef">등록하기</button>
                         <div class="input-group input-group-sm mt-1">
                             <span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
                             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
@@ -113,6 +111,7 @@
         const now_month = now_date.getMonth();
         const month_type = now_month > 6 ? 'last_half' : 'first_half';
         const sport_code = "short_lane";
+
         search_data = {
             'page' : 1,
             'search_name' : '',
@@ -124,11 +123,34 @@
         getRankList(search_data, "FIRST");
         getRankList(search_data, "");
 
+        $('#record_rank_list_type1').append("<span class='mx-auto p-2 fw-bolder fs-6' id='add_record_type1' colspan='4'>+</span>");
+        $('#record_rank_list_type2').append("<span class='mx-auto p-2 fw-bolder fs-6' id='add_record_type2' colspan='4'>+</span>");
+
+        $('#add_record_type1, #add_record_type2').on('click', function() {
+            sport_code_data = "";
+
+            switch ($('#sport_code').val()) {
+                case "short_lane":
+                    sport_code_data = ($(this).attr('id') == 'add_record_type1') ? '50' : '100';
+                    break;
+                case "middle_lane":
+                    sport_code_data = ($(this).attr('id') == 'add_record_type1') ? '200' : '400';
+                    break;
+                case "long_lane":
+                    sport_code_data = ($(this).attr('id') == 'add_record_type1') ? '800' : '1500';
+                    break;
+            }
+
+            @if (Auth::check() !== false)
+                location.href = "/api/record/edit?type=swim&sport_code=" + sport_code_data;
+            @endif
+        });
+
         function getRankList(param, type) {
             queryString = "page=" + param.page;
             queryString += "&search_name=" + param.search_name;
             queryString += "&year=" + param.year;
-            queryString += "&month_type=" + param.month_type,
+            queryString += "&month_type=" + param.month_type;
             queryString += "&sport_code=" + param.sport_code;
             $.ajax({
                 url: "/api/record/show?" + queryString,
@@ -239,11 +261,6 @@
             }
         }
 
-        $('#add_record_type1, #add_record_type2').on('click', function() {
-            @if (Auth::check() !== false)
-                location.href = "/api/record/edit?type=swim";
-            @endif
-        });
         const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
         const appendAlert = (message, type) => {
             const wrapper = document.createElement('div')
@@ -269,13 +286,28 @@
             getRankList(search_data2, "FIRST");
         });
 
-        $('select#year, select#month_type').on('change', function() {
+        $('select#year, select#month_type, select#sport_code').on('change', function() {
             search_data = {
                 'page' : 1,
                 'search_name' : '',
                 'year' : $('select#year').val(),
                 'month_type' : $('select#month_type').val(),
                 'sport_code' : $('select#sport_code').val()
+            }
+
+            switch ($('#sport_code').val()) {
+                case "short_lane":
+                    $('#first_theme').html("50m");
+                    $('#second_theme').html("100m");
+                    break;
+                case "middle_lane":
+                    $('#first_theme').html("200m");
+                    $('#second_theme').html("400m");
+                    break;
+                case "long_lane":
+                    $('#first_theme').html("800m");
+                    $('#second_theme').html("1500m");
+                    break;
             }
             console.log($('select#month_type').val());
             getRankList(search_data, "FIRST");
@@ -291,5 +323,9 @@
                 })
             }
         @endif
+
+        setTimeout(() => {
+            $(".alert.alert-success").remove();
+        }, 5000);
 	</script>
 @stop

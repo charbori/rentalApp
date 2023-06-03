@@ -33,7 +33,8 @@ class RecordRegisterController extends Controller
             Log::debug("viewName 미생성 이슈");
         }
         $map_id = 12;
-        return view($viewName, compact('map_id'));
+        $sport_code_selected = (isset($request->sport_code)) ? $request->sport_code : "";
+        return view($viewName, compact('map_id', 'sport_code_selected'));
     }
 
     public function show(Request $request) {
@@ -85,12 +86,12 @@ class RecordRegisterController extends Controller
         $result = $mapManager->store($request);
 
         if (false === $result) {
-            flash('저장에 실패하였습니다.');
-            return redirect('recordList');
+            flash('저장에 실패하였습니다.', 'danger');
+            return redirect('/api/record');
         }
 
-        flash('저장되었습니다.');
-        return view('recordList');
+        flash('저장되었습니다.', 'success');
+        return redirect('api/record');
     }
 
 }

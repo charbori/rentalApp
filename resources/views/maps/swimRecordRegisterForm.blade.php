@@ -5,6 +5,17 @@
     <link href="/build/assets/css/edit.css" rel="stylesheet">
 @stop
 
+@php
+    $sport_codes = array(
+        "50",
+        "100",
+        "200",
+        "400",
+        "800",
+        "1500"
+    );
+    if (empty($sport_code_selected)) $sport_code_selected = "50";
+@endphp
 @section('contents')
     <main class="container">
         <div class="py-5 text-left"><br></div>
@@ -19,10 +30,10 @@
                                 <option value="swim" selected>수영</option>
                             </select>
                             <select name="sport_code" id="sport_code" class="mt-1 form-select form-select-sm fw-bolder" aria-label=".form-select-sm example">
-                                <option value="50" selected>50m</option>
-                                <option value="100">100m</option>
-                                <option value="200">200m</option>
-                                <option value="400">40m</option>
+
+                                @foreach ($sport_codes as $code)
+                                    <option value="{{ $code }}" {{ $code == $sport_code_selected ? 'selected' : '' }}>{{ $code }}m</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-12">
