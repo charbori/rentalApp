@@ -1,7 +1,7 @@
 <header class="bd-header">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Renter</a>
+            <a class="navbar-brand" href="/home">Sport Record</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -16,23 +16,22 @@
                         <a class="nav-link active" aria-current="page" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                        <a class="nav-link active" aria-current="page" href="/api/map/edit">Register</a>
                     </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Articles</a>
+                        <a class="nav-link active" aria-current="page" href="/api/map">List</a>
                     </li>
                     @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
                     </li>
                     @endif
+                    @yield('masternav_extra_item')
                 </ul>
-                <form class="d-flex" action="/articles/search" method="get">
-                    <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
             </div>
         </div>
     </nav>
 </header>
+@yield('masternav_script')

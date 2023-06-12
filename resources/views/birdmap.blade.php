@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 	<script>
 	var map = new naver.maps.Map("map", {
-	    center: new naver.maps.LatLng(37.3595316, 127.1052133),
+	    center: new naver.maps.LatLng(37.520168953881715, 126.8722931226252),
 	    zoom: 15,
 	    mapTypeControl: true
 	});
@@ -165,13 +165,13 @@
 
 	function initGeocoder() {
 	    map.addListener('click', function(e) {
-		searchCoordinateToAddress(e.coord);
+		    searchCoordinateToAddress(e.coord);
 	    });
 
 	    $('#address').on('keydown', function(e) {
 		var keyCode = e.which;
 
-		if (keyCode === 13) { // Enter Key
+		if (keyCode === 13) {
 		    searchAddressToCoordinate($('#address').val());
 		}
 	    });
@@ -185,6 +185,10 @@
 	    var datas = ['bird_1', '11', 'charbori'];
 	    searchAddressToCoordinate('정자동 178-1', datas);
 	}
+
+    function findGeocoder() {
+
+    }
 
 	function makeAddress(item) {
 	    if (!item) {

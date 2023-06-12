@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Monolog\Logger;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Service\SportRecordService;
 
 class RecordManagerController extends Controller
 {
 
     public function view(Request $request) {
-        return view('recordList');
+        $sport_category = empty($request->sport_category) ? 'player' : 'team';
+        return view('recordList', compact('sport_category'));
     }
 
     public function show(Request $request) {
+        if (empty($request->map_id)) $map_id = 27;
+        else $map_id = $request->map_id;
         if (empty($request->year)) $year = 2023;
         else $year = $request->year;
         if (empty($request->month_type) || $request->month_type == 'first_half') $diffTime = "<";
@@ -26,43 +26,39 @@ class RecordManagerController extends Controller
         if (empty($request->sport_code) || $request->sport_code == 'short_lane') $sport_code = array('50', '100');
         else if ($request->sport_code == 'middle_lane') $sport_code = array('200', '400');
         else if ($request->sport_code == 'long_lane') $sport_code = array('800', '1500');
+
+        $data = array(  'map_id'        => $map_id,
+                        'year'          => $year,
+                        'month_type'    => $diffTime,
+                        'skip'          => $skip,
+                        'sport_code'    => $sport_code,
+                        'search_name'   => $request->search_name);
+
         if (isset($request->search_name)) {
             $user = \App\Models\User::where('name', $request->search_name)->limit(1)->get();
+            $data['user'] = $user;
         }
-        Log::debug($request->search_name . " " . $request->page);
-        if (isset($user)) {
-            $res = \App\Models\SportsRecord::with('user')->where('user_id', $user[0]->id)
-            ->where('sport_code', $sport_code[0])
-            ->whereDate('created_at', $diffTime, $year."-07-01")
-            ->orderBy('record', 'asc')->offset($skip)->limit(10)->get();
-            $res_count = \App\Models\SportsRecord::with('user')->where('user_id', $user[0]->id)
-            ->where('sport_code', $sport_code[0])
-            ->whereDate('created_at', $diffTime, $year."-07-01")->count();
-            $res2 = \App\Models\SportsRecord::with('user')->where('user_id', $user[0]->id)
-            ->where('sport_code', $sport_code[1])
-            ->whereDate('created_at', $diffTime, $year."-07-01")
-            ->orderBy('record', 'asc')->offset($skip)->limit(10)->get();
-            $res2_count = \App\Models\SportsRecord::with('user')->where('user_id', $user[0]->id)
-            ->where('sport_code', $sport_code[1])
-            ->whereDate('created_at', $diffTime, $year."-07-01")->count();
+        if (isset($request->group_id)) {
+            $user = \App\Models\User::where('group_id', $request->group_id)->get();
+            $data['user'] = $user;
+        } else if ($request->sport_category == 'team') {
+            $user = \App\Models\User::where('group_id', '!=', '0')->get();
+            $data['user'] = $user;
+        }
+
+        $sportService = new SportRecordService();
+
+        if ($request->sport_category == 'team') {
+            $result = $sportService->getTeamRecord($data);
+            $sport_category = 'team';
         } else {
-            $res = \App\Models\SportsRecord::with('user')->whereDate('created_at', $diffTime, $year."-07-01")
-            ->where('sport_code', $sport_code[0])
-            ->orderBy('record', 'asc')->offset($skip)->limit(10)->get();
-            $res_count = \App\Models\SportsRecord::with('user')->whereDate('created_at', $diffTime, $year."-07-01")
-            ->where('sport_code', $sport_code[0])
-            ->count();
-            $res2 = \App\Models\SportsRecord::with('user')->whereDate('created_at', $diffTime, $year."-07-01")
-            ->where('sport_code', $sport_code[1])
-            ->orderBy('record', 'asc')->offset($skip)->limit(10)->get();
-            $res2_count = \App\Models\SportsRecord::with('user')->whereDate('created_at', $diffTime, $year."-07-01")
-            ->where('sport_code', $sport_code[1])
-            ->count();
+            $result = $sportService->getUserRecord($data);
+            $sport_category = 'player';
         }
 
-		$param = array('data' => array(), 'data2' => array(), 'count' => 0, 'count2' => 0);
+		$param = array('data' => array(), 'data2' => array(), 'count' => 0, 'count2' => 0, 'sport_category' => $sport_category);
 
-        foreach ($res AS $val) {
+        foreach ($result['res'] AS $val) {
             if (is_object($val)) {
                 $param['data'][$val->sport_code][] = array(
                     'id'            => $val->id,
@@ -75,7 +71,8 @@ class RecordManagerController extends Controller
                 );
             }
         }
-        foreach ($res2 AS $val2) {
+
+        foreach ($result['res2'] AS $val2) {
             if (is_object($val)) {
                 $param['data2'][$val2->sport_code][] = array(
                     'id'            => $val2->id,
@@ -88,11 +85,9 @@ class RecordManagerController extends Controller
                 );
             }
         }
-        $param['count'] = $res_count;
-        $param['count2'] = $res2_count;
 
-        Log::debug(print_r($param, true));
-        Log::debug($request->page);
+        $param['count'] = $result['res_count'];
+        $param['count2'] = $result['res2_count'];
 
         return $param;
     }

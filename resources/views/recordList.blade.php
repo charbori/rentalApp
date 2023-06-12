@@ -3,6 +3,12 @@
 @section('style')
     <link href="/build/assets/home.css" rel="stylesheet">
 @stop
+
+@php
+// 필수 변수 초기화
+$sport_category = empty($sport_category) ? 'player' : $sport_category;
+@endphp
+
 @section('contents')
     <div class="col ml-3 mt-3">
         <span class="h1 text-dark">미진수영장</span>
@@ -17,8 +23,8 @@
                 </div>
             </div-->
             <div class="col">
-                <span class="h3 text-primary fw-bolder">Player</span>
-                <span class="h3 text-secondary fw-bolder">Team</span>
+                <button data="{{ $sport_category == 'player' ? 'Y' : '' }}" type="button" id="sport_player" class="btn fs-5 {{ $sport_category == 'player' ? 'text-primary' : 'text-secondary' }} fw-bolder">Player</button>
+                <button data="{{ $sport_category == 'team' ? 'Y' : '' }}" type="button" id="sport_team" class="btn fs-5 {{ $sport_category == 'team' ? 'text-primary' : 'text-secondary' }} fw-bolder">Team</button>
                 <hr>
                 <select id="year" class="mt-1 form-select form-select-sm fw-bolder" aria-label=".form-select-sm example">
                     <option value="2023" selected>2023</option>
@@ -123,8 +129,8 @@
         getRankList(search_data, "FIRST");
         getRankList(search_data, "");
 
-        $('#record_rank_list_type1').append("<span class='mx-auto p-2 fw-bolder fs-6' id='add_record_type1' colspan='4'>+</span>");
-        $('#record_rank_list_type2').append("<span class='mx-auto p-2 fw-bolder fs-6' id='add_record_type2' colspan='4'>+</span>");
+        $('#record_rank_pagination_type1').prepend("<div class='mb-2 d-grid gap-2'><button type='button' class='btn btn-sm btn-light fw-bolder fs-6' id='add_record_type1' colspan='4'>+</button></div>");
+        $('#record_rank_pagination_type2').prepend("<div class='mb-2 d-grid gap-2'><button type='button' class='btn btn-sm btn-light fw-bolder fs-6' id='add_record_type2' colspan='4'>+</button></div>");
 
         $('#add_record_type1, #add_record_type2').on('click', function() {
             sport_code_data = "";
@@ -152,6 +158,7 @@
             queryString += "&year=" + param.year;
             queryString += "&month_type=" + param.month_type;
             queryString += "&sport_code=" + param.sport_code;
+            queryString += "&sport_category=" + param.sport_category;
             $.ajax({
                 url: "/api/record/show?" + queryString,
                 method: "GET",
@@ -174,6 +181,14 @@
             record_datas2 = datas.data2;
             record_count = datas.count;
             record_count2 = datas.count2;
+
+            if (datas.sport_category == 'player') {
+                $('#sport_player').addClass('text-primary').removeClass('text-secondary').attr('data', 'Y');
+                $('#sport_team').addClass('text-secondary').removeClass('text-primary').attr('data', '');
+            } else {
+                $('#sport_player').addClass('text-secondary').removeClass('text-primary').attr('data', '');
+                $('#sport_team').addClass('text-primary').removeClass('text-secondary').attr('data', 'Y');
+            }
 
             if (type == 'FIRST') {
                 $('#record_rank_list_type1 tbody').empty();
@@ -286,13 +301,28 @@
             getRankList(search_data2, "FIRST");
         });
 
+        $('button#sport_team, button#sport_player').on('click', function() {
+            if ($(this).attr('id') == 'sport_team' || $(this).attr('id') == 'sport_player') {
+                selected_sport_category = $(this).attr('id') == 'sport_player' ? 'player' : 'team';
+            } else {
+                selected_sport_category = $('button#sport_player').attr('data') == 'Y' ? 'player' : 'team';
+            }
+            console.log(selected_sport_category);
+            getRecordDatas(selected_sport_category);
+        });
+
         $('select#year, select#month_type, select#sport_code').on('change', function() {
+            getRecordDatas('');
+        });
+
+        function getRecordDatas(selected_sport_category) {
             search_data = {
                 'page' : 1,
                 'search_name' : '',
                 'year' : $('select#year').val(),
                 'month_type' : $('select#month_type').val(),
-                'sport_code' : $('select#sport_code').val()
+                'sport_code' : $('select#sport_code').val(),
+                'sport_category' : selected_sport_category
             }
 
             switch ($('#sport_code').val()) {
@@ -312,7 +342,7 @@
             console.log($('select#month_type').val());
             getRankList(search_data, "FIRST");
             getRankList(search_data, "");
-        });
+        }
 
         // 등록하기 (로그인 제한)
         @if (Auth::check() === false)

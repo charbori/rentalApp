@@ -27,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'show'])
 
 Route::get('/api/map', [App\Http\Controllers\MapManageController::class, 'view']);
 Route::get('/api/map/test', [App\Http\Controllers\MapManageController::class, 'show']);
+Route::get('/api/map/show', [App\Http\Controllers\MapManageController::class, 'show']);
 Route::get('/api/map/edit', [App\Http\Controllers\MapRegisterController::class, 'view']);
 //Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);
 Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);

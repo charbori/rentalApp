@@ -13,15 +13,25 @@ class MapManageController extends Controller
 {
     public function view(Request $request) {
 	    $viewEnv = array();
-        return view('birdmap', compact('viewEnv'));
+        return view('recordMap', compact('viewEnv'));
     }
 
     public function show(Request $request) {
-		$mymap = \App\Models\MapList::with('user')->get();
-		$mymapattach = \App\Models\MapAttachment::get();
 		$marker_data = array();
 
+        Log::debug($request->long.  ' ' . $request->lat);
+        Log::debug((float)$request->long.  ' ' . (float)$request->lat);
+
+        if (empty($request->long) || empty($request->lat)) {
+            $mymap = \App\Models\MapList::with('user')->get();
+            $mymapattach = \App\Models\MapAttachment::get();
+        } else {
+            $mymap = \App\Models\MapList::with('user', 'sports_record')->whereBetween('latitude', [$request->lat - 0.01, $request->lat + 0.01])->whereBetween('longitude', [$request->long - 0.01, $request->long + 0.01])->get();
+            $mymapattach = \App\Models\MapAttachment::get();
+        }
+
         Log::debug($mymap);
+
         foreach ($mymap as $key => $val) {
             if (is_object($val)) {
                 $path_val = "";
@@ -46,6 +56,9 @@ class MapManageController extends Controller
                 );
             }
         }
+        //select m.id, count(m.user_id) from map_list as `m` join users as u on u.id = m.user_id group by m.id;
+
+        Log::debug($marker_data);
 
         return $marker_data;
     }

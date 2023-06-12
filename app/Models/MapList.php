@@ -29,4 +29,9 @@ class MapList extends Model
     {
         return $this->hasMany(MapAttachment::class, 'map_id');
     }
+
+    public function sports_record()
+    {
+        return $this->hasMany(SportsRecord::class, 'map_id');
+    }
 }
