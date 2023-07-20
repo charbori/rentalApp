@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/home">
-                <h3 style="font-weight: bold; font-size:24px;">Renter</h3>
+                <h3 style="font-weight: bold; font-size:24px;">Sport Record</h3>
             </a>
         </x-slot>
 

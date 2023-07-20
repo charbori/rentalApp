@@ -8,19 +8,25 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Jenssegers\Agent\Agent;
 
 class MapManageController extends Controller
 {
     public function view(Request $request) {
-	    $viewEnv = array();
-        return view('recordMap', compact('viewEnv'));
+        $agent = new Agent();
+	    $view_env = array('agent' => 'pc');
+        $view_name = 'recordMap';
+
+        if ($agent->isMobile()) {
+            $view_name = 'mo.recordMap';
+            $view_env['agent'] = 'mobile';
+        }
+
+        return view($view_name, compact('view_env'));
     }
 
     public function show(Request $request) {
 		$marker_data = array();
-
-        Log::debug($request->long.  ' ' . $request->lat);
-        Log::debug((float)$request->long.  ' ' . (float)$request->lat);
 
         if (empty($request->long) || empty($request->lat)) {
             $mymap = \App\Models\MapList::with('user')->get();
@@ -29,8 +35,6 @@ class MapManageController extends Controller
             $mymap = \App\Models\MapList::with('user', 'sports_record')->whereBetween('latitude', [$request->lat - 0.01, $request->lat + 0.01])->whereBetween('longitude', [$request->long - 0.01, $request->long + 0.01])->get();
             $mymapattach = \App\Models\MapAttachment::get();
         }
-
-        Log::debug($mymap);
 
         foreach ($mymap as $key => $val) {
             if (is_object($val)) {
@@ -52,13 +56,13 @@ class MapManageController extends Controller
                     'reg_date'      => $val->created_at,
                     'path'          => Storage::url($path_val),
                     'lat'           => $val->latitude,
-                    'long'          => $val->longitude
+                    'long'          => $val->longitude,
+                    'player_cnt'    => $val->player_count,
+                    'record_cnt'    => $val->rank
                 );
             }
         }
         //select m.id, count(m.user_id) from map_list as `m` join users as u on u.id = m.user_id group by m.id;
-
-        Log::debug($marker_data);
 
         return $marker_data;
     }

@@ -9,9 +9,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Rental your product</title>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
         <!-- Bootstrap core CSS -->
         <link href="/build/assets/bootstrap.css" rel="stylesheet">
+        <link href="/build/assets/app.scss" rel="stylesheet">
         <link href="/build/assets/master.css" rel="stylesheet">
         <link href="/build/assets/fontawesome-6.2.0/css/all.css" rel="stylesheet">
         <link href="/build/assets/fontawesome-6.2.0/css/fontawesome.css" rel="stylesheet">
@@ -19,16 +19,22 @@
         <!-- Custom styles for this template -->
         @yield('style')
         <script src="/build/assets/js/jquery-3.6.1.min.js"></script>
+        <script src="/build/assets/js/jquery-ui.js"></script>
+        <script src="/build/assets/js/popper.js"></script>
     </head>
     <body>
-        @include('navigations.masternav')
+        @if (getMobile())
+            @include('navigations.masternav_mo')
+        @else
+            @include('navigations.masternav')
+        @endif
         @include('flash::message')
         @if (trim(Request::path()) === 'home')
             @include('layouts.main')
         @else
             @yield('contents')
         @endif
-        <script src="/build/assets/bootstrap.min.js"></script>
+        <script src="/build/assets/bootstrap.js"></script>
         @yield('javascript')
     </body>
 </html>

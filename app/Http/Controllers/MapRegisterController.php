@@ -12,12 +12,23 @@ use App\Http\Controllers\BirdManager;
 use App\Http\Controllers\SwimManager;
 use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
+use Jenssegers\Agent\Agent;
 
 class MapRegisterController extends Controller
 {
     public function view(Request $request) {
+        $agent = new Agent();
+        $view_env = array('agent' => 'pc');
         $viewName = "";
         $mapType = "map";
+
+        if ($agent->isMobile()) {
+            $view_name = 'mo.recordList';
+            $view_env['agent'] = 'mobile';
+        }
+        if ($this->is_register_param_err($request)) {
+            abort(404);
+        }
 
         if (isset($request->mapType)) {
             $mapType = $request->mapType;
@@ -36,7 +47,14 @@ class MapRegisterController extends Controller
             Log::debug("viewName 미생성 이슈");
         }
 
-        return view($viewName);
+        return view($viewName, compact('view_env'));
+    }
+
+    public function is_register_param_err(Request $request) {
+        if (empty($request->longitude) || empty($request->latitude)) {
+            return true;
+        }
+        return false;
     }
 
     public function show(Request $request) {
@@ -44,7 +62,6 @@ class MapRegisterController extends Controller
 		$mymapattach = \App\Models\MapAttachment::get();
 		$marker_data = array();
 
-        Log::debug($mymap);
         foreach ($mymap as $key => $val) {
             if (is_object($val)) {
                 $path_val = "";

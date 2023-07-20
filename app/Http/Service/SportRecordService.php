@@ -85,4 +85,13 @@ class SportRecordService
                     'res_count' => $res_count,
                     'res2_count'=> $res2_count);
     }
+
+    public function getUserMapList($data) {
+        if (isset($data['user'])) {
+            $res = \App\Models\SportsRecord::with('user')->where('user_id', $data['user'][0]->id)
+            ->orderBy('created_at', 'desc')->offset($data['skip'])->limit(10)->get();
+        }
+
+        return array('res' => $res);
+    }
 }

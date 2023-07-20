@@ -4,10 +4,18 @@
     <!-- Custom styles for this template -->
     <link href="/build/assets/css/edit.css" rel="stylesheet">
 @stop
-
+@if (getMobile())
+    @section('masternav_extra_item')
+    <span class="h1 text-white">장소등록</span>
+    @endsection
+@endif
 @section('contents')
     <main class="container">
-        <div class="py-5 text-left"><br></div>
+        @if (getMobile())
+            <div><br></div>
+        @else
+            <div class="py-5 text-left"><br></div>
+        @endif
         <form id="upload_files" class="needs-validation" method="POST" action="/api/map/store" enctype="multipart/form-data" novalidate>
             <div class="row g-5">
                 <div class="col">

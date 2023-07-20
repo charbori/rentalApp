@@ -32,7 +32,7 @@ class RecordRegisterController extends Controller
         if ($viewName == "") {
             Log::debug("viewName 미생성 이슈");
         }
-        $map_id = 12;
+        $map_id = (strlen($request->map_id) > 0) ? $request->map_id : '12';
         $sport_code_selected = (isset($request->sport_code)) ? $request->sport_code : "";
         return view($viewName, compact('map_id', 'sport_code_selected'));
     }
@@ -41,7 +41,6 @@ class RecordRegisterController extends Controller
 		$res = \App\Models\SportsRecord::with('user')->get();
 		$param = array();
 
-        Log::debug($res);
         foreach ($res AS $val) {
             if (is_object($val)) {
                 $param[] = array(
@@ -91,7 +90,7 @@ class RecordRegisterController extends Controller
         }
 
         flash('저장되었습니다.', 'success');
-        return redirect('api/record');
+        return redirect('api/record?map_id=' . $request->map_id);
     }
 
 }

@@ -5,13 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Service\SportRecordService;
+use Jenssegers\Agent\Agent;
 
 class RecordManagerController extends Controller
 {
 
     public function view(Request $request) {
+        $agent = new Agent();
         $sport_category = empty($request->sport_category) ? 'player' : 'team';
-        return view('recordList', compact('sport_category'));
+	    $view_env = array('agent' => 'pc');
+        $view_name = 'recordList';
+
+        if ($agent->isMobile()) {
+            $view_name = 'mo.recordList';
+            $view_env['agent'] = 'mobile';
+        }
+
+        $view_map_id = (strlen($request->map_id) == 0) ? '27' : $request->map_id;
+
+        return view($view_name, compact('sport_category', 'view_env', 'view_map_id'));
     }
 
     public function show(Request $request) {
@@ -92,4 +104,52 @@ class RecordManagerController extends Controller
         return $param;
     }
 
+    public function userRecentRecord(Request $request) {
+        if (empty($request->year)) $year = 2023;
+        else $year = $request->year;
+
+        $data = array(  'map_id'        => $map_id,
+                        'year'          => $year,
+                        'month_type'    => $diffTime,
+                        'skip'          => $skip,
+                        'sport_code'    => $sport_code,
+                        'search_name'   => $request->search_name);
+
+        $sportService = new SportRecordService();
+
+        $result = $sportService->getUserRecord($data);
+
+        foreach ($result['res'] AS $val) {
+            if (is_object($val)) {
+                $param['data'][$val->sport_code][] = array(
+                    'id'            => $val->id,
+                    'type'          => 'swim',
+                    'sport_code'    => $val->sport_code,
+                    'record'        => (float) $val->record,
+                    'user_id'       => $val->user->name,
+                    'map_id'        => $val->map_id,
+                    'reg_date'      => $val->created_at,
+                );
+            }
+        }
+
+        foreach ($result['res2'] AS $val2) {
+            if (is_object($val)) {
+                $param['data2'][$val2->sport_code][] = array(
+                    'id'            => $val2->id,
+                    'type'          => 'swim',
+                    'sport_code'    => $val2->sport_code,
+                    'record'        => (float) $val2->record,
+                    'user_id'       => $val2->user->name,
+                    'map_id'        => $val2->map_id,
+                    'reg_date'      => $val2->created_at,
+                );
+            }
+        }
+
+        $param['count'] = $result['res_count'];
+        $param['count2'] = $result['res2_count'];
+
+        return $param;
+    }
 }
