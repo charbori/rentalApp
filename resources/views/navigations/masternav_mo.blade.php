@@ -60,16 +60,22 @@
                     <!-- Three columns of text below the carousel -->
                     <div class="row">
                         <div class="col-4" style="text-align:center">
-                            <svg style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                            <p>장소</p>
+                            <a id="place_link0" href="/api/record">
+                                <svg id="place_img0" style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                                <p id="place_name0">장소</p>
+                            </a>
                         </div>
                         <div class="col-4" style="text-align:center">
-                            <svg style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                            <p>+</p>
+                            <a id="place_link0" href="/api/record">
+                                <svg id="place_img1" style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                                <p id="place_name1">+</p>
+                            </a>
                         </div>
                         <div class="col-4" style="text-align:center">
-                            <svg style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                            <p>+</p>
+                            <a id="place_link0" href="/api/record">
+                                <svg id="place_img2" style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                                <p id="place_name2">+</p>
+                            </a>
                        </div>
                     </div>
                 </div>
@@ -147,6 +153,34 @@
             });
 
         }
+
+        function setRecentPlace() {
+            $.ajax({
+                url: "/api/record/mypage",
+                method: "GET",
+                dataType: "json"
+            })
+            .done(function(datas) {
+                console.log(datas);
+                if (datas == 'undefined') {
+                    return;
+                }
+                $.each(datas.res, function(idx, val) {
+                    console.log(idx);
+                    console.log(val);
+                    console.log($('#place_name' + idx));
+                    $('#place_img' + idx).html();
+                    $('#place_name' + idx).html(val.title.substring(0,7));
+                    $('#place_link' + idx).attr('href','/api/record?map_id=' + val.map_id);
+                });
+            })
+            .fail(function(xhr, status, errorThrown) {
+                console.log('error');
+            });
+
+        }
+
+        setRecentPlace();
 </script>
 @endif
 

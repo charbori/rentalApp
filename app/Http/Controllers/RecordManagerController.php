@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Service\SportRecordService;
 use Jenssegers\Agent\Agent;
 
@@ -102,6 +103,20 @@ class RecordManagerController extends Controller
         $param['count2'] = $result['res2_count'];
 
         return $param;
+    }
+
+    public function getUserRecordMypage(Request $request) {
+
+        $sportService = new SportRecordService();
+
+        $user_data = array();
+        $user_data[] = Auth::user();
+        $data = array(  'user'  => $user_data,
+                        'skip'  => '0');
+        $result = $sportService->getUserMapList($data);
+
+        Log::debug(print_r($result, true));
+        return $result;
     }
 
     public function userRecentRecord(Request $request) {

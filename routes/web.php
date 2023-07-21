@@ -39,6 +39,7 @@ Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class
 
 Route::get('/api/record', [App\Http\Controllers\RecordManagerController::class, 'view']);
 Route::get('/api/record/show', [App\Http\Controllers\RecordManagerController::class, 'show']);
+Route::get('/api/record/mypage', [App\Http\Controllers\RecordManagerController::class, 'getUserRecordMypage']);
 Route::get('/api/record/edit', [App\Http\Controllers\RecordRegisterController::class, 'view']);
 Route::post('/api/record/store', [App\Http\Controllers\RecordRegisterController::class, 'store']);
 
