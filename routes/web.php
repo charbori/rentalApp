@@ -43,6 +43,7 @@ Route::get('/api/record/mypage', [App\Http\Controllers\RecordManagerController::
 Route::get('/api/record/edit', [App\Http\Controllers\RecordRegisterController::class, 'view']);
 Route::post('/api/record/store', [App\Http\Controllers\RecordRegisterController::class, 'store']);
 
+Route::get('/mypage/record', [App\Http\Controllers\RecordManagerController::class, 'mypage']);
 
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
 Route::get('/articles/edit', [App\Http\Controllers\ArticleController::class, 'edit']);

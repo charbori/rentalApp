@@ -27,6 +27,19 @@ class RecordManagerController extends Controller
         return view($view_name, compact('sport_category', 'view_env', 'view_map_id'));
     }
 
+    public function mypage(Request $request) {
+        $agent = new Agent();
+	    $view_env = array('agent' => 'pc');
+        $view_name = 'mypage.myrecord';
+
+        if ($agent->isMobile()) {
+            $view_name = 'mypage.myrecord_mo';
+            $view_env['agent'] = 'mobile';
+        }
+
+        return view($view_name, compact('view_env'));
+    }
+
     public function show(Request $request) {
         if (empty($request->map_id)) $map_id = 27;
         else $map_id = $request->map_id;
@@ -115,7 +128,6 @@ class RecordManagerController extends Controller
                         'skip'  => '0');
         $result = $sportService->getUserMapList($data);
 
-        Log::debug(print_r($result, true));
         return $result;
     }
 
