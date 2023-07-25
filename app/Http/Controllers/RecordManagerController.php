@@ -131,6 +131,14 @@ class RecordManagerController extends Controller
         return $result;
     }
 
+    public function getRecordRanking(Request $request) {
+        $sportService = new SportRecordService();
+
+        $result = $sportService->getRankingList();
+
+        return $result;
+    }
+
     public function userRecentRecord(Request $request) {
         if (empty($request->year)) $year = 2023;
         else $year = $request->year;

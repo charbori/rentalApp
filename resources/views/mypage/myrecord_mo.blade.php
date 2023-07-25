@@ -299,6 +299,7 @@
                             + "</tr>");
                     });
                 });
+
                 if (record_count == 0) {
                     $('#record_rank_list_type1 tbody').append("<tr><td colspan='4'>no record</td></tr>");
                 }

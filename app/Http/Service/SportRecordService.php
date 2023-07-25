@@ -3,6 +3,7 @@
 namespace App\Http\Service;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SportRecordService
 {
@@ -99,5 +100,47 @@ class SportRecordService
         }
 
         return array('res' => $res);
+    }
+
+    public function getRankingList() {
+        $now_year = date('Y');
+        $now_month = date('m');
+        if ((int) $now_month > 6) {
+            $created_at_start = '2023-07-01 00:00:00';
+            $created_at_end = '2023-12-31 23:59:59';
+        } else {
+            $created_at_start = '2023-01-01 00:00:00';
+            $created_at_end = '2023-06-30 23:59:59';
+        }
+        $res =  DB::table('sports_record')->select(DB::raw('count(sport_code) as cnt, user_id, name'))
+                ->join('users', 'users.id', '=', 'sports_record.user_id')
+                ->where('sports_record.created_at', '>', $created_at_start)
+                ->where('sports_record.created_at', '<', $created_at_end)
+                ->groupBy('user_id')->orderBy('cnt')->limit(5)->get();
+
+                /*
+                select count(sport_code) as cnt, user_id
+from sports_record
+where created_at > '2023-07-01 00:00:00'
+and created_at < '2023-12-31 23:59:59'
+group by user_id;
+                */
+
+        $result = array();
+        $user_result = array();
+        // sport code 별로 조회해서 계산해야한다.
+        // 50m
+        foreach ($res AS $val) {
+            $result[$val->user_id] = $val->cnt * 50;
+            $user_result[$val->user_id] = $val->name;
+        }
+        $datas = array();
+        foreach ($result AS $key => $val2) {
+            $datas[] = array(   'user_id' => $key,
+                                'distance' => $val2,
+                                'name' => $user_result[$key]);
+        }
+
+        return array('res' => $datas);
     }
 }
