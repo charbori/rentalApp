@@ -112,11 +112,17 @@ class SportRecordService
             $created_at_start = '2023-01-01 00:00:00';
             $created_at_end = '2023-06-30 23:59:59';
         }
-        $res =  DB::table('sports_record')->select(DB::raw('count(sport_code) as cnt, user_id, name'))
+        $sport_code_arr = array('50', '100', '200', '400', '800', '1500');
+        $sport_record_datas = array();
+        foreach ($sport_code_arr AS $sport_code) {
+            $sport_record_datas[$sport_code] = DB::table('sports_record')->select(DB::raw('count(sport_code) as cnt, user_id, name'))
                 ->join('users', 'users.id', '=', 'sports_record.user_id')
                 ->where('sports_record.created_at', '>', $created_at_start)
                 ->where('sports_record.created_at', '<', $created_at_end)
-                ->groupBy('user_id')->orderBy('cnt')->limit(5)->get();
+                ->where('sport_code', '=', $sport_code)
+                ->groupBy('user_id')->orderBy('cnt')->get();
+                //Log::debug($sport_record_datas[$sport_code]);
+        }
 
                 /*
                 select count(sport_code) as cnt, user_id
@@ -126,21 +132,31 @@ and created_at < '2023-12-31 23:59:59'
 group by user_id;
                 */
 
-        $result = array();
+        $sport_user_result = array();
         $user_result = array();
+        $sport_code = "";
         // sport code 별로 조회해서 계산해야한다.
         // 50m
-        foreach ($res AS $val) {
-            $result[$val->user_id] = $val->cnt * 50;
-            $user_result[$val->user_id] = $val->name;
+        foreach ($sport_code_arr AS $sport_code) {
+            $sport_datas = $sport_record_datas[$sport_code];
+            if (is_object($sport_datas)) {
+                foreach ($sport_datas AS $val) {
+                    if (empty($sport_user_result[$val->user_id])) {
+                        $sport_user_result[$val->user_id] = $val->cnt * (int) $sport_code;
+                        $user_result[$val->user_id] = $val->name;
+                    } else {
+                        $sport_user_result[$val->user_id] += $val->cnt * (int) $sport_code;
+                        $user_result[$val->user_id] = $val->name;
+                    }
+                }
+            }
         }
         $datas = array();
-        foreach ($result AS $key => $val2) {
+        foreach ($sport_user_result AS $key => $val2) {
             $datas[] = array(   'user_id' => $key,
                                 'distance' => $val2,
                                 'name' => $user_result[$key]);
         }
-
         return array('res' => $datas);
     }
 }

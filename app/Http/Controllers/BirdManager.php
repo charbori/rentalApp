@@ -45,18 +45,12 @@ class BirdManager implements MapManagerInterface
                 $extension = $photo->getClientOriginalExtension();
                 $check = in_array($extension,$allowedfileExtension);
 
-                Log::debug($photo->getClientOriginalName());
-                Log::debug($photo->getClientOriginalExtension());
-
                 if ($check) {
                     $filepath = $photo->store('public/photos/', 'local');
                     $map_attachment_id = DB::table('map_attachemnt')->insertGetId(
                         array(  'map_id'    => $map_list->id,
                                 'path'      => $filepath
                     ));
-                    Log::debug('mapid : ' . $map_list);
-                    Log::debug('map attach id : ' . $map_attachment_id);
-                    Log::debug('auto filepath : ' . $filepath);
                     \App\Models\MapList::where("id", $map_list->id)->update([
                         "attachment" => $map_attachment_id
                     ]);

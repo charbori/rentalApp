@@ -120,7 +120,7 @@
                     </div>
                     <div class="row">
                         <div class="col mt-2">
-                            <h2 style="color:black" class="fw-normal fs-3"><a class="nav-link active" aria-current="page" {{ Auth::check() ? 'href=/mypage/ranking' : 'href=/login'  }} >뱃지.랭킹</a></h2>
+                            <h2 style="color:black" class="fw-normal fs-3"><a class="nav-link active" aria-current="page" {{ Auth::check() ? 'href=/ranking' : 'href=/login'  }} >랭킹</a></h2>
                         </div>
                     </div>
                 </div>

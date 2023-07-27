@@ -42,5 +42,47 @@ class SwimManager implements MapManagerInterface
     public function edit(Request $request) {
 
     }
+    
+    public function mapStore(Request $request) {
+        if (Auth::check() === false) {
+            return false;
+        }
+        $id = Auth::id();
+        $map_list = \App\Models\MapList::create([
+            "title" => $request->title,
+            "type" => 'swim',
+            "desc" => $request->desc,
+            "longitude" => $request->longitude,
+            "latitude" => $request->latitude,
+            "user_id" => $id,
+            "attachment" => "Y",
+            "rank" => "0",
+            "player_count" => "0"
+        ]);
+        $photos = $request->file('photos');
+        $allowedfileExtension=['pdf','jpg','png','jpeg', 'docx','svg','gif'];
+
+        foreach ($photos as $photo) {
+            if ($photo->isValid()) {
+                $filename = $photo->getClientOriginalName();
+                $extension = $photo->getClientOriginalExtension();
+                $check = in_array($extension,$allowedfileExtension);
+
+                if ($check) {
+                    $filepath = $photo->store('public/photos/', 'local');
+                    $map_attachment_id = DB::table('map_attachemnt')->insertGetId(
+                        array(  'map_id'    => $map_list->id,
+                                'path'      => $filepath
+                    ));
+                    \App\Models\MapList::where("id", $map_list->id)->update([
+                        "attachment" => $map_attachment_id
+                    ]);
+                } else {
+                    Log::debug("file 체크 에러 : " . $filename . " extension : " . $extension);
+                }
+            }
+        }
+        return true;
+    }
 }
 ?>

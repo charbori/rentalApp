@@ -37,7 +37,7 @@
                 <div class="accordion accordion-flush" style="border:none" id="accordionExample">
                     <div class="accordion-item" style="border:none">
                         <strong>
-                            {{ $now_month_type == 'last_half' ? '전반기' : '후반기' }}
+                            {{ $now_month_type == 'last_half' ? '후반기' : '전반기' }}
                         </strong>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
     </svg>
 </span>
-<span class="h3 text-white">내 기록</span>
+<span class="h3 text-white">랭킹</span>
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
@@ -132,7 +132,6 @@
                 }
                 record_data = datas.res;
                 setRankList(record_data, 'FIRST');
-                console.log(datas);
             })
             .fail(function(xhr, status, errorThrown) {
                 console.log('error');
@@ -141,16 +140,20 @@
         }
         setRecentPlace();
 
-
         function setRankList(datas, type) {
             if (type == 'FIRST') {
                 $('#record_rank_list_type1 tbody').empty();
                 $.each(datas, function(idx, value) {
+                    let distance_format = 0;
+                    if (value.distance < 1000) {
+                        distance_format = value.distance + "m";
+                    } else {
+                        distance_format = (parseFloat(value.distance) / 1000) + "km";
+                    }
                     $('#record_rank_list_type1 tbody').append("<tr>"
                         + "<th scope='row'>" + (idx + 1) + "</th>"
                         + "<td>" + value.name + "</td>"
-                        + "<td>" + value.distance + "</td>"
-                        //+ "<td></td>"
+                        + "<td>" + distance_format + "</td>"
                         + "</tr>");
                 });
 
@@ -160,7 +163,6 @@
             } else {
                 $('#record_rank_list_type2 tbody').empty();
             }
-
         }
 
         function page_back() {

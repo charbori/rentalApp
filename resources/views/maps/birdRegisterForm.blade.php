@@ -16,7 +16,7 @@
         @else
             <div class="py-5 text-left"><br></div>
         @endif
-        <form id="upload_files" class="needs-validation" method="POST" action="/api/map/store" enctype="multipart/form-data" novalidate>
+        <form id="upload_files" class="needs-validation" method="POST" action="/api/map/mapStore" enctype="multipart/form-data" novalidate>
             <div class="row g-5">
                 <input id="hidden-input" type="file" name="photos[]" multiple class="hidden" />
                 @if (getMobile())

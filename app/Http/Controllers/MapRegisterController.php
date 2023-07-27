@@ -20,7 +20,7 @@ class MapRegisterController extends Controller
         $agent = new Agent();
         $view_env = array('agent' => 'pc');
         $viewName = "";
-        $mapType = "map";
+        $mapType = "";
 
         if ($agent->isMobile()) {
             $view_name = 'mo.recordList';
@@ -125,6 +125,20 @@ class MapRegisterController extends Controller
 
         flash('저장되었습니다.');
 	    $viewEnv = array();
-        return view('birdmap', compact('viewEnv'));
+        return redirect('api/map');
+    }
+
+    public function mapStore(Request $request) {
+        $mapManager = new SwimManager();
+        $result = $mapManager->mapStore($request);
+
+        if (false === $result) {
+            flash('저장에 실패하였습니다.');
+            return redirect('api/map');
+        }
+
+        flash('저장되었습니다.');
+	    $viewEnv = array();
+        return redirect('api/map');
     }
 }

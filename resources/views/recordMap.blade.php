@@ -80,7 +80,7 @@
                     content: [
                         '<div style="position: absolute; width:150px; top: 0px; left: 0px; z-index: 0; margin: 0px; padding: 0px; display: block; cursor: default; box-sizing: content-box !important;">',
                         '<div class="ml-4 mb-1" style="width: 15px; height: 15px; border-radius: 50%; border: solid 5px; border-color:gray;"></div>',
-                        '<a class="btn btn-sm btn-secondary" role="button" href="/api/map/edit?latitude=' + lat_val + '&longitude=' + long_val + '">등록</a>',
+                        '<a class="btn btn-sm btn-secondary" role="button" href="/api/map/edit?latitude=' + lat_val + '&longitude=' + long_val + '&mapType=map">등록</a>',
                         '</div>'
                     ].join(''),
                     size: new naver.maps.Size(38, 58),
