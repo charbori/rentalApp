@@ -25,6 +25,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $attributes = [
+        'group_id' => '0',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
