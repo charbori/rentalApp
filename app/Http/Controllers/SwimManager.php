@@ -42,7 +42,7 @@ class SwimManager implements MapManagerInterface
     public function edit(Request $request) {
 
     }
-    
+
     public function mapStore(Request $request) {
         if (Auth::check() === false) {
             return false;
@@ -70,6 +70,9 @@ class SwimManager implements MapManagerInterface
 
                 if ($check) {
                     $filepath = $photo->store('public/photos/', 'local');
+                    if ($filepath == false) {
+                        return false;
+                    }
                     $map_attachment_id = DB::table('map_attachemnt')->insertGetId(
                         array(  'map_id'    => $map_list->id,
                                 'path'      => $filepath
