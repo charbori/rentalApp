@@ -67,7 +67,8 @@ RUN composer install
 
 RUN chown -R 999:sail /var/www/html/storage
 RUN chown -R sail:www-data /var/www/html/bootstrap/cache
-RUN chown -R sail:www-data /var/www/html/storage/app/public
+RUN chown -R 999:www-data /var/www/html/storage/app/public
+RUN chown -R 999:www-data /var/www/html/storage/app/public/photos
 RUN chown -R sail:www-data /var/log/supervisor
 RUN chown -R sail:www-data .env
 RUN chown -R sail:www-data .env.testing
@@ -85,6 +86,7 @@ RUN usermod -aG sail jaehyeok
 
 RUN rm -f public/storage
 RUN ln -s /var/www/html/storage/app/public public/storage
+RUN chown -h 1000:www-data /var/www/html/public/storage
 
 COPY docker/start-container /usr/local/bin/start-container
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
