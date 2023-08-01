@@ -30,7 +30,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
             <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         </svg>
     </span>
-    <span class="h1 text-white">{{ $map_title }}</span>
+    <span class="h1 text-white">{{ $get_map_data[0]->title }}</span>
     <span class="h3 text-white">순위</span>
 @endsection
 @section('contents')

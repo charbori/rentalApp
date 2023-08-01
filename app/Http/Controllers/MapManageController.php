@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\SportRecordService;
 use Illuminate\Http\Request;
 use Monolog\Logger;
 use Illuminate\Support\Facades\Log;
@@ -16,13 +17,35 @@ class MapManageController extends Controller
         $agent = new Agent();
 	    $view_env = array('agent' => 'pc');
         $view_name = 'recordMap';
+        $now_month_type = (int) date("m");
+        $now_month_type = ($now_month_type > 6) ? 'last_half' : 'before_half';
 
         if ($agent->isMobile()) {
-            $view_name = 'mo.recordMap';
+            $view_name = 'mo.recordHome';
             $view_env['agent'] = 'mobile';
         }
 
-        return view($view_name, compact('view_env'));
+        if ($request->view_type == 'map') {
+            $view_name = 'mo.recordMap';
+        }
+
+        $user_rank_map_list = array('title' => '',
+        'map_id' => '');
+        $view_map_id = 0;
+
+        if (Auth::check()) {
+            $service_param = array('user' => array());
+            $service_param['user'][] = Auth::user();
+            $sport_record_service = new SportRecordService();
+            Log::debug($service_param);
+            $user_rank_map_list = $sport_record_service->getUserMapList($service_param);
+            Log::debug($user_rank_map_list);
+            if (count($user_rank_map_list) > 0) {
+                $user_rank_map_list = $user_rank_map_list['res'][0];
+            }
+        }
+
+        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id'));
     }
 
     public function show(Request $request) {

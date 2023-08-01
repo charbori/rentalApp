@@ -29,7 +29,7 @@ Route::redirect('/dashboard', '/api/map');
 Route::get('/test', function () {
     return view('test');
 });
-Route::get('/api/map', [App\Http\Controllers\MapManageController::class, 'view'])->name('dashboard');;
+Route::get('/api/map', [App\Http\Controllers\MapManageController::class, 'view'])->name('dashboard');
 Route::get('/api/map/test', [App\Http\Controllers\MapManageController::class, 'show']);
 Route::get('/api/map/show', [App\Http\Controllers\MapManageController::class, 'show']);
 Route::get('/api/map/edit', [App\Http\Controllers\MapRegisterController::class, 'view']);
