@@ -199,9 +199,9 @@
             contentUI = [
                             '<div class="" style="background-color:#ffffff; border-radius: 3%; border: solid 0px; border-color:gray; box-shadow: 0.5px 0.5px 0.5px 0.5px lightgray;"',
                             '<div id="map_marker_selected" data="' + data_content.id + '"style="padding:10px;min-width:200px;line-height:150%;">',
-                            '<img style="border-radius: 3% 3% 0 0;  width:100%; height:100px;" src="' + data_content.path + '"/>',
-                            '<span class="pl-1" id="map_marker_name">' + data_content.name + "</span><br>",
-                            '<span class="pl-1" id="map_marker_type">' + data_content.type + "</span><br>",
+                            '<img style="border-radius: 3% 3% 0 0;  min-width:100px; max-width:150px; height:100px;" src="' + data_content.path + '"/>',
+                            '<span class="pl-1" id="map_marker_name"><b>' + data_content.name + "</b></span><br>",
+                            //'<span class="pl-1" id="map_marker_type">' + data_content.type + "</span><br>",
                             '<span class="pl-1" id="map_marker_description">' + data_content.description + "</span><br>",
                             '<div style="text-align:center; background-color:#e2e8f0; font-weight:bold;"><a class="btn btn-sm" style="width:100%; height:100%; background-color:#e2e8f0; font-weight:bold;" role="button" href="/api/record?map_id=' + data_content.id + '">',
                             '<svg style="display:inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/><path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>',
@@ -256,10 +256,11 @@
 
     function initMapList(value) {
         if (typeof value == 'undefined' || value.length == 0) return $('#map_list').empty();
-        if (value.path.length < 12) value.path = '<svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="bi bi-card-image flex-shrink-0" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/></svg>';
-        else value.path = '<img src="' + value.path + '" alt="twbs" width="64" height="64" class="rounded-circle flex-shrink-0">'
+        let path_name = '';
+        if (value.path.length < 12) path_name = '<svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="bi bi-card-image flex-shrink-0" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/></svg>';
+        else path_name = '<img src="' + value.path + '" alt="twbs" width="64" height="64" class="rounded-circle flex-shrink-0">'
         map_list_item = ['<a href="#" style="background-color:white; border-width:0 0 1px 0;" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" onClick="link_map(' + value.id + ')">',
-            value.path,
+            path_name,
             '<div class="d-flex gap-2 w-100 justify-content-between">',
             '<div>',
             '<h6 class="mb-0">' + value.name + 'g</h6>',

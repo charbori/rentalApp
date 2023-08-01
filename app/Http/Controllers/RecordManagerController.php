@@ -24,7 +24,13 @@ class RecordManagerController extends Controller
 
         $view_map_id = (strlen($request->map_id) == 0) ? '27' : $request->map_id;
 
-        return view($view_name, compact('sport_category', 'view_env', 'view_map_id'));
+        $get_map_data = \App\Models\MapList::where('id', $request->map_id)->get();
+        if (count($get_map_data) == 0) {
+            flash('기록 조회에 실패하였습니다.');
+            return back();
+        }
+
+        return view($view_name, compact('sport_category', 'view_env', 'view_map_id', 'get_map_data'));
     }
 
     public function mypage(Request $request) {
