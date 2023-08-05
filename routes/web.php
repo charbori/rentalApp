@@ -37,6 +37,7 @@ Route::get('/api/map/edit', [App\Http\Controllers\MapRegisterController::class, 
 Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class, 'store']);
 Route::post('/api/map/mapStore', [App\Http\Controllers\MapRegisterController::class, 'mapStore']);
 
+Route::get('/api/search', [App\Http\Controllers\MapManageController::class, 'search']);
 
 Route::get('/api/record', [App\Http\Controllers\RecordManagerController::class, 'view']);
 Route::get('/api/record/show', [App\Http\Controllers\RecordManagerController::class, 'show']);

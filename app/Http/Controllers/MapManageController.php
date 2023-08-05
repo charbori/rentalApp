@@ -30,14 +30,13 @@ class MapManageController extends Controller
         }
 
         $user_rank_map_list = array('title' => '',
-        'map_id' => '');
+                                    'map_id' => '');
         $view_map_id = 0;
 
         if (Auth::check()) {
             $service_param = array('user' => array());
             $service_param['user'][] = Auth::user();
             $sport_record_service = new SportRecordService();
-            Log::debug($service_param);
             $user_rank_map_list = $sport_record_service->getUserMapList($service_param);
             Log::debug($user_rank_map_list);
             if (count($user_rank_map_list) > 0) {
@@ -51,7 +50,10 @@ class MapManageController extends Controller
     public function show(Request $request) {
 		$marker_data = array();
 
-        if (empty($request->long) || empty($request->lat)) {
+        if ($request->search) {
+            $mymap = \App\Models\MapList::with('user')->where('tag', 'like', "%".$request->search."%")->orWhere('address', 'like', "%".$request->search."%")->get();
+            $mymapattach = \App\Models\MapAttachment::get();
+        } else if (empty($request->long) || empty($request->lat)) {
             $mymap = \App\Models\MapList::with('user')->get();
             $mymapattach = \App\Models\MapAttachment::get();
         } else {
@@ -88,6 +90,32 @@ class MapManageController extends Controller
         //select m.id, count(m.user_id) from map_list as `m` join users as u on u.id = m.user_id group by m.id;
 
         return $marker_data;
+    }
+
+    public function search(Request $request) {
+        $agent = new Agent();
+	    $view_env = array('agent' => 'pc');
+        $now_month_type = (int) date("m");
+        $now_month_type = ($now_month_type > 6) ? 'last_half' : 'before_half';
+
+        $view_name = 'mo.recordSearch';
+        $user_rank_map_list = array('title' => '',
+                                    'map_id' => '');
+        $view_map_id = 0;
+
+        if (Auth::check()) {
+            $service_param = array('user' => array());
+            $service_param['user'][] = Auth::user();
+            $sport_record_service = new SportRecordService();
+            $user_rank_map_list = $sport_record_service->getUserMapList($service_param);
+            Log::debug($user_rank_map_list);
+            if (count($user_rank_map_list) > 0) {
+                $user_rank_map_list = $user_rank_map_list['res'][0];
+            }
+        } else {
+
+        }
+        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id'));
     }
 
 }
