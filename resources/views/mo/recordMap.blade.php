@@ -86,20 +86,18 @@
             var long_val = latlng.lng();
 
             var items = response.v2.results,
-                address = '',
-                htmlAddresses = [];
+                address = '';
 
             for (var i=0, ii=items.length, item, addrType; i<ii; i++) {
                 item = items[i];
                 address = makeAddress(item) || '';
-                addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
-
-                htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
             }
             // 재설정시 삭제함
             if (newMarker != null) {
                 newMarker.setMap(null);
             }
+            console.log(latlng);
+            console.log(address);
 
             newMarker = new naver.maps.Marker({
                 position: new naver.maps.LatLng(lat_val, long_val),
@@ -108,7 +106,9 @@
                     content: [
                         '<div style="position: absolute; width:150px; top: 0px; left: 0px; z-index: 0; margin: 0px; padding: 0px; display: block; cursor: default; box-sizing: content-box !important;">',
                         '<div class="ml-4 mb-1" style="width: 15px; height: 15px; border-radius: 50%; border: solid 5px; border-color:gray;"></div>',
-                        '<a class="btn btn-sm btn-secondary" role="button" href="/api/map/edit?latitude=' + lat_val + '&longitude=' + long_val + '&mapType=map">등록</a>',
+                        '<a class="btn btn-sm btn-secondary" role="button" href="/api/map/edit?latitude=' + lat_val + '&longitude=' + long_val + '&mapType=map'
+                        + '&map_address=' + address + '"'
+                        + '>등록</a>',
                         '</div>'
                     ].join(''),
                     size: new naver.maps.Size(38, 58),
@@ -155,21 +155,8 @@
                 return alert('totalCount' + response.v2.meta.totalCount);
             }
 
-            var htmlAddresses = [],
-                item = response.v2.addresses[0],
+            var item = response.v2.addresses[0],
                 point = new naver.maps.Point(item.x, item.y);
-
-            if (item.roadAddress) {
-                htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
-            }
-
-            if (item.jibunAddress) {
-                htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
-            }
-
-            if (item.englishAddress) {
-                htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
-            }
 
             $.ajax({
                 url: "/api/map/show?long=" + item.x + "&lat=" + item.y,
@@ -192,6 +179,9 @@
                     }
                     initMapList(value);
                 });
+
+                console.log(marker_data);
+                console.log(item);
             })
             .fail(function(xhr, status, errorThrown) {
                 console.log('error');
@@ -216,7 +206,7 @@
                         ].join('\n');
         } else {
             contentUI = [
-                            '<div class="div_map_marker" style="position: absolute; top: 0px; left: 0px; z-index: 0; margin: 0px; padding: 0px; display: block; cursor: default; box-sizing: content-box !important;">',
+                            '<div class="div_map_marker" style="width:150px; position: absolute; top: 0px; left: 0px; z-index: 0; margin: 0px; padding: 0px; display: block; cursor: default; box-sizing: content-box !important;">',
                             '<button id="map_marker_item" data="' + data_content.id + '" type="button" style="background-color:white; font-color:black; box-shadow: 0.5px 0.5px 0.5px 0.5px lightgray;" class="btn btn-sm">' + data_content.name + '</button>',
                             '</div>'
                         ].join('');

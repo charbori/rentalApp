@@ -12,7 +12,7 @@ class MapList extends Model
     use HasFactory;
 
     protected $table = "map_list";
-    protected $fillable = ['user_id', 'title', 'type', 'desc', 'longitude', 'latitude', 'attachment', 'rank', 'player_count'];
+    protected $fillable = ['user_id', 'title', 'type', 'desc', 'longitude', 'latitude', 'attachment', 'rank', 'address', 'tag', 'player_count'];
 
     protected $guarded = [];
 

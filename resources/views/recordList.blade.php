@@ -148,7 +148,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
             }
 
             @if (Auth::check() !== false)
-                location.href = "/api/record/edit?type=swim&sport_code=" + sport_code_data;
+                location.href = "/api/record/edit?type=swim&sport_code=" + sport_code_data + "&map_id=" + '{{ $view_map_id }}';
             @endif
         });
 

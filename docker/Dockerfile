@@ -95,8 +95,11 @@ COPY docker/php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 
 RUN php artisan key:generate
-RUN sed 's/DB_DATABASE=rentalApp/DB_DATABASE=testing/g' .env > .env.testing2
+RUN sed 's/DB_DATABASE=sports_record/DB_DATABASE=testing/g' .env > .env.testing2
 RUN sed 's/APP_ENV=local/APP_ENV=testing/g' .env.testing2 > .env.testing
+
+RUN php artisan migrate
+RUN php artisan migrate --env=testing
 
 USER sail
 

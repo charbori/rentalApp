@@ -6,9 +6,6 @@
     .bd-header {
         position: absolute;
     }
-    html,body {
-        overflow-x: hidden;
-    }
     .scrolled-down{
         transform:translateY(-120%); transition: all 0.3s ease-in-out;
     }
@@ -21,11 +18,11 @@
 @php
     $user_rank_title = '';
     $user_rank_id = '0';
+    if (Auth::check() !== false) {
+        $user_rank_title = $user_rank_map_list->title;
+        $user_rank_id = $user_rank_map_list->map_id;
+    }
 @endphp
-@if (Auth::check() !== false)
-    $user_rank_title = $user_rank_map_list->title;
-    $user_rank_id = $user_rank_map_list->map_id;
-@endif
 @section('contents')
     <div class="position-relative" style="margin-top: 70px;">
         <div class="row mt-1 mb-2">
@@ -45,7 +42,7 @@
                 <a id="place_name" style="vertical-align:super" class="ml-1 btn btn-sm btn-light" href="javascript:link_geo_map();">지도로보기</a>
             </span>
             <div class="input-group input-group-sm mt-1">
-                <span class="input-group-text"  aria-label="Toggle navigation" onclick="page_link_search();">
+                <span class="input-group-text"  aria-label="Toggle navigation" onclick="page_back();">
                     <svg style="display: inline"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                     </svg>

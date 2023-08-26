@@ -31,20 +31,25 @@ class MapManageController extends Controller
 
         $user_rank_map_list = array('title' => '',
                                     'map_id' => '');
+        $user_rank_map_list = (object) $user_rank_map_list;
         $view_map_id = 0;
 
         if (Auth::check()) {
             $service_param = array('user' => array());
             $service_param['user'][] = Auth::user();
             $sport_record_service = new SportRecordService();
-            $user_rank_map_list = $sport_record_service->getUserMapList($service_param);
-            Log::debug($user_rank_map_list);
-            if (count($user_rank_map_list) > 0) {
-                $user_rank_map_list = $user_rank_map_list['res'][0];
+            $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
+
+            Log::debug($result_user_rank_map_list);
+            if (count($result_user_rank_map_list['res']) > 0) {
+                $user_rank_map_list = $result_user_rank_map_list['res'][0];
             }
+
+            $result_rank_infos = $sport_record_service->getFollowInfos();
+            $result_rank_list = $result_rank_infos['swim'];
         }
 
-        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id'));
+        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id', 'result_rank_list'));
     }
 
     public function show(Request $request) {
@@ -107,10 +112,9 @@ class MapManageController extends Controller
             $service_param = array('user' => array());
             $service_param['user'][] = Auth::user();
             $sport_record_service = new SportRecordService();
-            $user_rank_map_list = $sport_record_service->getUserMapList($service_param);
-            Log::debug($user_rank_map_list);
-            if (count($user_rank_map_list) > 0) {
-                $user_rank_map_list = $user_rank_map_list['res'][0];
+            $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
+            if (count($result_user_rank_map_list) > 0) {
+                $user_rank_map_list = $result_user_rank_map_list['res'][0];
             }
         } else {
 

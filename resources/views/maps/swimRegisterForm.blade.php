@@ -6,13 +6,13 @@
 @stop
 @if (getMobile())
     @section('masternav_extra_item')
-    <span class="h1 text-white">장소등록</span>
+    <span class="h1 text-black">기록등록</span>
     @endsection
 @endif
 @section('contents')
     <main class="container">
         @if (getMobile())
-            <div><br></div>
+            <div class="mt-5 pt-5"><br></div>
         @else
             <div class="py-5 text-left"><br></div>
         @endif

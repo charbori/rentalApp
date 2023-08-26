@@ -4,6 +4,7 @@ namespace App\Http\Service;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class SportRecordService
 {
@@ -100,6 +101,70 @@ class SportRecordService
         }
 
         return array('res' => $res);
+    }
+
+    public function getFollowInfos() {
+        $now_year = date('Y');
+        $now_month = date('m');
+
+        if ((int) $now_month > 6) {
+            $created_at_start = $now_year.'-07-01 00:00:00';
+            $created_at_end = $now_year.'-12-31 23:59:59';
+        } else {
+            $created_at_start = $now_year.'-01-01 00:00:00';
+            $created_at_end = $now_year.'-06-30 23:59:59';
+        }
+
+        $sport_type = "swim";
+        $sport_code_arr = array('50', '100', '200', '400', '800', '1500');
+        $sport_record_datas = array();
+        $sport_icons = array();
+        foreach ($sport_code_arr AS $sport_code) {
+            $sport_record_datas[$sport_type][$sport_code] = DB::table('follow')->select('*')
+                ->join('ranking', 'ranking.user_id', '=', 'follow.id')
+                ->join('map_list', 'map_list.id', '=', 'ranking.map_id')
+                ->join('users', 'users.id', '=', 'follow.follower')
+                ->where('ranking.created_at', '>', $created_at_start)
+                ->where('ranking.created_at', '<', $created_at_end)
+                ->where('ranking.record_type', '=', $sport_type)
+                ->where('ranking.sport_code', '=', $sport_code)
+                ->where('follow.id', '=', Auth::id())
+                ->orderBy('ranking.created_at','asc')->get();
+            Log::debug($sport_record_datas[$sport_type][$sport_code]);
+
+            if ($sport_type == 'swim') {
+                $sport_record_datas[$sport_type]['icons'] = "/build/assets/img/swimming_icon.png";
+            }
+
+            foreach ($sport_record_datas[$sport_type][$sport_code] AS $sport_data) {
+                Log::debug(strtotime("now"). ' ' . strtotime($sport_data->created_at));
+                $record_time = strtotime($sport_data->created_at);
+                // 날짜변경
+                if ($record_time < strtotime("2022-12-30")) {
+                    $record_time = "-";
+                } else if (60 > strtotime("-1 hours") - $record_time) {
+                } else if (3600 > strtotime("-1 day") - $record_time) {
+                    $record_diff = strtotime("-1 hours") - strtotime($sport_data->created_at);
+                    $sport_data->created_at = (int) ($record_diff/60) . "분전";
+                } else if (3600 * 2 > strtotime("-2 day") - $record_time) {
+                    $record_diff = strtotime("-1 hours") - strtotime($sport_data->created_at);
+                    $sport_data->created_at = (int) ($record_diff/3600) . "시간전";
+                } else if (86400 > strtotime("-1 week") - $record_time) {
+                    $record_diff = strtotime("-2 day") - strtotime($sport_data->created_at);
+                    $sport_data->created_at = "하루전";
+                } else if (2592000 > strtotime("-1 month") - $record_time) {
+                    $record_diff = strtotime("-1 week") - strtotime($sport_data->created_at);
+                    $sport_data->created_at = (int) ($record_diff/86400) . "일전";
+                } else if (2592000 < strtotime("-1 month") - $record_time && 2592000 * 12 > strtotime("-12 month") - $record_time) {
+                    $record_diff = strtotime("-1 month") - strtotime($sport_data->created_at);
+                    $sport_data->created_at = (int) ($record_diff/2592000) . "달전";
+                } else {
+                    $sport_data->created_at = $sport_data->created_at = date("Y") . "년";
+                }
+            }
+        }
+
+        return $sport_record_datas;
     }
 
     public function getRankingList() {

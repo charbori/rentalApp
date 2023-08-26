@@ -14,8 +14,11 @@
         margin-top: 1rem;
 
     }
-    body {
-        overflow-x: hidden;
+    .scrolled-down{
+        transform:translateY(-120%); transition: all 0.3s ease-in-out;
+    }
+    .scrolled-up{
+        transform:translateY(0); transition: all 0.3s ease-in-out;
     }
     </style>
 @stop
@@ -42,7 +45,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                     <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_112%2F1440987756524Gez5F_JPEG%2F11866967_0.jpg"/>
                 </div>
             </div-->
-            <div class="col-4">
+            <div class="col-4" style="padding-right:0px;">
                 <button data="{{ $sport_category == 'player' ? 'Y' : '' }}" type="button" id="sport_player" class="btn fs-5 {{ $sport_category == 'player' ? 'text-primary' : 'text-secondary' }} fw-bolder">Player</button>
                 <button data="{{ $sport_category == 'team' ? 'Y' : '' }}" type="button" id="sport_team" class="btn fs-5 {{ $sport_category == 'team' ? 'text-primary' : 'text-secondary' }} fw-bolder">Team</button>
                 <hr>
@@ -92,7 +95,9 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                 </div>
                 <div id="liveAlertPlaceholder"></div>
             </div>
-            <div class="col-4">
+        </div>
+        <div class="row g-5 mt-1">
+            <div class="col-4" style="padding-right:0px;">
             </div>
             <div class="col">
                 <div class="map-content--item">
@@ -381,35 +386,22 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
             $(".alert.alert-success").remove();
         }, 5000);
 
-        var nav_hide = false;
-        var lastScrollY = 0;
-        var direction = 'up';
-        // 스크롤시에 사용자가 스크롤했다는 것을 알림
-        $(window).scroll(function(event){
-            didScroll = true;
-            const scrollY = window.scrollY;
-            // 이전의 스크롤 위치와 비교하기
-            direction = scrollY > lastScrollY ? "down" : "up";
-            lastScrollY = scrollY;
-            if (direction == 'down') {
-                nav_hide = true;
-            } else if (lastScrollY < 100) {
-                nav_hide = false;
-            }
-        });
-
-        // hasScrolled()를 실행하고 didScroll 상태를 재설정
-        setInterval(function() {
-            hasScrolled(nav_hide);
-        }, 250);
-
-        function hasScrolled(nav_status) {
-        // 동작을 구현
-            if (nav_status) $('nav').hide();
-            else $('nav').show();
-        }
         function page_back() {
             location.href= "/api/map";
         }
+
+        var last_scroll_top = 0;
+        window.addEventListener('scroll', function() {
+            let scroll_top = window.scrollY;
+            if(scroll_top < last_scroll_top) {
+                $('header nav').removeClass('scrolled-down');
+                $('header nav').addClass('scrolled-up');
+            }
+            else {
+                $('header nav').removeClass('scrolled-up');
+                $('header nav').addClass('scrolled-down');
+            }
+            last_scroll_top = scroll_top;
+        });
 	</script>
 @stop

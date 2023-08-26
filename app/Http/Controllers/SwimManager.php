@@ -23,7 +23,7 @@ class SwimManager implements MapManagerInterface
 
     public function store(Request $request) {
         if (Auth::check() === false) {
-            return false;
+            //return false;
         }
         $id = Auth::id();
         $sport_code = (empty($request->sport_code)) ? "50" : $request->sport_code;
@@ -45,7 +45,7 @@ class SwimManager implements MapManagerInterface
 
     public function mapStore(Request $request) {
         if (Auth::check() === false) {
-            return false;
+            //return false;
         }
         $id = Auth::id();
         $map_list = \App\Models\MapList::create([
@@ -57,7 +57,9 @@ class SwimManager implements MapManagerInterface
             "user_id" => $id,
             "attachment" => "Y",
             "rank" => "0",
-            "player_count" => "0"
+            "player_count" => "0",
+            "address" => $request->map_address,
+            "tag" => ""
         ]);
         $photos = $request->file('photos');
         $allowedfileExtension=['pdf','jpg','png','jpeg', 'docx','svg','gif'];

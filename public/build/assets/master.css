@@ -12,9 +12,13 @@
 }
 
 @media (min-width: 768px) {
+    html {
+        overflow-y: hidden;
+    }
     body {
         padding-top: 3.5rem;
         padding-bottom: 3rem;
+        overflow-y: hidden;
         color: #5a5a5a;
     }
 

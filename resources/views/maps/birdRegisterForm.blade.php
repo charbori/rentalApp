@@ -6,13 +6,13 @@
 @stop
 @if (getMobile())
     @section('masternav_extra_item')
-    <span class="h3 text-white">장소등록</span>
+    <span class="h3 text-black">장소등록</span>
     @endsection
 @endif
 @section('contents')
     <main class="container">
         @if (getMobile())
-            <div><br></div>
+            <div class="mt-5 pt-5"><br></div>
         @else
             <div class="py-5 text-left"><br></div>
         @endif
@@ -45,6 +45,8 @@
 
                         <input type="hidden" name="longitude" value="{{ $_GET['longitude'] }}"/>
                         <input type="hidden" name="latitude" value="{{ $_GET['latitude'] }}"/>
+                        <input type="hidden" name="map_address" value="{{ $mapStoreData['map_address'] }}"/>
+
                     </div>
                     <hr class="my-4">
                     <button class="w-100 btn btn-primary btn-lg" type="submit">ok</button>

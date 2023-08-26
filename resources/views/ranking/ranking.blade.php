@@ -19,8 +19,8 @@
     </style>
 @stop
 @php
-    $user_param = Auth::user();
-    $user_name = $user_param['name'];
+    //if (empty($user_param)) $user_param = Auth::user();
+    //if (empty($user_name)) $user_name = $user_param['name'];
     $now_month_type = (int) date('m');
     $now_month_type = ($now_month_type > 6) ? 'last_half' : 'before_half';
 @endphp
@@ -86,7 +86,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td colspan='4'>no record</td></tr>
+                            @if (count($ranking_data) > 0)
+                                @foreach ($ranking_data as $item)
+                                    <tr>
+                                        <th scope='row'>{{ $item['id'] }}</th>
+                                        <td>{{ $item['name'] }}</td>
+                                        <td>{{ $item['record'] }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr><td colspan='4'>no record</td></tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -122,26 +132,28 @@
         let map_id = "";
         function setRecentPlace() {
             $.ajax({
-                url: "/api/record/ranking",
+                url: "http://172.30.1.92:8080/ranking",
                 method: "GET",
-                dataType: "json"
+                dataType: "json",
             })
             .done(function(datas) {
+                console.log(datas);
                 if (datas == 'undefined') {
                     return;
                 }
-                record_data = datas.res;
-                setRankList(record_data, 'FIRST');
+                record_data = datas;
+                //setRankList(record_data, 'DISTANCE');
+                setRankList(record_data, 'SHORT');
             })
             .fail(function(xhr, status, errorThrown) {
                 console.log('error');
             });
 
         }
-        setRecentPlace();
+        //setRecentPlace();
 
         function setRankList(datas, type) {
-            if (type == 'FIRST') {
+            if (type == 'DISTANCE') {
                 $('#record_rank_list_type1 tbody').empty();
                 $.each(datas, function(idx, value) {
                     let distance_format = 0;
@@ -160,8 +172,20 @@
                 if (datas.length == 0) {
                     $('#record_rank_list_type1 tbody').append("<tr><td colspan='4'>no record</td></tr>");
                 }
-            } else {
+            } else if (type == "SHORT") {
                 $('#record_rank_list_type2 tbody').empty();
+                $.each(datas, function(idx, value) {
+                    let distance_format = value.sport_code + "m";
+                    $('#record_rank_list_type2 tbody').append("<tr>"
+                        + "<th scope='row'>" + (idx + 1) + "</th>"
+                        + "<td>" + value.name + "</td>"
+                        + "<td>" + distance_format + "</td>"
+                        + "</tr>");
+                });
+
+                if (datas.length == 0) {
+                    $('#record_rank_list_type2 tbody').append("<tr><td colspan='4'>no record</td></tr>");
+                }
             }
         }
 

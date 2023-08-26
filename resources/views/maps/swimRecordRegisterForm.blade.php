@@ -3,6 +3,11 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
     <!-- Custom styles for this template -->
     <link href="/build/assets/css/edit.css" rel="stylesheet">
+    <style>
+        html,body {
+            overflow-x: hidden;
+        }
+    </style>
 @stop
 
 @php
@@ -16,6 +21,11 @@
     );
     if (empty($sport_code_selected)) $sport_code_selected = "50";
 @endphp
+@if (getMobile())
+    @section('masternav_extra_item')
+    <span class="h1 text-black">기록등록</span>
+    @endsection
+@endif
 @section('contents')
     <main class="container">
         <div class="py-5 text-left"><br></div>

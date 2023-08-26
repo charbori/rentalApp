@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BirdManager;
-
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\SwimManager;
 use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
@@ -17,8 +17,16 @@ class RankingController extends Controller
 {
     public function view(Request $request) {
         $viewName = "ranking.ranking";
+        $ranking_data = array();
 
-        return view($viewName);
+        $response = Http::get('http://172.30.1.92:8080/ranking');
+
+        if ($response->ok() && count($response->json()) > 0) {
+            $ranking_data = $response->json();
+            Log::debug($response->json());
+        }
+
+        return view($viewName, compact('ranking_data'));
     }
 
     public function show(Request $request) {

@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/home">
+            <a href="/api/map">
                 <h3 style="font-weight: bold; font-size:24px;">Sport Record</h3>
             </a>
         </x-slot>

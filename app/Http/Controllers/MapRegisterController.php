@@ -22,6 +22,25 @@ class MapRegisterController extends Controller
         $viewName = "";
         $mapType = "";
 
+        $mapStoreData = array(
+            'longitude' => '',
+            'latitude'  => '',
+            'address'   => '',
+            'tag'       => ''
+        );
+
+        if (strlen($request->longitude) > 0) {
+            $mapStoreData['longitude'] = $request->longitude;
+        }
+
+        if (strlen($request->latitude) > 0) {
+            $mapStoreData['latitude'] = $request->latitude;
+        }
+
+        if (strlen($request->map_address) > 0) {
+            $mapStoreData['map_address'] = $request->map_address;
+        }
+
         if ($agent->isMobile()) {
             $view_name = 'mo.recordList';
             $view_env['agent'] = 'mobile';
@@ -47,7 +66,7 @@ class MapRegisterController extends Controller
             Log::debug("viewName 미생성 이슈");
         }
 
-        return view($viewName, compact('view_env'));
+        return view($viewName, compact('view_env', 'mapStoreData'));
     }
 
     public function is_register_param_err(Request $request) {

@@ -22,7 +22,7 @@
                         <div class="dropdown me-1">
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a class="dropdown-item" aria-current="page" href="/logout">Logout</a>
+                                    <a class="dropdown-item" aria-current="page" href="javascript:app_logout()">Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -177,6 +177,27 @@
     }
 
     setRecentPlace();
+
+    function app_logout() {
+        $.ajax({
+            url: "{{ route('logout') }}",
+            method: "POST",
+            dataType: "json",
+            data: "",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+        .done(function(datas) {
+            console.log(datas);
+            return;
+        })
+        .fail(function(xhr, status, errorThrown) {
+            console.log('error');
+        });
+
+        location.href="/api/map";
+    }
 </script>
 @endif
 
