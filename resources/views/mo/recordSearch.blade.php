@@ -19,8 +19,8 @@
     $user_rank_title = '';
     $user_rank_id = '0';
     if (Auth::check() !== false) {
-        $user_rank_title = $user_rank_map_list->title;
-        $user_rank_id = $user_rank_map_list->map_id;
+        $user_rank_title = $user_rank_map_list['title'];
+        $user_rank_id = $user_rank_map_list['map_id'];
     }
 @endphp
 @section('contents')

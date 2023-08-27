@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Service\SportRecordService;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 class RecordManagerController extends Controller
@@ -30,7 +30,31 @@ class RecordManagerController extends Controller
             return back();
         }
 
-        return view($view_name, compact('sport_category', 'view_env', 'view_map_id', 'get_map_data'));
+        $my_user_attach = '/build/assets/img/people_icon.png';
+        if (Auth::check()) {
+            $service_param = array('user' => array());
+            $service_param['user'][] = Auth::user();
+            $sport_record_service = new SportRecordService();
+            $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
+
+            if (count($result_user_rank_map_list['res']) > 0) {
+                $user_rank_map_list = $result_user_rank_map_list['res'][0];
+            }
+
+            $result_rank_infos = $sport_record_service->getFollowInfos();
+            $result_rank_list = $result_rank_infos['swim'];
+            $res_user_attach = DB::table('user_attachment')
+                                    ->where("user_id", '=', Auth::user()->id)
+                                    ->get();
+            if (count($res_user_attach) > 0 && strlen($res_user_attach[0]->path) > 0) {
+                $my_user_attach = $res_user_attach[0]->path;
+                $my_user_attach = (strpos($my_user_attach, "public") !== false) ?
+                                    str_replace("public", "/storage", $my_user_attach) : $my_user_attach;
+                $my_user_attach = $my_user_attach;
+            }
+        }
+
+        return view($view_name, compact('sport_category', 'view_env', 'view_map_id', 'get_map_data', 'my_user_attach'));
     }
 
     public function mypage(Request $request) {

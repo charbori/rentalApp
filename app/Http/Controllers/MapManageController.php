@@ -31,25 +31,35 @@ class MapManageController extends Controller
 
         $user_rank_map_list = array('title' => '',
                                     'map_id' => '');
+        $result_rank_list = array('50' => array());
         $user_rank_map_list = (object) $user_rank_map_list;
         $view_map_id = 0;
 
+        $my_user_attach = '/build/assets/img/people_icon.png';
         if (Auth::check()) {
             $service_param = array('user' => array());
             $service_param['user'][] = Auth::user();
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
 
-            Log::debug($result_user_rank_map_list);
             if (count($result_user_rank_map_list['res']) > 0) {
                 $user_rank_map_list = $result_user_rank_map_list['res'][0];
             }
 
             $result_rank_infos = $sport_record_service->getFollowInfos();
             $result_rank_list = $result_rank_infos['swim'];
+            $res_user_attach = DB::table('user_attachment')
+                                    ->where("user_id", '=', Auth::user()->id)
+                                    ->get();
+            if (count($res_user_attach) > 0 && strlen($res_user_attach[0]->path) > 0) {
+                $my_user_attach = $res_user_attach[0]->path;
+                $my_user_attach = (strpos($my_user_attach, "public") !== false) ?
+                                    str_replace("public", "/storage", $my_user_attach) : $my_user_attach;
+                $my_user_attach = $my_user_attach;
+            }
         }
 
-        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id', 'result_rank_list'));
+        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id', 'result_rank_list', 'my_user_attach'));
     }
 
     public function show(Request $request) {
@@ -113,11 +123,9 @@ class MapManageController extends Controller
             $service_param['user'][] = Auth::user();
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
-            if (count($result_user_rank_map_list) > 0) {
+            if (count($result_user_rank_map_list) > 0 && count($result_user_rank_map_list['res']) > 0) {
                 $user_rank_map_list = $result_user_rank_map_list['res'][0];
             }
-        } else {
-
         }
         return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id'));
     }

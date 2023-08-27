@@ -130,14 +130,11 @@ class SportRecordService
                 ->where('ranking.sport_code', '=', $sport_code)
                 ->where('follow.id', '=', Auth::id())
                 ->orderBy('ranking.created_at','asc')->get();
-            Log::debug($sport_record_datas[$sport_type][$sport_code]);
-
             if ($sport_type == 'swim') {
                 $sport_record_datas[$sport_type]['icons'] = "/build/assets/img/swimming_icon.png";
             }
 
             foreach ($sport_record_datas[$sport_type][$sport_code] AS $sport_data) {
-                Log::debug(strtotime("now"). ' ' . strtotime($sport_data->created_at));
                 $record_time = strtotime($sport_data->created_at);
                 // 날짜변경
                 if ($record_time < strtotime("2022-12-30")) {
@@ -160,6 +157,23 @@ class SportRecordService
                     $sport_data->created_at = (int) ($record_diff/2592000) . "달전";
                 } else {
                     $sport_data->created_at = $sport_data->created_at = date("Y") . "년";
+                }
+
+                $path_data = "";
+                $res_user_attach = DB::table('user_attachment')
+                                    ->where("user_id", '=', $sport_data->follower)
+                                    ->get();
+
+                $sport_data->path = '/build/assets/img/people_icon.png';
+                if (count($res_user_attach) > 0 && strlen($res_user_attach[0]->path) > 0) {
+                    $path_data = $res_user_attach[0]->path;
+                    $sport_data->path = (strpos($path_data, "public") !== false) ?
+                                        str_replace("public", "/storage", $path_data) : $path_data;
+                }
+
+                if (strlen($sport_data->path) > 0) {
+                    $sport_data->path = (strpos($sport_data->path, "public") !== false) ?
+                                        str_replace("public", "/storage", $sport_data->path) : $sport_data->path;
                 }
             }
         }
@@ -186,7 +200,6 @@ class SportRecordService
                 ->where('sports_record.created_at', '<', $created_at_end)
                 ->where('sport_code', '=', $sport_code)
                 ->groupBy('user_id')->orderBy('cnt')->get();
-                //Log::debug($sport_record_datas[$sport_code]);
         }
 
                 /*

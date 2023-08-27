@@ -63,7 +63,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                     <option value="long_lane">장거리</option>
                 </select>
             </div>
-            <div class="col">
+            <div class="col-7">
                 <div class="map-content--item">
                     <span id="first_theme" class="h3 text-dark">50m</span>
                     <div id="map_list" style="width:100%"></div>
@@ -99,7 +99,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
         <div class="row g-5 mt-1">
             <div class="col-4" style="padding-right:0px;">
             </div>
-            <div class="col">
+            <div class="col-7">
                 <div class="map-content--item">
                     <span id="second_theme" class="h3 text-dark">100m</span>
                     <div id="map_list" style="width:100%"></div>
@@ -228,7 +228,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                     $.each(r_data, function(key, value) {
                         $('#record_rank_list_type1 tbody').append("<tr>"
                             + "<th scope='row'>" + (10 * (page_id - 1) + key + 1) + "</th>"
-                            + "<td>" + value.user_id + "</td>"
+                            + "<td >" + value.user_id.substring(0,8) + "</td>"
                             + "<td>" + value.record + "</td>"
                             //+ "<td></td>"
                             + "</tr>");
@@ -268,7 +268,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                     $.each(r2_data, function(key, value) {
                         $('#record_rank_list_type2 tbody').append("<tr>"
                             + "<th scope='row'>" + (10 * (page_id - 1) + key + 1) + "</th>"
-                            + "<td>" + value.user_id + "</td>"
+                            + "<td>" + value.user_id.substring(0,8) + "</td>"
                             + "<td>" + value.record + "</td>"
                             //+ "<td></td>"
                             + "</tr>");

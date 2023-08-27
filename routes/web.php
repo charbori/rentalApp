@@ -59,4 +59,7 @@ Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'sto
 Route::put('/reply/edit', [App\Http\Controllers\CommentController::class, 'edit']);
 Route::delete('/reply/del', [App\Http\Controllers\CommentController::class, 'remove']);
 
+Route::post('/api/user/update', [App\Http\Controllers\Auth\UpdateUserController::class, 'store']);
+Route::get('/api/user/update', [App\Http\Controllers\Auth\UpdateUserController::class, 'view'])->name('update');
+
 require __DIR__.'/auth.php';

@@ -2,29 +2,40 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/api/map">
-                <h3 style="font-weight: bold; font-size:24px;">회원가입</h3>
+                <h3 style="font-weight: bold; font-size:24px;">Sports Record</h3>
             </a>
         </x-slot>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" enctype="multipart/form-data" novalidate action="{{ route('register') }}">
             @csrf
-
             <!-- Name -->
-            <div>
-                <x-input-label for="name" :value="__('Name')" />
+            <div class="flex items-center justify-center mt-4" height="96">
+                <div>
+                    <x-input-label for="name" :value="__('Name')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
 
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
+                        <!-- Email Address -->
+                    <div class="mt-4">
+                        <x-input-label for="email" :value="__('Email')" />
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
 
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="p-2">
+                    <x-input-label for="name" :value="__('Profile')" />
+                    <input id="hidden-input" type="file" name="photos[]" multiple class="hidden" />
+                    @if (getMobile())
+                        @include('components.image-upload-mo-s')
+                    @else
+                        @include('components.image-upload-mo-s')
+                    @endif
+                    <input type="hidden" name="type" value="user_img"/>
+                </div>
             </div>
 
             <!-- Password -->

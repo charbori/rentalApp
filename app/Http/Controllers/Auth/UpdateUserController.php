@@ -13,16 +13,16 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Image\ImageManager;
 
-class RegisteredUserController extends Controller
+class UpdateUserController extends Controller
 {
     /**
      * Display the registration view.
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function view()
     {
-        return view('auth.register');
+        return view('auth.update');
     }
 
     /**
@@ -37,26 +37,29 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
 
-        event(new Registered($user));
+        $user = Auth::user();
 
-        Log::debug($user);
-        $imageManager = new ImageManager();
-        $photo_data = $request->file('photos');
-        Log::debug($photo_data);
-        $result = $imageManager->store($photo_data, $user->id);
+        $user_model = User::where('id', $user->id)->find(1);
+        $user_model->name = $request->name;
+        $user_model->password = Hash::make($request->password);
+        $user_updated = $user_model->save();
 
-        Log::debug($result);
-        Auth::login($user);
+        Log::debug($request->name . ' ' . Hash::make($request->password));
+        Log::debug("---------------");
+
+        if ($user_updated > 0) {
+            $imageManager = new ImageManager();
+
+            $photo_data = $request->file('photos');
+            Log::debug($photo_data);
+
+            $result = $imageManager->store($photo_data, $user->id);
+            Log::debug($result);
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }
