@@ -35,7 +35,7 @@ class MapManageController extends Controller
         $user_rank_map_list = (object) $user_rank_map_list;
         $view_map_id = 0;
 
-        $my_user_attach = '/build/assets/img/people_icon.png';
+        $my_user_attach = '/build/images/people_icon.png';
         if (Auth::check()) {
             $service_param = array('user' => array());
             $service_param['user'][] = Auth::user();

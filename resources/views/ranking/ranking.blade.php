@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+    @vite(['resources/css/home.css'])
     <style>
     .bd-header {
         display: inline-block;
@@ -117,9 +117,8 @@
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/build/assets/js/jquery-ui.js"></script>
-	<script>
+
+	<script type="module">
         const now_date = new Date();
         const now_year = now_date.getYear();
         const now_month = now_date.getMonth();
@@ -137,13 +136,10 @@
                 dataType: "json",
             })
             .done(function(datas) {
-                console.log(datas);
                 if (datas == 'undefined') {
                     return;
                 }
-                record_data = datas;
-                //setRankList(record_data, 'DISTANCE');
-                setRankList(record_data, 'SHORT');
+                setRankList(datas, 'SHORT');
             })
             .fail(function(xhr, status, errorThrown) {
                 console.log('error');

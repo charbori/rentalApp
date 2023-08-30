@@ -2,7 +2,7 @@
     <canvas id="myChart"></canvas>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@vite(['resources/js/myChart.js'])
 
 <script>
     const ctx = document.getElementById('myChart');

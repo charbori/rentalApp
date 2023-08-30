@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+    @vite(['resources/css/home.css'])
     <style>
     .bd-header {
         position: absolute;
@@ -118,21 +118,18 @@
     </div>
 @stop
 
-
 @section('masternav_extra_item')
     <div class="input-group input-group-sm">
     </div>
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/build/assets/js/jquery-ui.js"></script>
-	<script>
 
+	<script type="module">
     window.onload  = function() {
-        rest_height = 0;
-        max_height = 0;
-        box = document.getElementById("list-group-handle");
+        let rest_height = 0;
+        let max_height = 0;
+        let box = document.getElementById("list-group-handle");
         /*
         box.addEventListener('touchmove', function(e) {
             var touchLocation = e.targetTouches[0];
@@ -154,7 +151,8 @@
 @stop
 
 @section('masternav_script')
-    <script>
+
+	<script type="module">
         const now_date = new Date();
         const now_year = now_date.getYear();
         const now_month = now_date.getMonth();
@@ -188,7 +186,7 @@
             }, 2000);
         }
 
-        search_data = {
+        var search_data = {
             'page' : 1,
             'search_name' : '',
             'year' : now_date.getFullYear(),
@@ -223,7 +221,7 @@
         });
 
         function getRankList(param, type) {
-            queryString = "page=" + param.page;
+            var queryString = "page=" + param.page;
             queryString += "&search_name=" + param.search_name;
             queryString += "&year=" + param.year;
             queryString += "&month_type=" + param.month_type;
@@ -248,10 +246,10 @@
         }
 
         function setRankList(datas, page_id, type) {
-            record_datas = datas.data;
-            record_datas2 = datas.data2;
-            record_count = datas.count;
-            record_count2 = datas.count2;
+            let record_datas = datas.data;
+            let record_datas2 = datas.data2;
+            let record_count = datas.count;
+            let  record_count2 = datas.count2;
 
             if (datas.sport_category == 'player') {
                 $('#sport_player').addClass('text-primary').removeClass('text-secondary').attr('data', 'Y');

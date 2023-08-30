@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+    @vite(['resources/css/home.css'])
     <style>
     .bd-header {
         position: absolute;
@@ -57,29 +57,12 @@
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/build/assets/js/jquery-ui.js"></script>
-	<script>
 
+	<script type="module">
     window.onload  = function() {
         rest_height = 0;
         max_height = 0;
         box = document.getElementById("list-group-handle");
-        /*
-        box.addEventListener('touchmove', function(e) {
-            var touchLocation = e.targetTouches[0];
-            rest_height = screen.height - touchLocation.pageY - 25;
-            max_height = $(document).height() - screen.height;
-            if (max_height > rest_height) {
-                $("#list-group-handle").css({'transform':'translate(0px, -' + rest_height + 'px)'})
-            }
-        });
-
-        box.addEventListener('touchend', function(e) {
-            var x = parseInt(box.style.left);
-            var y = parseInt(box.style.top);
-        });
-        */
     }
 
     var last_scroll_top = 0;
@@ -99,7 +82,8 @@
 @stop
 
 @section('masternav_script')
-    <script>
+
+	<script type="module">
         const now_date = new Date();
         const now_year = now_date.getYear();
         const now_month = now_date.getMonth();
@@ -134,7 +118,7 @@
             }, 2000);
         }
 
-        search_data = {
+        let search_data = {
             'page' : 1,
             'search_name' : '',
             'year' : now_date.getFullYear(),
@@ -238,7 +222,7 @@
                 }
                 $('.record_rank_pagination_type1_item').on('click', function() {
                     record_id = $(this).attr('data');
-                    search_data = {
+                    let search_data = {
                         'page' : record_id,
                         'search_name' : '',
                         'year' : $('select#year').val(),
@@ -277,7 +261,7 @@
                 }
                 $('.record_rank_pagination_type2_item').on('click', function() {
                     record_id = $(this).attr('data');
-                    search_data = {
+                    let search_data = {
                         'page' : record_id,
                         'search_name' : '',
                         'year' : $('select#year').val(),

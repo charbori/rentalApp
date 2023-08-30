@@ -129,7 +129,7 @@
     </nav>
 </header>
 @if (Auth::check())
-<script>
+<script type="module">
     function getRankList(param, type) {
         queryString = "page=" + param.page;
         queryString += "&search_name=" + param.search_name;

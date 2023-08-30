@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+    @vite(['resources/css/home.css'])
     <style>
     .bd-header {
         display: inline-block;
@@ -138,15 +138,15 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
 @stop
 
 @section('javascript')
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-	<script>
+
+<script type="module">
         const now_date = new Date();
         const now_month = now_date.getMonth();
         const month_type = now_month >= 6 ? 'last_half' : 'first_half';
         const sport_code = "short_lane";
         var record_list_select_block = false;
 
-        search_data = {
+        let search_data = {
             'page' : 1,
             'search_name' : '',
             'year' : now_date.getFullYear(),
@@ -183,7 +183,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
         });
 
         function getRankList(param, type) {
-            queryString = "page=" + param.page;
+            let queryString = "page=" + param.page;
             queryString += "&search_name=" + param.search_name;
             queryString += "&year=" + param.year;
             queryString += "&month_type=" + param.month_type;
@@ -208,10 +208,10 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
         }
 
         function setRankList(datas, page_id, type) {
-            record_datas = datas.data;
-            record_datas2 = datas.data2;
-            record_count = datas.count;
-            record_count2 = datas.count2;
+            let record_datas = datas.data;
+            let record_datas2 = datas.data2;
+            let record_count = datas.count;
+            let record_count2 = datas.count2;
 
             if (datas.sport_category == 'player') {
                 $('#sport_player').addClass('text-primary').removeClass('text-secondary').attr('data', 'Y');
@@ -252,7 +252,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                 }
                 $('.record_rank_pagination_type1_item').on('click', function() {
                     record_id = $(this).attr('data');
-                    search_data = {
+                    let search_data = {
                         'page' : record_id,
                         'search_name' : '',
                         'year' : $('select#year').val(),
@@ -291,7 +291,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                 }
                 $('.record_rank_pagination_type2_item').on('click', function() {
                     record_id = $(this).attr('data');
-                    search_data = {
+                    let search_data = {
                         'page' : record_id,
                         'search_name' : '',
                         'year' : $('select#year').val(),
@@ -321,7 +321,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
             if ($('#search_name_value').val() == "") {
                 appendAlert('검색하실 ID를 입력하세요.', 'danger')
             }
-            search_data2 = {
+            let search_data2 = {
                 'page' : 1,
                 'search_name' : $('#search_name_value').val()
             }

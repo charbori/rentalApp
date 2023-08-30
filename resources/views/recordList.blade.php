@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+    @vite(['resources/css/home.css'])
 @stop
 
 @php
@@ -17,11 +17,6 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
     <div class="col" style="height:1em; background-color:whitesmoke"></div>
     <main class="container">
         <div class="row g-5">
-            <!--div class="col-3">
-                <div class="map-content-img-item">
-                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_112%2F1440987756524Gez5F_JPEG%2F11866967_0.jpg"/>
-                </div>
-            </div-->
             <div class="col">
                 <button data="{{ $sport_category == 'player' ? 'Y' : '' }}" type="button" id="sport_player" class="btn fs-5 {{ $sport_category == 'player' ? 'text-primary' : 'text-secondary' }} fw-bolder">Player</button>
                 <button data="{{ $sport_category == 'team' ? 'Y' : '' }}" type="button" id="sport_team" class="btn fs-5 {{ $sport_category == 'team' ? 'text-primary' : 'text-secondary' }} fw-bolder">Team</button>
@@ -111,8 +106,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
 @stop
 
 @section('javascript')
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-	<script>
+	<script type="module">
         const now_date = new Date();
         const now_month = now_date.getMonth();
         const month_type = now_month > 6 ? 'last_half' : 'first_half';
@@ -228,16 +222,13 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                         'month_type' : $('select#month_type').val(),
                         'sport_code' : $('select#sport_code').val()
                     }
-                    console.log($('select#year').val() + ' ' + $('select#month_type').val());
                     getRankList(search_data, "FIRST");
                 });
             } else {
                 $('#record_rank_list_type2 tbody').empty();
                 $('#record_rank_pagination_type2 ul').empty();
                 $.each(record_datas2, function(idx, r2_data) {
-                    console.log(r2_data);
                     $.each(r2_data, function(key, value) {
-                        console.log(value);
                         $('#record_rank_list_type2 tbody').append("<tr>"
                             + "<th scope='row'>" + (10 * (page_id - 1) + key + 1) + "</th>"
                             + "<td>" + value.user_id + "</td>"
@@ -270,7 +261,6 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                         'month_type' : $('select#month_type').val(),
                         'sport_code' : $('select#sport_code').val()
                     }
-                    console.log($('select#year').val() + ' ' + $('select#month_type').val());
                     getRankList(search_data, "");
                 });
             }
@@ -307,7 +297,6 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
             } else {
                 selected_sport_category = $('button#sport_player').attr('data') == 'Y' ? 'player' : 'team';
             }
-            console.log(selected_sport_category);
             getRecordDatas(selected_sport_category);
         });
 
@@ -339,7 +328,6 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                     $('#second_theme').html("1500m");
                     break;
             }
-            console.log($('select#month_type').val());
             getRankList(search_data, "FIRST");
             getRankList(search_data, "");
         }

@@ -2,7 +2,7 @@
 @section('style')
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
     <!-- Custom styles for this template -->
-    <link href="/build/assets/css/edit.css" rel="stylesheet">
+    @vite(['resources/css/edit.css'])
 @stop
 @if (getMobile())
     @section('masternav_extra_item')
@@ -46,6 +46,6 @@
 @stop
 
 @section('javascript')
-    <script src="/build/assets/js/edit.js"></script>
+    @vite(['resources/js/edit.js'])
 @stop
 

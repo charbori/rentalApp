@@ -13,7 +13,7 @@
                             <span class="ft-1 pr-1">{{ $val->name }}</span>
                         </div>
                         <div>
-                            <img src="{{ $result_rank_list['icons'] }}" style="display:inline" width="16" height="16"/>
+                            <img id="swim_img" src="/build/images/swimming_icon.png" style="display:inline" width="16" height="16"/>
                             <span class="ft-1 align-middle">
                                 {{ $val->created_at }}
                                 <a class="" style="background-color:#e2e8f0; font-weight:bold;" role="button" href="/api/follow?map_id={{ $val->follower }}">

@@ -1,43 +1,97 @@
 {
+  "resources/static/images/people_icon.png": {
+    "file": "js/people_icon.min.js",
+    "src": "resources/static/images/people_icon.png",
+    "isEntry": true
+  },
+  "resources/static/images/swimming_icon.png": {
+    "file": "js/swimming_icon.min.js",
+    "src": "resources/static/images/swimming_icon.png",
+    "isEntry": true
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "fonts/fa-brands-400.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400.5da313b0.woff2",
+    "file": "fonts/fa-regular-400.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900.8f06540f.woff2",
+    "file": "fonts/fa-solid-900.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
-  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400.c61287c2.woff2",
-    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
-  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
-    "file": "assets/fa-v4compatibility.f46715c9.woff2",
+    "file": "fonts/fa-v4compatibility.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "fonts/fa-brands-400.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
-    "file": "assets/fa-regular-400.d7b19fe2.ttf",
+    "file": "fonts/fa-regular-400.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900.e4f6a7e9.ttf",
+    "file": "fonts/fa-solid-900.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
   },
-  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
-    "file": "assets/fa-brands-400.b1d1c1b0.ttf",
-    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
-  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf": {
-    "file": "assets/fa-v4compatibility.2ddb3b41.ttf",
+    "file": "fonts/fa-v4compatibility.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app.2896b7a8.js",
+    "file": "js/app.min2.js",
     "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers.b8add541.js"
+    ]
+  },
+  "resources/js/bootstrap.js": {
+    "file": "js/bootstrap.min.js",
+    "src": "resources/js/bootstrap.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers.b8add541.js"
+    ]
+  },
+  "resources/js/popper.js": {
+    "file": "js/popper.min.js",
+    "src": "resources/js/popper.js",
+    "isEntry": true
+  },
+  "resources/js/edit.js": {
+    "file": "js/edit.min2.js",
+    "src": "resources/js/edit.js",
+    "isEntry": true
+  },
+  "resources/js/myChart.js": {
+    "file": "js/myChart.min.js",
+    "src": "resources/js/myChart.js",
+    "isEntry": true
+  },
+  "__commonjsHelpers.b8add541.js": {
+    "file": "assets/_commonjsHelpers.b8add541.js"
+  },
+  "resources/css/master.css": {
+    "file": "css/master.min.css",
+    "src": "resources/css/master.css",
+    "isEntry": true
+  },
+  "resources/css/edit.css": {
+    "file": "css/edit.min.css",
+    "src": "resources/css/edit.css",
+    "isEntry": true
+  },
+  "resources/css/home.css": {
+    "file": "css/home.min.css",
+    "src": "resources/css/home.css",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.22a88565.css",
+    "file": "css/app.min.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+@vite(['resources/css/home.css'])
 @stop
 @section('contents')
     <div id="map" style="width:100%;height:400px;"></div>
@@ -9,8 +9,8 @@
 @stop
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-	<script>
+
+	<script type="module">
 	var map = new naver.maps.Map("map", {
 	    center: new naver.maps.LatLng(37.520168953881715, 126.8722931226252),
 	    zoom: 15,

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+    @vite(['resources/css/home.css'])
     <style>
     .bd-header {
         display: inline-block;
@@ -145,9 +145,8 @@
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/build/assets/js/jquery-ui.js"></script>
-	<script>
+
+	<script type="module">
         const now_date = new Date();
         const now_year = now_date.getYear();
         const now_month = now_date.getMonth();
@@ -168,10 +167,10 @@
                 if (datas == 'undefined') {
                     return;
                 }
-                record_data = datas.res;
-                $('#place_name').html(record_data[0].title.substring(0,7));
-                map_id = record_data[0].map_id;
-                search_data = {
+                let mp_record_data = datas.res;
+                $('#place_name').html(mp_record_data[0].title.substring(0,7));
+                map_id = mp_record_data[0].map_id;
+                let search_data = {
                     'page' : 1,
                     'search_name' : '{{ $user_name }}',
                     'year' : $('select#year').val(),
@@ -190,7 +189,7 @@
         setRecentPlace();
 
         function getRankList(param, type) {
-            queryString = "page=" + param.page;
+            let queryString = "page=" + param.page;
             queryString += "&search_name=" + param.search_name;
             queryString += "&year=" + param.year;
             queryString += "&month_type=" + param.month_type;
@@ -212,7 +211,7 @@
                     let chart_data = [0,0,0,0,0,0]; // 전,후반기 월별 데이터
 
                     $.each(datas.data, function(key, values) {
-                        month_data_str = datas.data[key][0].reg_date.substring(5,7);
+                        let month_data_str = datas.data[key][0].reg_date.substring(5,7);
 
                         if (month_type == 'last_half') {
                             switch (month_data_str) {
@@ -273,10 +272,10 @@
         }
 
         function setRankList(datas, page_id, type) {
-            record_datas = datas.data;
-            record_datas2 = datas.data2;
-            record_count = datas.count;
-            record_count2 = datas.count2;
+            let record_datas = datas.data;
+            let record_datas2 = datas.data2;
+            let record_count = datas.count;
+            let record_count2 = datas.count2;
 
             if (datas.sport_category == 'player') {
                 $('#sport_player').addClass('text-primary').removeClass('text-secondary').attr('data', 'Y');
@@ -318,7 +317,7 @@
                 }
                 $('.record_rank_pagination_type1_item').on('click', function() {
                     record_id = $(this).attr('data');
-                    search_data = {
+                    let search_data = {
                         'page' : record_id,
                         'search_name' : '{{ $user_name }}',
                         'year' : $('select#year').val(),
@@ -358,7 +357,7 @@
                 }
                 $('.record_rank_pagination_type2_item').on('click', function() {
                     record_id = $(this).attr('data');
-                    search_data = {
+                    let search_data = {
                         'page' : record_id,
                         'search_name' : '{{ $user_name }}',
                         'year' : $('select#year').val(),

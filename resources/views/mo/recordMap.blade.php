@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
-    <link href="/build/assets/home.css" rel="stylesheet">
+@vite(['resources/css/home.css'])
     <style>
     .bd-header {
         position: absolute;
@@ -48,9 +48,8 @@
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="/build/assets/js/jquery-ui.js"></script>
-	<script>
+
+	<script type="module">
     $('#map').css('height', $(document).height() + 'px');
     $('#map_list_items').css('width', ($(document).width()) + 'px');
 	var map = new naver.maps.Map("map", {
@@ -409,7 +408,7 @@
 @stop
 
 @section('masternav_script')
-    <script>
+    <script type="module">
         $('#search_map_btn').on('click', function() {
             if ($('#search_map_data').val() == '') {
                 return appendAlert('검색어를 입력해주세요.', 'danger');

@@ -9,18 +9,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Rental your product</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="/build/assets/bootstrap.css" rel="stylesheet">
-        <link href="/build/assets/app.scss" rel="stylesheet">
-        <link href="/build/assets/master.css" rel="stylesheet">
-        <link href="/build/assets/fontawesome-6.2.0/css/all.css" rel="stylesheet">
-        <link href="/build/assets/fontawesome-6.2.0/css/fontawesome.css" rel="stylesheet">
         <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
+        @vite(['resources/css/master.css'])
         <!-- Custom styles for this template -->
         @yield('style')
-        <script src="/build/assets/js/jquery-3.6.1.min.js"></script>
-        <script src="/build/assets/js/jquery-ui.js"></script>
-        <script src="/build/assets/js/popper.js"></script>
+        @vite(['resources/js/app.js'])
+        @vite(['resources/css/app.css'])
     </head>
     <body>
         @if (getMobile())
@@ -34,7 +28,6 @@
         @else
             @yield('contents')
         @endif
-        <script src="/build/assets/bootstrap.js"></script>
         @yield('javascript')
     </body>
 </html>

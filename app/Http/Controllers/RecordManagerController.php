@@ -30,7 +30,7 @@ class RecordManagerController extends Controller
             return back();
         }
 
-        $my_user_attach = '/build/assets/img/people_icon.png';
+        $my_user_attach = '/build/images/people_icon.png';
         if (Auth::check()) {
             $service_param = array('user' => array());
             $service_param['user'][] = Auth::user();
@@ -66,8 +66,9 @@ class RecordManagerController extends Controller
             $view_name = 'mypage.myrecord_mo';
             $view_env['agent'] = 'mobile';
         }
+        $my_user_attach = '/build/images/people_icon.png';
 
-        return view($view_name, compact('view_env'));
+        return view($view_name, compact('view_env', 'my_user_attach'));
     }
 
     public function show(Request $request) {
