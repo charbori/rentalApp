@@ -56,11 +56,11 @@
 	    center: new naver.maps.LatLng(37.520168953881715, 126.8722931226252),
 	    zoom: 15,
 	});
-    var marker_data = null;
+    var marker_data;
 	var infoWindow = new naver.maps.InfoWindow({
 	    anchorSkew: true
 	});
-    var newMarker = null;
+    var newMarker;
     var markerSelected = [];
 
     var markerList = [];
@@ -131,14 +131,14 @@
                     });
                     markerSelected = [];
                 }
-                make_marker_UI = getUIContentDetailInfo(marker_data[reIdx], false);
+                let make_marker_UI = getUIContentDetailInfo(marker_data[reIdx], false);
                 getUIMakeMarker(marker_data[reIdx], make_marker_UI, false);
             }
 	    });
 	}
 
     function setUIMakeMarker(idx) {
-        make_marker_UI = getUIContentDetailInfo(marker_data[idx], false);
+        let make_marker_UI = getUIContentDetailInfo(marker_data[idx], false);
         getUIMakeMarker(marker_data[idx], make_marker_UI, false);
     }
 
@@ -170,17 +170,15 @@
                 marker_data = param;
                 $.each(marker_data, function(idx, value) {
                     if (idx == 0) {
-                        make_marker_UI = getUIContentDetailInfo(marker_data[idx], true);
+                        let make_marker_UI = getUIContentDetailInfo(marker_data[idx], true);
                         markerSelected.push(getUIMakeMarker(marker_data[idx], make_marker_UI, true));
                     } else {
-                        make_marker_UI = getUIContentDetailInfo(marker_data[idx], false);
-                        marker_maked = getUIMakeMarker(marker_data[idx], make_marker_UI, false);
+                        let make_marker_UI = getUIContentDetailInfo(marker_data[idx], false);
+                        getUIMakeMarker(marker_data[idx], make_marker_UI, false);
                     }
                     initMapList(value);
                 });
 
-                console.log(marker_data);
-                console.log(item);
             })
             .fail(function(xhr, status, errorThrown) {
                 console.log('error');
@@ -189,6 +187,7 @@
 	}
 
     function getUIContentDetailInfo(data_content, selected) {
+        let contentUI;
         if (selected) {
             contentUI = [
                             '<div class="" style="background-color:#ffffff; border-radius: 3%; border: solid 0px; border-color:gray; box-shadow: 0.5px 0.5px 0.5px 0.5px lightgray;"',
@@ -215,11 +214,10 @@
 
     function getUIMakeMarker(data_content, make_marker_UI, selected) {
         if (selected) {
-            point_item = new naver.maps.Point(data_content.long, data_content.lat);
+            let point_item = new naver.maps.Point(data_content.long, data_content.lat);
             map.setCenter(point_item);
         }
-        var marker_maked = null;
-        marker_maked = new naver.maps.Marker({
+        let marker_maked = new naver.maps.Marker({
                         position: new naver.maps.LatLng(data_content.lat, data_content.long),
                         map: map,
                         data: data_content.id,
@@ -239,7 +237,7 @@
                     });
                     markerSelected = [];
 
-                    new_make_marker_UI = getUIContentDetailInfo(marker_data[idx], true);
+                    let new_make_marker_UI = getUIContentDetailInfo(marker_data[idx], true);
                     markerSelected.push(getUIMakeMarker(marker_data[idx], new_make_marker_UI, true));
                 }
             });
@@ -253,7 +251,7 @@
         let path_name = '';
         if (value.path.length < 12) path_name = '<svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="bi bi-card-image flex-shrink-0" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/></svg>';
         else path_name = '<img src="' + value.path + '" alt="twbs" width="64" height="64" class="rounded-circle flex-shrink-0">'
-        map_list_item = ['<a href="#" style="background-color:white; border-width:0 0 1px 0;" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" onClick="link_map(' + value.id + ')">',
+        let map_list_item = ['<a href="#" style="background-color:white; border-width:0 0 1px 0;" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" onClick="link_map(' + value.id + ')">',
             path_name,
             '<div class="d-flex gap-2 w-100 justify-content-between">',
             '<div>',
@@ -275,7 +273,7 @@
 	    });
 
 	    $('#address').on('keydown', function(e) {
-		var keyCode = e.which;
+        let  keyCode = e.which;
 
 		if (keyCode === 13) {
 		    searchAddressToCoordinate($('#address').val());
@@ -288,8 +286,8 @@
 		searchAddressToCoordinate($('#address').val());
 	    });
 
-	    var datas = ['bird_1', '11', 'charbori'];
-	    searchAddressToCoordinate('신목로 53', datas);
+	    let init_geo_code_data = ['bird_1', '11', 'charbori'];
+	    searchAddressToCoordinate('신목로 53', init_geo_code_data);
 	}
 
     function findGeocoder(search_geo_data) {
@@ -298,57 +296,57 @@
 
 	function makeAddress(item) {
 	    if (!item) {
-		return;
+		    return;
 	    }
 
-	    var name = item.name,
+	    let name = item.name,
 		region = item.region,
 		land = item.land,
 		isRoadAddress = name === 'roadaddr';
 
-	    var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
+	    let sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
 
 	    if (hasArea(region.area1)) {
-		sido = region.area1.name;
+		    sido = region.area1.name;
 	    }
 
 	    if (hasArea(region.area2)) {
-		sigugun = region.area2.name;
+		    sigugun = region.area2.name;
 	    }
 
 	    if (hasArea(region.area3)) {
-		dongmyun = region.area3.name;
+		    dongmyun = region.area3.name;
 	    }
 
 	    if (hasArea(region.area4)) {
-		ri = region.area4.name;
+		    ri = region.area4.name;
 	    }
 
 	    if (land) {
-		if (hasData(land.number1)) {
-		    if (hasData(land.type) && land.type === '2') {
-			rest += '산';
-		    }
+            if (hasData(land.number1)) {
+                if (hasData(land.type) && land.type === '2') {
+                rest += '산';
+                }
 
-		    rest += land.number1;
+                rest += land.number1;
 
-		    if (hasData(land.number2)) {
-			rest += ('-' + land.number2);
-		    }
-		}
+                if (hasData(land.number2)) {
+                rest += ('-' + land.number2);
+                }
+            }
 
-		if (isRoadAddress === true) {
-		    if (checkLastString(dongmyun, '면')) {
-			ri = land.name;
-		    } else {
-			dongmyun = land.name;
-			ri = '';
-		    }
+            if (isRoadAddress === true) {
+                if (checkLastString(dongmyun, '면')) {
+                ri = land.name;
+                } else {
+                dongmyun = land.name;
+                ri = '';
+                }
 
-		    if (hasAddition(land.addition0)) {
-			rest += ' ' + land.addition0.value;
-		    }
-		}
+                if (hasAddition(land.addition0)) {
+                rest += ' ' + land.addition0.value;
+                }
+            }
 	    }
 
 	    return [sido, sigugun, dongmyun, ri, rest].join(' ');
@@ -378,9 +376,9 @@
     }
 
     window.onload  = function() {
-        rest_height = 0;
-        max_height = 0;
-        box = document.getElementById("list-group-handle");
+        let rest_height = 0;
+        let max_height = 0;
+        let box = document.getElementById("list-group-handle");
         box.addEventListener('touchmove', function(e) {
             var touchLocation = e.targetTouches[0];
             rest_height = screen.height - touchLocation.pageY - 25;

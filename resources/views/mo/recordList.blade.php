@@ -138,13 +138,18 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
 @stop
 
 @section('javascript')
+<script>
+    function page_back() {
+            location.href= "/api/map";
+    }
+</script>
 
 <script type="module">
         const now_date = new Date();
         const now_month = now_date.getMonth();
         const month_type = now_month >= 6 ? 'last_half' : 'first_half';
         const sport_code = "short_lane";
-        var record_list_select_block = false;
+        let record_list_select_block = false;
 
         let search_data = {
             'page' : 1,
@@ -163,7 +168,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
         $('#record_rank_pagination_type2').prepend("<div class='mb-2 d-grid gap-2'><button type='button' class='btn btn-sm btn-light fw-bolder fs-6' id='add_record_type2' colspan='4'>+</button></div>");
 
         $('#add_record_type1, #add_record_type2').on('click', function() {
-            sport_code_data = "";
+            let sport_code_data = "";
 
             switch ($('#sport_code').val()) {
                 case "short_lane":
@@ -329,6 +334,7 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
         });
 
         $('button#sport_team, button#sport_player').on('click', function() {
+            let selected_sport_category;
             if ($(this).attr('id') == 'sport_team' || $(this).attr('id') == 'sport_player') {
                 selected_sport_category = $(this).attr('id') == 'sport_player' ? 'player' : 'team';
             } else {
@@ -381,14 +387,6 @@ $sport_category = empty($sport_category) ? 'player' : $sport_category;
                 })
             }
         @endif
-
-        setTimeout(() => {
-            $(".alert.alert-success").remove();
-        }, 5000);
-
-        function page_back() {
-            location.href= "/api/map";
-        }
 
         var last_scroll_top = 0;
         window.addEventListener('scroll', function() {

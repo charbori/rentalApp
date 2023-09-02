@@ -23,6 +23,7 @@ export default defineConfig({
                 'resources/js/popper.js',
                 'resources/js/edit.js',
                 'resources/js/myChart.js',
+                'resources/js/masternav.js',
                 ...input_file_list
             ],
             refresh: true,
@@ -45,7 +46,7 @@ export default defineConfig({
                 assetFileNames: (asset) => {
                     switch (asset.name.split('.').pop()) {
                         case 'css':
-                            return 'css/' + `[name]` + '.min.css';
+                            return 'css/' + `[name]` + '.css';
                         case 'png':
                         case 'jpg':
                         case 'ico':
@@ -61,7 +62,7 @@ export default defineConfig({
                             return 'other/' + `[name]` + `[extname]`;
                     }
                 },
-                entryFileNames: 'js/' + `[name]` + `.min.js`,
+                entryFileNames: 'js/' + `[name]` + `.js`,
             },
         },
     }

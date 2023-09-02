@@ -53,6 +53,7 @@ class UpdateUserController extends Controller
 
         if ($user_updated > 0) {
             $imageManager = new ImageManager();
+            $imageManager->delete($user->id);
 
             $photo_data = $request->file('photos');
             Log::debug($photo_data);

@@ -1,11 +1,11 @@
 {
   "resources/static/images/people_icon.png": {
-    "file": "js/people_icon.min.js",
+    "file": "js/people_icon.js",
     "src": "resources/static/images/people_icon.png",
     "isEntry": true
   },
   "resources/static/images/swimming_icon.png": {
-    "file": "js/swimming_icon.min.js",
+    "file": "js/swimming_icon.js",
     "src": "resources/static/images/swimming_icon.png",
     "isEntry": true
   },
@@ -42,7 +42,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf"
   },
   "resources/js/app.js": {
-    "file": "js/app.min2.js",
+    "file": "js/app2.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
@@ -50,7 +50,7 @@
     ]
   },
   "resources/js/bootstrap.js": {
-    "file": "js/bootstrap.min.js",
+    "file": "js/bootstrap.js",
     "src": "resources/js/bootstrap.js",
     "isEntry": true,
     "imports": [
@@ -58,40 +58,45 @@
     ]
   },
   "resources/js/popper.js": {
-    "file": "js/popper.min.js",
+    "file": "js/popper.js",
     "src": "resources/js/popper.js",
     "isEntry": true
   },
   "resources/js/edit.js": {
-    "file": "js/edit.min2.js",
+    "file": "js/edit2.js",
     "src": "resources/js/edit.js",
     "isEntry": true
   },
   "resources/js/myChart.js": {
-    "file": "js/myChart.min.js",
+    "file": "js/myChart.js",
     "src": "resources/js/myChart.js",
+    "isEntry": true
+  },
+  "resources/js/masternav.js": {
+    "file": "js/masternav.js",
+    "src": "resources/js/masternav.js",
     "isEntry": true
   },
   "__commonjsHelpers.b8add541.js": {
     "file": "assets/_commonjsHelpers.b8add541.js"
   },
   "resources/css/master.css": {
-    "file": "css/master.min.css",
+    "file": "css/master.css",
     "src": "resources/css/master.css",
     "isEntry": true
   },
   "resources/css/edit.css": {
-    "file": "css/edit.min.css",
+    "file": "css/edit.css",
     "src": "resources/css/edit.css",
     "isEntry": true
   },
   "resources/css/home.css": {
-    "file": "css/home.min.css",
+    "file": "css/home.css",
     "src": "resources/css/home.css",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "css/app.min.css",
+    "file": "css/app.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

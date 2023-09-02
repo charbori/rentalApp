@@ -25,7 +25,7 @@
                                     <a class="dropdown-item" aria-current="page" href="{{ route('update')}}">회원수정</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" aria-current="page" href="javascript:app_logout()">로그아웃</a>
+                                    <a class="dropdown-item" aria-current="page" onclick="app_logout()">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
@@ -43,7 +43,7 @@
                     <!-- Three columns of text below the carousel -->
                     <div class="row">
                         <div class="col" style="text-align:center">
-                            <img style="display:inline-block" src="{{ $my_user_attach }}"/>
+                            <img style="display:inline-block" class="rounded-circle" width="72" height="72" src="{{ $my_user_attach }}"/>
                         </div>
                         <h2 style="text-align:center" class="fw-normal mt-2">
                             <p class="fs-6" style="font-weight:normal">
@@ -61,19 +61,19 @@
                     <div class="row">
                         <div class="col-4" style="text-align:center">
                             <a id="place_link0" href="/api/record">
-                                <svg id="place_img0" style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                                <svg id="place_img0" style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
                                 <p id="place_name0">장소</p>
                             </a>
                         </div>
                         <div class="col-4" style="text-align:center">
                             <a id="place_link0" href="/api/record">
-                                <svg id="place_img1" style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                                <svg id="place_img1" style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
                                 <p id="place_name1">+</p>
                             </a>
                         </div>
                         <div class="col-4" style="text-align:center">
                             <a id="place_link0" href="/api/record">
-                                <svg id="place_img2" style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                                <svg id="place_img2" style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
                                 <p id="place_name2">+</p>
                             </a>
                        </div>
@@ -97,15 +97,15 @@
                     <!-- Three columns of text below the carousel -->
                     <div class="row">
                         <div class="col-4" style="text-align:center">
-                            <svg style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                            <svg style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
                             <p>장소</p>
                         </div>
                         <div class="col-4" style="text-align:center">
-                            <svg style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                            <svg style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
                             <p>+</p>
                         </div>
                         <div class="col-4" style="text-align:center">
-                            <svg style="display:inline;" class="bd-placeholder-img rounded-circle" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
+                            <svg style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
                             <p>+</p>
                        </div>
                     </div>
@@ -129,76 +129,31 @@
     </nav>
 </header>
 @if (Auth::check())
-<script type="module">
-    function getRankList(param, type) {
-        queryString = "page=" + param.page;
-        queryString += "&search_name=" + param.search_name;
-        queryString += "&year=" + param.year;
-        queryString += "&month_type=" + param.month_type;
-        queryString += "&sport_code=" + param.sport_code;
-        queryString += "&sport_category=" + param.sport_category;
-        $.ajax({
-            url: "/api/record/show?" + queryString,
-            method: "GET",
-            dataType: "json"
-        })
-        .done(function(datas) {
-            if (datas == 'undefined') {
+    @vite(['resources/js/masternav.js'])
+    <script type="module">
+        import { getRankList, setRecentPlace, app_logout } from '/build/js/masternav.js';
+        setRecentPlace();
+    </script>
+    <script>
+        function app_logout() {
+            $.ajax({
+                url: "{{ route('logout') }}",
+                method: "POST",
+                dataType: "json",
+                data: "",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            .done(function(datas) {
+                console.log(datas);
                 return;
-            }
-            setRankList(datas, param.page, type);
-        })
-        .fail(function(xhr, status, errorThrown) {
-            console.log('error');
-        });
-
-    }
-
-    function setRecentPlace() {
-        $.ajax({
-            url: "/api/record/mypage",
-            method: "GET",
-            dataType: "json"
-        })
-        .done(function(datas) {
-            if (datas == 'undefined') {
-                return;
-            }
-            $.each(datas.res, function(idx, val) {
-                $('#place_img' + idx).html();
-                $('#place_name' + idx).html(val.title.substring(0,7));
-                $('#place_link' + idx).attr('href','/api/record?map_id=' + val.map_id);
+            })
+            .fail(function(xhr, status, errorThrown) {
+                console.log('error');
             });
-        })
-        .fail(function(xhr, status, errorThrown) {
-            console.log('error');
-        });
 
-    }
-
-    setRecentPlace();
-
-    function app_logout() {
-        $.ajax({
-            url: "{{ route('logout') }}",
-            method: "POST",
-            dataType: "json",
-            data: "",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
-        .done(function(datas) {
-            console.log(datas);
-            return;
-        })
-        .fail(function(xhr, status, errorThrown) {
-            console.log('error');
-        });
-
-        location.href="/api/map";
-    }
-</script>
+            location.href="/api/map";
+        }
+    </script>
 @endif
-
-@yield('masternav_script')

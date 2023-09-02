@@ -60,12 +60,12 @@
 
 	<script type="module">
     window.onload  = function() {
-        rest_height = 0;
-        max_height = 0;
-        box = document.getElementById("list-group-handle");
+        let rest_height = 0;
+        let max_height = 0;
+        let box = document.getElementById("list-group-handle");
     }
 
-    var last_scroll_top = 0;
+    let last_scroll_top = 0;
     window.addEventListener('scroll', function() {
         let scroll_top = window.scrollY;
         if(scroll_top < last_scroll_top) {
@@ -79,6 +79,20 @@
         last_scroll_top = scroll_top;
     });
 	</script>
+    <script>
+        function link_map (map_id) {
+            if (typeof map_id == 'undefined') return;
+            location.href= "/api/record?map_id=" + map_id;
+        }
+
+        function page_back() {
+            location.href= "/api/map";
+        }
+
+        function link_geo_map() {
+            location.href= "/api/map?view_type=map";
+        }
+    </script>
 @stop
 
 @section('masternav_script')
@@ -209,7 +223,7 @@
                 }
 
                 if (record_count > 10) {
-                    for (var i = 0; i < record_count / 10; i++) {
+                    for (let i = 0; i < record_count / 10; i++) {
                         if (i == 10) return;
                         page_id_active = "";
                         if ((i + 1) == page_id) {
@@ -248,7 +262,7 @@
                     $('#record_rank_list_type2 tbody').append("<tr><td colspan='4'>no record</td></tr>");
                 }
                 if (record_count2 > 10) {
-                    for (var i = 0; i < record_count2 / 10; i++) {
+                    for (let i = 0; i < record_count2 / 10; i++) {
                         if (i == 10) return;
                         page_id_active = "";
                         if ((i + 1) == page_id) {
@@ -345,18 +359,6 @@
             ].join('');
             $('#map_list_items .list-group').append(map_list_item);
         }
-
-        function link_map (map_id) {
-            if (typeof map_id == 'undefined') return;
-            location.href= "/api/record?map_id=" + map_id;
-        }
-
-        function page_back() {
-            location.href= "/api/map";
-        }
-
-        function link_geo_map() {
-            location.href= "/api/map?view_type=map";
-        }
     </script>
+
 @endsection

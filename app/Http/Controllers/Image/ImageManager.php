@@ -12,6 +12,10 @@ class ImageManager
 
     }
 
+    public function delete($user_id) {
+        DB::table('user_attachment')->where('user_id',$user_id)->delete();
+    }
+
     public function store($photos, $user_id) {
         $allowedfileExtension=['pdf','jpg','png','jpeg', 'docx','svg','gif'];
 
