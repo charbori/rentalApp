@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('style')
-    @vite(['resources/css/home.css'])
     <style>
     .bd-header {
         position: absolute;
@@ -19,8 +18,10 @@
     $user_rank_title = '';
     $user_rank_id = '0';
     if (Auth::check() !== false) {
-        $user_rank_title = $user_rank_map_list['title'];
-        $user_rank_id = $user_rank_map_list['map_id'];
+        if ($user_rank_map_list) {
+            $user_rank_title = $user_rank_map_list[0]->title;
+            $user_rank_id = $user_rank_map_list[0]->map_id;
+        }
     }
 @endphp
 @section('contents')
@@ -28,7 +29,6 @@
         <div class="row mt-1 mb-2">
             <div class="col" id="map_list_items">
                 <div class="list-group">
-
                 </div>
             </div>
         </div>

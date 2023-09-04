@@ -38,13 +38,16 @@ Route::post('/api/map/store', [App\Http\Controllers\MapRegisterController::class
 Route::post('/api/map/mapStore', [App\Http\Controllers\MapRegisterController::class, 'mapStore']);
 
 Route::get('/api/search', [App\Http\Controllers\MapManageController::class, 'search']);
-
 Route::get('/api/record', [App\Http\Controllers\RecordManagerController::class, 'view']);
 Route::get('/api/record/show', [App\Http\Controllers\RecordManagerController::class, 'show']);
 Route::get('/api/record/edit', [App\Http\Controllers\RecordRegisterController::class, 'view']);
 Route::post('/api/record/store', [App\Http\Controllers\RecordRegisterController::class, 'store']);
 Route::get('/api/record/mypage', [App\Http\Controllers\RecordManagerController::class, 'getUserRecordMypage']);
 Route::get('/api/record/ranking', [App\Http\Controllers\RecordManagerController::class, 'getRecordRanking']);
+
+
+Route::get('/api/follow', [App\Http\Controllers\FollowController::class, 'view']);
+Route::post('/api/follow', [App\Http\Controllers\FollowController::class, 'store']);
 
 Route::get('/mypage/record', [App\Http\Controllers\RecordManagerController::class, 'mypage']);
 Route::get('/ranking', [App\Http\Controllers\RankingController::class, 'view']);

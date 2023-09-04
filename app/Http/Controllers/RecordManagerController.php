@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Service\SportRecordService;
+use App\Models\MapAttachment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
 
 class RecordManagerController extends Controller
@@ -37,8 +39,8 @@ class RecordManagerController extends Controller
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
 
-            if (count($result_user_rank_map_list['res']) > 0) {
-                $user_rank_map_list = $result_user_rank_map_list['res'][0];
+            if (count($result_user_rank_map_list) > 0) {
+                $user_rank_map_list = $result_user_rank_map_list[0];
             }
 
             $result_rank_infos = $sport_record_service->getFollowInfos();
@@ -159,7 +161,20 @@ class RecordManagerController extends Controller
                         'skip'  => '0');
         $result = $sportService->getUserMapList($data);
 
-        return $result;
+        $datas = array('map_data' => $result,
+                        'map_attachment' => array());
+        if (count($result) > 0) {
+            foreach ($result AS $res) {
+                if (strlen($res->map_id) > 0) {
+                    $map_attach = MapAttachment::where("map_id", $res->map_id)->first();
+                    $datas['map_attachment'][] = (strpos($map_attach->path, "public") !== false) ?
+                                        str_replace("public", "/storage", $map_attach->path) : $map_attach->path;
+                }
+            }
+        }
+        Log::debug($datas);
+
+        return $datas;
     }
 
     public function getRecordRanking(Request $request) {

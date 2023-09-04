@@ -146,6 +146,11 @@
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
 
+    <script>
+        function page_back() {
+            location.href= "/api/map";
+        }
+    </script>
 	<script type="module">
         const now_date = new Date();
         const now_year = now_date.getYear();
@@ -167,7 +172,7 @@
                 if (datas == 'undefined') {
                     return;
                 }
-                let mp_record_data = datas.res;
+                let mp_record_data = datas.map_data;
                 $('#place_name').html(mp_record_data[0].title.substring(0,7));
                 map_id = mp_record_data[0].map_id;
                 let search_data = {
@@ -389,9 +394,6 @@
                 $('#sport_record_second').removeClass('text-secondary').addClass('text-primary');
             }
         });
-        function page_back() {
-            location.href= "/api/map";
-        }
 	</script>
 @stop
 

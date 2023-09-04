@@ -60,21 +60,21 @@
                     <!-- Three columns of text below the carousel -->
                     <div class="row">
                         <div class="col-4" style="text-align:center">
-                            <a id="place_link0" href="/api/record">
+                            <a id="place_link0" href="/api/search">
                                 <svg id="place_img0" style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                                <p id="place_name0">장소</p>
+                                <p id="place_name0" style="font-size:8px;">장소</p>
                             </a>
                         </div>
                         <div class="col-4" style="text-align:center">
-                            <a id="place_link0" href="/api/record">
+                            <a id="place_link0" href="/api/search">
                                 <svg id="place_img1" style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                                <p id="place_name1">+</p>
+                                <p id="place_name1" style="font-size:8px;">+</p>
                             </a>
                         </div>
                         <div class="col-4" style="text-align:center">
-                            <a id="place_link0" href="/api/record">
+                            <a id="place_link0" href="/api/search">
                                 <svg id="place_img2" style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                                <p id="place_name2">+</p>
+                                <p id="place_name2" style="font-size:8px;">+</p>
                             </a>
                        </div>
                     </div>
@@ -98,15 +98,15 @@
                     <div class="row">
                         <div class="col-4" style="text-align:center">
                             <svg style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                            <p>장소</p>
+                            <p style="font-size:8px;">장소</p>
                         </div>
                         <div class="col-4" style="text-align:center">
                             <svg style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                            <p>+</p>
+                            <p style="font-size:8px;">+</p>
                         </div>
                         <div class="col-4" style="text-align:center">
                             <svg style="display:inline;" class="bd-placeholder-img rounded" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#dddddd"/></svg>
-                            <p>+</p>
+                            <p style="font-size:8px;">+</p>
                        </div>
                     </div>
                 </div>
@@ -130,10 +130,6 @@
 </header>
 @if (Auth::check())
     @vite(['resources/js/masternav.js'])
-    <script type="module">
-        import { getRankList, setRecentPlace, app_logout } from '/build/js/masternav.js';
-        setRecentPlace();
-    </script>
     <script>
         function app_logout() {
             $.ajax({

@@ -95,8 +95,6 @@
             if (newMarker != null) {
                 newMarker.setMap(null);
             }
-            console.log(latlng);
-            console.log(address);
 
             newMarker = new naver.maps.Marker({
                 position: new naver.maps.LatLng(lat_val, long_val),
@@ -115,8 +113,8 @@
                 }
             });
 
-            reInitId = $('#map_marker_selected').attr('data');
-            reIdx = false;
+            let reInitId = $('#map_marker_selected').attr('data');
+            let reIdx = false;
             $.each(marker_data, function(idx, data) {
                 if (data.id == reInitId) {
                     reIdx = idx;
@@ -229,7 +227,7 @@
                     });
 
         naver.maps.Event.addListener(marker_maked, 'click', function(e) {
-            marker_id = $(marker_maked)[0].data;
+            let marker_id = $(marker_maked)[0].data;
             $.each(marker_data, function(idx, value) {
                 if (value.id == marker_id) {
                     $.each(markerSelected, function(i, v) {
@@ -394,15 +392,16 @@
         });
     }
 
-    function page_link_search() {
-        location.href= "/api/search";
-    }
-
-    function page_back() {
-        location.href= "/api/map";
-    }
-
 	</script>
+    <script>
+        function page_link_search() {
+            location.href= "/api/search";
+        }
+
+        function page_back() {
+            location.href= "/api/map";
+        }
+    </script>
 @stop
 
 @section('masternav_script')

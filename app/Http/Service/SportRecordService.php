@@ -93,14 +93,15 @@ class SportRecordService
     public function getUserMapList($data) {
         if (isset($data['user'])) {
             $find_date = date('Y-m-d H:i:s',  time() - 15000000);
-            $res =  DB::table('sports_record')->select(DB::raw('count(*) as cnt, map_id, title'))
+            $res =  DB::table('sports_record')
                     ->join('map_list', 'sports_record.map_id', '=', 'map_list.id')
                     ->where('sports_record.user_id', $data['user'][0]->id)
                     ->where('sports_record.created_at', '>', $find_date)
+                    ->select('sports_record.map_id', 'map_list.title')
                     ->orderBy('sports_record.map_id', 'desc')->groupBy('sports_record.map_id')->limit(3)->get();
         }
 
-        return array('res' => $res);
+        return $res;
     }
 
     public function getFollowInfos() {

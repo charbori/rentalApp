@@ -34,7 +34,8 @@ class RecordRegisterController extends Controller
         }
         $map_id = (strlen($request->map_id) > 0) ? $request->map_id : '12';
         $sport_code_selected = (isset($request->sport_code)) ? $request->sport_code : "";
-        return view($viewName, compact('map_id', 'sport_code_selected'));
+        $my_user_attach = '/build/images/people_icon.png';
+        return view($viewName, compact('map_id', 'sport_code_selected', 'my_user_attach'));
     }
 
     public function show(Request $request) {

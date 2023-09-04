@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">ok</button>
+                    <button class="w-100 btn btn-primary btn-lg" style="background-color:#0d6efd" type="submit">ok</button>
                 </div>
             </div>
         </form>

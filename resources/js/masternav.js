@@ -1,3 +1,4 @@
+
 function getRankList(param, type) {
     queryString = "page=" + param.page;
     queryString += "&search_name=" + param.search_name;
@@ -32,16 +33,16 @@ function setRecentPlace() {
         if (datas == 'undefined') {
             return;
         }
-        $.each(datas.res, function(idx, val) {
-            $('#place_img' + idx).html();
+        $.each(datas.map_data, function(idx, val) {
             $('#place_name' + idx).html(val.title.substring(0,7));
             $('#place_link' + idx).attr('href','/api/record?map_id=' + val.map_id);
+        });
+        $.each(datas.map_attachment, function(idx, val) {
+            $('#place_img' + idx).html(val);
         });
     })
     .fail(function(xhr, status, errorThrown) {
         console.log('error');
     });
-
 }
-
-export { getRankList, setRecentPlace };
+setRecentPlace();

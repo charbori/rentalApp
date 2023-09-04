@@ -10,13 +10,17 @@
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <div>
-                            <span class="ft-1 pr-1">{{ $val->name }}</span>
+                            <span class="ft-1 pr-1">
+                                <a href="/api/follow?id={{ $val->follower }}">
+                                    {{ $val->name }}
+                                </a>
+                            </span>
                         </div>
                         <div>
                             <img id="swim_img" src="/build/images/swimming_icon.png" style="display:inline" width="16" height="16"/>
                             <span class="ft-1 align-middle">
                                 {{ $val->created_at }}
-                                <a class="" style="background-color:#e2e8f0; font-weight:bold;" role="button" href="/api/follow?map_id={{ $val->follower }}">
+                                <a class="" style="background-color:#e2e8f0; font-weight:bold;" role="button" href="/api/record?map_id={{ $val->map_id }}">
                                     {{ $val->title }}
                                     <svg style="display:inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-box-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/><path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
                                 </a>

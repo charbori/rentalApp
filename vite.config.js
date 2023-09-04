@@ -58,6 +58,8 @@ export default defineConfig({
                         case 'woff':
                         case 'woff2':
                             return 'fonts/' + `[name]` + `[extname]`;
+                        case 'js':
+                            return 'js/' + `[name]` + `.js`;
                         default:
                             return 'other/' + `[name]` + `[extname]`;
                     }

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Jenssegers\Agent\Agent;
+use stdClass;
 
 class MapManageController extends Controller
 {
@@ -42,8 +43,8 @@ class MapManageController extends Controller
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
 
-            if (count($result_user_rank_map_list['res']) > 0) {
-                $user_rank_map_list = $result_user_rank_map_list['res'][0];
+            if ($result_user_rank_map_list) {
+                $user_rank_map_list = $result_user_rank_map_list[0];
             }
 
             $result_rank_infos = $sport_record_service->getFollowInfos();
@@ -58,7 +59,6 @@ class MapManageController extends Controller
                 $my_user_attach = $my_user_attach;
             }
         }
-
         return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id', 'result_rank_list', 'my_user_attach'));
     }
 
@@ -102,7 +102,6 @@ class MapManageController extends Controller
                 );
             }
         }
-        //select m.id, count(m.user_id) from map_list as `m` join users as u on u.id = m.user_id group by m.id;
 
         return $marker_data;
     }
@@ -114,8 +113,7 @@ class MapManageController extends Controller
         $now_month_type = ($now_month_type > 6) ? 'last_half' : 'before_half';
 
         $view_name = 'mo.recordSearch';
-        $user_rank_map_list = array('title' => '',
-                                    'map_id' => '');
+        $user_rank_map_list = array();
         $view_map_id = 0;
 
         if (Auth::check()) {
@@ -123,11 +121,21 @@ class MapManageController extends Controller
             $service_param['user'][] = Auth::user();
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
-            if (count($result_user_rank_map_list) > 0 && count($result_user_rank_map_list['res']) > 0) {
-                $user_rank_map_list = $result_user_rank_map_list['res'][0];
+            Log::debug($service_param);
+            if ($result_user_rank_map_list) {
+                foreach ($result_user_rank_map_list AS $val) {
+                    $user_rank_map_list[] = $val;
+                }
             }
         }
-        return view($view_name, compact('view_env', 'now_month_type', 'user_rank_map_list', 'view_map_id'));
+
+        return view($view_name, [
+            'my_user_attach' => '',
+            'view_env' => $view_env,
+            'now_month_type' => $now_month_type,
+            'user_rank_map_list' => $user_rank_map_list,
+            'view_map_id' => $view_map_id
+        ]);
     }
 
 }
