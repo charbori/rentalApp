@@ -25,7 +25,7 @@ function getRankList(param, type) {
 
 function setRecentPlace() {
     $.ajax({
-        url: "/api/record/mypage",
+        url: "/api/record/mypage?id=",
         method: "GET",
         dataType: "json"
     })

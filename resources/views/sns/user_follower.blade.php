@@ -19,8 +19,11 @@
     </style>
 @stop
 @php
-    $user_param = Auth::user();
-    $user_name = $user_param['name'];
+    $user_name = "";
+    if (Auth::check()) {
+        $user_param = Auth::user();
+        $user_name = $user_param['name'];
+    }
 @endphp
 @section('contents')
 <div class="col" style="height:1em; background-color:whitesmoke"></div>
@@ -36,8 +39,10 @@
                             <span class="ft-3 pr-1">
                                 {{ $user_data->name }}
                             </span>
+                            @if (Auth::check())
                             <a id="btn-followed" class="badge bg-primary" style="{{ $is_followed ? 'display:none;' : '' }} background-color:#e2e8f0; font-weight:bold;" role="button" href="javascript:user_follow('follow', {{ $user_data->id }})">follow</a>
                             <a id="btn-unfollowed" class="badge bg-light text-dark" style="{{ $is_followed == false ? 'display:none;' : '' }} background-color:#e2e8f0; font-weight:bold;" role="button" href="javascript:user_follow('unfollow', {{ $user_data->id }})">unfollow</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -59,8 +64,8 @@
         </div>
         <h2 class="mt-1" style="font-weight: bold; font-size:24px;">Records</h2>
         <div class="row p-2">
-            @if (Auth::check() && count($result_rank_list) > 0)
-                @foreach ($result_rank_list['50'] as $val)
+            @if (count($result_rank_list) > 0)
+                @foreach ($result_rank_list as $val)
                 <div class="col mt-2" style="padding-left:6px; margin-left:6px; background-color:#e2e8f0; font-weight:bold;">
                     <div class="row p-2">
                         <div class="col" style="padding-left:6px; margin-left:6px; background-color:#e2e8f0; font-weight:bold;">
@@ -69,13 +74,6 @@
                                     <img src="{{ $val->path }}"/>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <div>
-                                        <span class="ft-1 pr-1">
-                                            <a href="/api/follow?id={{ $val->follower }}">
-                                                {{ $val->name }}
-                                            </a>
-                                        </span>
-                                    </div>
                                     <div>
                                         <img id="swim_img" src="/build/images/swimming_icon.png" style="display:inline" width="16" height="16"/>
                                         <span class="ft-1 align-middle">
@@ -163,34 +161,6 @@
         $('#month_type').val(month_type).change();
 
         let map_id = "";
-        function setRecentPlace() {
-            $.ajax({
-                url: "/api/record/mypage",
-                method: "GET",
-                dataType: "json"
-            })
-            .done(function(datas) {
-                if (datas == 'undefined') {
-                    return;
-                }
-                let mp_record_data = datas.map_data;
-                $('#place_name').html(mp_record_data[0].title.substring(0,7));
-                map_id = mp_record_data[0].map_id;
-                let search_data = {
-                    'page' : 1,
-                    'search_name' : '{{ $user_name }}',
-                    'year' : $('select#year').val(),
-                    'month_type' : $('select#month_type').val(),
-                    'sport_code' : $('select#sport_code').val(),
-                    'map_id'     : map_id,
-                }
-                console.log(datas);
-            })
-            .fail(function(xhr, status, errorThrown) {
-                console.log('error');
-            });
-        }
-        setRecentPlace();
 	</script>
 @stop
 

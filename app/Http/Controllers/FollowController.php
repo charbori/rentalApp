@@ -20,8 +20,11 @@ class FollowController extends Controller
 
     public function view(Request $request) {
         $view = "sns.user_follower";
+        $guest_id = Auth::check() ? Auth::user()->id : 0;
         $user_data = User::with("user_attachment")->where("id", $request->id)
                     ->first();
+        $result_rank_list = array();
+        $my_user_attach = array();
 
         $follow_cnt = DB::table('follow')
                             ->where('id', '=', $user_data['id'])
@@ -33,18 +36,38 @@ class FollowController extends Controller
         $badge_cnt = 0;
 
         $is_followed = DB::table('follow')
-                            ->where('user_id', '=', Auth::user()->id)
                             ->where ('follower', '=', $request->id)
                             ->count('id');
 
-        if (Auth::check()) {
-            $service_param = array('user' => array());
+        if ((int) date('m') > 6) {
+            $month_type = ">";
+        } else {
+            $month_type = "<";
+        }
+
+        if ($user_data['id'] > 0) {
+            $service_param = array('user' => array(),
+                                    'month_type' => $month_type,
+                                    'year' => date("Y"),
+                                    'skip' => 0);
             $service_param['user'][] = (object) $user_data;
+            $service_param['sport_code'][0] = '50';
+            $service_param['sport_code'][1] = '100';
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
 
-            $result_rank_infos = $sport_record_service->getFollowInfos();
-            $result_rank_list = $result_rank_infos['swim'];
+            $t_result_rank_list = array();
+            foreach ($result_user_rank_map_list AS $res_map_data) {
+                $service_param['map_id'] = $res_map_data->map_id;
+                $t_result_rank_list[] = $sport_record_service->getUserRecord($service_param);
+            }
+
+            if (count($t_result_rank_list) > 0) {
+                foreach ($t_result_rank_list[0]['res'] AS $rank_list_user) {
+                    $result_rank_list[] = $rank_list_user;
+                }
+            }
+
             $res_user_attach = DB::table('user_attachment')
                                     ->where("user_id", '=', $user_data['id'])
                                     ->get();

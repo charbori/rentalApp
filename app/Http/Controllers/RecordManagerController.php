@@ -156,12 +156,16 @@ class RecordManagerController extends Controller
         $sportService = new SportRecordService();
 
         $user_data = array();
-        $user_data[] = Auth::user();
+        if (isset($request->id)) {
+            $user_data[] = \App\Models\User::where('id', $request->id)->limit(1)->get();
+        } else if (Auth::check()) {
+            $user_data[] = Auth::user();
+        }
         $data = array(  'user'  => $user_data,
                         'skip'  => '0');
         $result = $sportService->getUserMapList($data);
 
-        $datas = array('map_data' => $result,
+        $datas = array( 'map_data' => $result,
                         'map_attachment' => array());
         if (count($result) > 0) {
             foreach ($result AS $res) {
