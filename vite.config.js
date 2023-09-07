@@ -24,6 +24,7 @@ export default defineConfig({
                 'resources/js/edit.js',
                 'resources/js/myChart.js',
                 'resources/js/masternav.js',
+                'resources/js/alarm.js',
                 ...input_file_list
             ],
             refresh: true,

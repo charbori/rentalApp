@@ -39,7 +39,7 @@
                             <span class="ft-3 pr-1">
                                 {{ $user_data->name }}
                             </span>
-                            @if (Auth::check())
+                            @if (Auth::check() && $is_my_follow == false)
                             <a id="btn-followed" class="badge bg-primary" style="{{ $is_followed ? 'display:none;' : '' }} background-color:#e2e8f0; font-weight:bold;" role="button" href="javascript:user_follow('follow', {{ $user_data->id }})">follow</a>
                             <a id="btn-unfollowed" class="badge bg-light text-dark" style="{{ $is_followed == false ? 'display:none;' : '' }} background-color:#e2e8f0; font-weight:bold;" role="button" href="javascript:user_follow('unfollow', {{ $user_data->id }})">unfollow</a>
                             @endif

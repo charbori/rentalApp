@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Http\Service\SportRecordService;
+use App\Events\AlarmRead;
 
 class FollowController extends Controller
 {
@@ -38,6 +39,8 @@ class FollowController extends Controller
         $is_followed = DB::table('follow')
                             ->where ('follower', '=', $request->id)
                             ->count('id');
+
+        $is_my_follow = $guest_id == $request->id;
 
         if ((int) date('m') > 6) {
             $month_type = ">";
@@ -85,6 +88,13 @@ class FollowController extends Controller
             str_replace("public", "/storage", $user_data['user_attachment']->path) : $user_data['path'];
         }
 
+
+        if ($request->has('alarm_id')) {
+            $send_msg = DB::table('alarm')->where('id',$request->alarm_id)->first();
+            AlarmRead::dispatch($send_msg);
+        }
+
+        Log::debug('is my follow' . $is_my_follow);
         return view($view, [
             'user_data' => $user_data,
             'my_user_attach' => $user_data['path'],
@@ -93,7 +103,8 @@ class FollowController extends Controller
             'badge_cnt' => $badge_cnt,
             'result_rank_list' => $result_rank_list,
             'my_user_attach' => $my_user_attach,
-            'is_followed' => $is_followed
+            'is_followed' => $is_followed,
+            'is_my_follow' => $is_my_follow
         ]);
     }
 

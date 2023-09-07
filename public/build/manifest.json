@@ -1,12 +1,12 @@
 {
-  "resources/static/images/people_icon.png": {
-    "file": "js/people_icon.js",
-    "src": "resources/static/images/people_icon.png",
-    "isEntry": true
-  },
   "resources/static/images/swimming_icon.png": {
     "file": "js/swimming_icon.js",
     "src": "resources/static/images/swimming_icon.png",
+    "isEntry": true
+  },
+  "resources/static/images/people_icon.png": {
+    "file": "js/people_icon.js",
+    "src": "resources/static/images/people_icon.png",
     "isEntry": true
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
@@ -25,13 +25,13 @@
     "file": "fonts/fa-v4compatibility.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
-  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
-    "file": "fonts/fa-brands-400.ttf",
-    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
-  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
     "file": "fonts/fa-regular-400.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "fonts/fa-brands-400.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
     "file": "fonts/fa-solid-900.ttf",
@@ -77,8 +77,18 @@
     "src": "resources/js/masternav.js",
     "isEntry": true
   },
+  "resources/js/alarm.js": {
+    "file": "js/alarm.js",
+    "src": "resources/js/alarm.js",
+    "isEntry": true
+  },
   "__commonjsHelpers.b8add541.js": {
     "file": "assets/_commonjsHelpers.b8add541.js"
+  },
+  "resources/css/home.css": {
+    "file": "css/home.css",
+    "src": "resources/css/home.css",
+    "isEntry": true
   },
   "resources/css/master.css": {
     "file": "css/master.css",
@@ -88,11 +98,6 @@
   "resources/css/edit.css": {
     "file": "css/edit.css",
     "src": "resources/css/edit.css",
-    "isEntry": true
-  },
-  "resources/css/home.css": {
-    "file": "css/home.css",
-    "src": "resources/css/home.css",
     "isEntry": true
   },
   "resources/css/app.css": {

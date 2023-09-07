@@ -48,7 +48,6 @@
 @endsection
 @section('javascript')
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=96gg9oc940&submodules=geocoder"></script>
-
 	<script type="module">
     $('#map').css('height', $(document).height() + 'px');
     $('#map_list_items').css('width', ($(document).width()) + 'px');

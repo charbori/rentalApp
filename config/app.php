@@ -193,6 +193,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\AlarmServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,

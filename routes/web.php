@@ -65,4 +65,6 @@ Route::delete('/reply/del', [App\Http\Controllers\CommentController::class, 'rem
 Route::post('/api/user/update', [App\Http\Controllers\Auth\UpdateUserController::class, 'store']);
 Route::get('/api/user/update', [App\Http\Controllers\Auth\UpdateUserController::class, 'view'])->name('update');
 
+Route::get('/api/alarm', [App\Http\Controllers\AlarmController::class, 'show']);
+
 require __DIR__.'/auth.php';

@@ -6,9 +6,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\AlarmRead;
 use App\Listeners\SendAlarmNotification;
+use App\Listeners\AlarmEventSubscriber;
 
-class EventServiceProvider extends ServiceProvider
+class AlarmServiceProvider extends ServiceProvider
 {
     /**
      * The event to listener mappings for the application.
@@ -16,12 +18,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-        AlarmRead::class => [
-            SendAlarmNotification::class
-        ]
+
+    ];
+
+    protected $subscribe = [
     ];
 
     /**
@@ -31,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        //
     }
 
     /**
