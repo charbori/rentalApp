@@ -19,7 +19,7 @@ class AlarmController extends Controller
         $date = date("Y-m-d H:i:s", strtotime("-3 Months"));
         $alarm_res = DB::table('alarm')
                             ->where('user_id', '=', $guest_id)
-                            ->where('reg_date', ">", $date)
+                            ->where('created_at', ">", $date)
                             ->get();
         return $alarm_res;
     }

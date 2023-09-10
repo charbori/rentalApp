@@ -29,7 +29,7 @@ class FollowController extends Controller
         $my_user_attach = array();
 
         $follow_cnt = DB::table('follow')
-                            ->where('id', '=', $user_data['id'])
+                            ->where('user_id', '=', $user_data['id'])
                             ->count('id');
 
         $follower_cnt = DB::table('follow')

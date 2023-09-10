@@ -132,7 +132,7 @@ class SportRecordService
                 ->where('follow.id', '=', Auth::id())
                 ->orderBy('ranking.created_at','asc')->get();
             if ($sport_type == 'swim') {
-                $sport_record_datas[$sport_type]['icons'] = "/build/assets/img/swimming_icon.png";
+                $sport_record_datas[$sport_type]['icons'] = "/build/images/people_icon.png";
             }
 
             foreach ($sport_record_datas[$sport_type][$sport_code] AS $sport_data) {
@@ -165,7 +165,7 @@ class SportRecordService
                                     ->where("user_id", '=', $sport_data->follower)
                                     ->get();
 
-                $sport_data->path = '/build/assets/img/people_icon.png';
+                $sport_data->path = '/build/images/people_icon.png';
                 if (count($res_user_attach) > 0 && strlen($res_user_attach[0]->path) > 0) {
                     $path_data = $res_user_attach[0]->path;
                     $sport_data->path = (strpos($path_data, "public") !== false) ?

@@ -25,10 +25,10 @@
                     $.each(data, function(idx, val) {
                         console.log(val);
                         if (val.type == 'AA') { // 새로운 기록알림
-                            let alarm_color = val.alarm_reac == 'Y' ? '.text-black-50' : '';
+                            let alarm_color = val.alarm_reac == 'Y' ? 'text-black-50 ' : '';
                             $('#alarm_dropdown_list').append(
                                 '<li>' +
-                                '<a class="' + alarm_color + 'dropdown-item" aria-current="page" href="/api/follow?id=' + val.user_id +
+                                '<a class="' + alarm_color + 'dropdown-item" aria-current="page" href="/api/follow?id=' + val.ref_id +
                                 '&alarm_id=' + val.id + '&read=Y">' +
                                 val.content + '</a>' +
                                 '</li>'
