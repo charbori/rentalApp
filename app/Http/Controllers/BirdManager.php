@@ -23,10 +23,10 @@ class BirdManager implements MapManagerInterface
     }
 
     public function store(Request $request) {
-        if (Auth::check() === false) {
+        $id = (Auth::check()) ? Auth::user()->id : $request->id;
+        if ($id == "") {
             return false;
         }
-        $id = Auth::id();
         $map_list = \App\Models\MapList::create([
             "title" => $request->title,
             "type" => $request->type,
@@ -34,6 +34,7 @@ class BirdManager implements MapManagerInterface
             "longitude" => $request->longitude,
             "latitude" => $request->latitude,
             "user_id" => $id,
+            'address' => $request->map_address,
             "attachment" => "Y"
         ]);
         $photos = $request->file('photos');

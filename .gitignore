@@ -1,9 +1,8 @@
 /node_modules
-/public/build/assets/app.*
-/public/build/assets/fontawesome-6.2.0/svgs
 /public/hot
 /public/storage
 /public/photos
+/public/build
 /storage/*.key
 /vendor
 .env

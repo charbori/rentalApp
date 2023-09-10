@@ -142,7 +142,6 @@
                 }
             })
             .done(function(datas) {
-                console.log(datas);
                 return;
             })
             .fail(function(xhr, status, errorThrown) {

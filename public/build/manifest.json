@@ -1,12 +1,12 @@
 {
-  "resources/static/images/swimming_icon.png": {
-    "file": "js/swimming_icon.js",
-    "src": "resources/static/images/swimming_icon.png",
-    "isEntry": true
-  },
   "resources/static/images/people_icon.png": {
     "file": "js/people_icon.js",
     "src": "resources/static/images/people_icon.png",
+    "isEntry": true
+  },
+  "resources/static/images/swimming_icon.png": {
+    "file": "js/swimming_icon.js",
+    "src": "resources/static/images/swimming_icon.png",
     "isEntry": true
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
@@ -48,6 +48,11 @@
     "imports": [
       "__commonjsHelpers.b8add541.js"
     ]
+  },
+  "resources/js/jquery-3.6.1.min.js": {
+    "file": "js/jquery-3.6.1.min.js",
+    "src": "resources/js/jquery-3.6.1.min.js",
+    "isEntry": true
   },
   "resources/js/bootstrap.js": {
     "file": "js/bootstrap.js",

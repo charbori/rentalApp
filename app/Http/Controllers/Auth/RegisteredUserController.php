@@ -49,13 +49,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Log::debug($user);
         $imageManager = new ImageManager();
         $photo_data = $request->file('photos');
-        Log::debug($photo_data);
-        $result = $imageManager->store($photo_data, $user->id);
+        if (isset($photo_data)) {
+            $result = $imageManager->store($photo_data, $user->id);
+        }
 
-        Log::debug($result);
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

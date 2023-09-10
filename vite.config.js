@@ -18,7 +18,7 @@ export default defineConfig({
                 'resources/css/edit.css',
                 //'resources/css/bootstrap.css',
                 //'resources/js/jquery-ui.js',
-                //'resources/js/jquery-3.6.1.min.js',
+                'resources/js/jquery-3.6.1.min.js',
                 'resources/js/bootstrap.js',
                 'resources/js/popper.js',
                 'resources/js/edit.js',

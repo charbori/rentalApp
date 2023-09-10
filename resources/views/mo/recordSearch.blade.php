@@ -301,7 +301,6 @@
                 }
 
                 marker_data = param;
-                console.log(param);
                 $.each(marker_data, function(idx, value) {
                     initMapList(value);
                 });

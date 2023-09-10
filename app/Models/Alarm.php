@@ -12,5 +12,6 @@ class Alarm extends Model
 {
     use HasFactory;
 
+    protected $table = "alarm";
     protected $guarded = [];
 }

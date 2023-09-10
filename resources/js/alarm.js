@@ -5,7 +5,6 @@ function getAlaram(id) {
         dataType: "json"
     })
     .done(function(data) {
-        console.log(data);
     })
     .fail(function(xhr, status, errorThrown) {
         console.log('error');

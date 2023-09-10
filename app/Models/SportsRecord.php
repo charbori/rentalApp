@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\MapList;
+use App\Models\Follow;
 
 class SportsRecord extends Model
 {
@@ -28,5 +29,9 @@ class SportsRecord extends Model
     public function map()
     {
         return $this->belongsTo(MapList::class);
+    }
+
+    public function follow() {
+        return $this->belongsTo(Follow::class);
     }
 }

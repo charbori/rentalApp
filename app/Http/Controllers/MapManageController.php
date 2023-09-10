@@ -43,7 +43,7 @@ class MapManageController extends Controller
             $sport_record_service = new SportRecordService();
             $result_user_rank_map_list = $sport_record_service->getUserMapList($service_param);
 
-            if ($result_user_rank_map_list) {
+            if (is_array($result_user_rank_map_list)) {
                 $user_rank_map_list = $result_user_rank_map_list[0];
             }
 

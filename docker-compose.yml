@@ -36,6 +36,7 @@ services:
         volumes:
             - './routes:/var/www/html/routes'
             - './app:/var/www/html/app'
+            - './tests:/var/www/html/tests'
             - './public:/var/www/html/public'
             - './storage/app/public/photos:/var/www/html/storage/app/public/photos'
             - './resources:/var/www/html/resources'

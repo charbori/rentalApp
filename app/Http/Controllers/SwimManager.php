@@ -22,10 +22,7 @@ class SwimManager implements MapManagerInterface
     }
 
     public function store(Request $request) {
-        if (Auth::check() === false) {
-            //return false;
-        }
-        $id = Auth::id();
+        $id = (Auth::check()) ? Auth::id() : $request->id;
         $sport_code = (empty($request->sport_code)) ? "50" : $request->sport_code;
 
         $sports_record = \App\Models\SportsRecord::create([

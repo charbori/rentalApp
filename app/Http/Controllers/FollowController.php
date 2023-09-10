@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Http\Service\SportRecordService;
 use App\Events\AlarmRead;
+use App\Jobs\AlarmJob;
 
 class FollowController extends Controller
 {
@@ -94,7 +95,6 @@ class FollowController extends Controller
             AlarmRead::dispatch($send_msg);
         }
 
-        Log::debug('is my follow' . $is_my_follow);
         return view($view, [
             'user_data' => $user_data,
             'my_user_attach' => $user_data['path'],

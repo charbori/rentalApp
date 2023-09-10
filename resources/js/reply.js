@@ -26,8 +26,6 @@ $(function() {
             if (msg == 'success') {
                 add_comment($('#submit_comment').val());
                 $('#submit_comment').val('');
-            } else {
-                console.log(msg);
             }
             block_click_send_comment = false;
         });
@@ -80,7 +78,6 @@ $(function() {
             }
             block_click_edit_comment = false;
         }).fail(function () {
-            console.log('fail ~ ');
             $('#progress_load').addClass('progress-off');
             $('.comment-text[data="' + comment_id + '"]').removeClass('comment-off');
             let fail_obj = $('#comment_fail').clone();
