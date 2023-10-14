@@ -68,7 +68,6 @@ RUN composer install
 RUN chown -R 999:sail /var/www/html/storage
 RUN chown -R sail:www-data /var/www/html/bootstrap/cache
 RUN chown -R 999:www-data /var/www/html/storage/app/public
-RUN chown -R 999:www-data /var/www/html/storage/app/public/photos
 RUN chown -R sail:www-data /var/log/supervisor
 RUN chown -R sail:www-data .env
 RUN chown -R sail:www-data .env.testing
